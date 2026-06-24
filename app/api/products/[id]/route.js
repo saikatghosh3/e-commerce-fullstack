@@ -40,6 +40,7 @@ export async function PUT(request, { params }) {
 
     if (Array.isArray(body.reviews)) {
       const ratings = body.reviews
+        .filter((review) => review.approved !== false)
         .map((review) => Number(review.rating) || 0)
         .filter((rating) => rating > 0);
       body.rating = ratings.length > 0

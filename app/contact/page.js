@@ -1,5 +1,20 @@
 
+'use client';
+
+import { useEffect, useState } from 'react';
+
 export default function ContactPage() {
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setSettings(data.settings); })
+      .catch(() => {});
+  }, []);
+
+  const s = settings || {};
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 px-4 py-12 md:py-20">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
@@ -35,14 +50,14 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">হটলাইন নম্বর</p>
-                  <a href="tel:+8809612345678" className="text-blue-600 font-bold text-xl hover:text-blue-700 transition">
-                    ০৯৬১২-৩৪৫৬৭৮
+                  <a href={`tel:${s.phoneEnglish || '+8809612345678'}`} className="text-blue-600 font-bold text-xl hover:text-blue-700 transition">
+                    {s.phone || '০৯৬১২-৩৪৫৬৭৮'}
                   </a>
                 </div>
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">মোবাইল (হোয়াটসঅ্যাপ)</p>
-                  <a href="tel:+8801712345678" className="text-blue-600 font-bold text-lg hover:text-blue-700 transition">
-                    ০১৭১২-৩৪৫৬৭৮
+                  <a href={`tel:${s.phoneEnglish || '+8801712345678'}`} className="text-blue-600 font-bold text-lg hover:text-blue-700 transition">
+                    {s.phone || '০১৭১২-৩৪৫৬৭৮'}
                   </a>
                 </div>
               </div>
@@ -58,14 +73,14 @@ export default function ContactPage() {
               <div className="space-y-2">
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">সাপোর্ট ইমেইল</p>
-                  <a href="mailto:support@yourstore.com" className="text-cyan-600 font-semibold text-sm md:text-base break-all hover:text-cyan-700 transition">
-                    support@yourstore.com
+                  <a href={`mailto:${s.email || 'support@yourstore.com'}`} className="text-cyan-600 font-semibold text-sm md:text-base break-all hover:text-cyan-700 transition">
+                    {s.email || 'support@yourstore.com'}
                   </a>
                 </div>
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">অভিযোগ ও আইনি বিষয়</p>
-                  <a href="mailto:legal@yourstore.com" className="text-cyan-600 font-semibold text-sm md:text-base break-all hover:text-cyan-700 transition">
-                    legal@yourstore.com
+                  <a href={`mailto:${s.email || 'legal@yourstore.com'}`} className="text-cyan-600 font-semibold text-sm md:text-base break-all hover:text-cyan-700 transition">
+                    {s.email || 'legal@yourstore.com'}
                   </a>
                 </div>
               </div>
@@ -79,22 +94,23 @@ export default function ContactPage() {
               সামাজিক মাধ্যমে সংযুক্ত থাকুন
             </h3>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="#" className="flex items-center gap-2 bg-white hover:bg-blue-50 border border-blue-200 px-4 py-2 rounded-xl transition shadow-sm">
-                <i className="fab fa-facebook text-blue-600 text-xl"></i>
-                <span className="text-slate-700">Facebook</span>
-              </a>
-              <a href="#" className="flex items-center gap-2 bg-white hover:bg-pink-50 border border-pink-200 px-4 py-2 rounded-xl transition shadow-sm">
-                <i className="fab fa-instagram text-pink-600 text-xl"></i>
-                <span className="text-slate-700">Instagram</span>
-              </a>
-              <a href="#" className="flex items-center gap-2 bg-white hover:bg-green-50 border border-green-200 px-4 py-2 rounded-xl transition shadow-sm">
-                <i className="fab fa-whatsapp text-green-500 text-xl"></i>
-                <span className="text-slate-700">WhatsApp</span>
-              </a>
-              <a href="#" className="flex items-center gap-2 bg-white hover:bg-sky-50 border border-sky-200 px-4 py-2 rounded-xl transition shadow-sm">
-                <i className="fab fa-messenger text-sky-500 text-xl"></i>
-                <span className="text-slate-700">Messenger</span>
-              </a>
+              {[
+                { key: 'facebook', label: 'Facebook', color: 'hover:bg-blue-50 border-blue-200', textColor: 'text-blue-600' },
+                { key: 'instagram', label: 'Instagram', color: 'hover:bg-pink-50 border-pink-200', textColor: 'text-pink-600' },
+                { key: 'whatsapp', label: 'WhatsApp', color: 'hover:bg-green-50 border-green-200', textColor: 'text-green-500' },
+                { key: 'facebook', label: 'Messenger', color: 'hover:bg-sky-50 border-sky-200', textColor: 'text-sky-500' },
+              ].map(({ key, label, color, textColor }) => {
+                const url = s[key];
+                if (!url) return null;
+                return (
+                  <a key={label} href={url} target="_blank" rel="noreferrer" className={`flex items-center gap-2 bg-white ${color} border px-4 py-2 rounded-xl transition shadow-sm`}>
+                    <span className={`${textColor} text-xl`}>
+                      <i className={`fab fa-${label.toLowerCase()}`}></i>
+                    </span>
+                    <span className="text-slate-700">{label}</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -107,8 +123,9 @@ export default function ContactPage() {
               <div>
                 <h4 className="font-bold text-slate-800">আমাদের ঠিকানা</h4>
                 <p className="text-slate-600 text-sm mt-1">
-                  হাউস #১২৩, রোড #৫, ব্লক #সি,<br />
-                  বনানী, ঢাকা - ১২১৩, বাংলাদেশ
+                  {(s.address || 'হাউস #১২৩, রোড #৫, ব্লক #সি, বনানী, ঢাকা - ১২১৩, বাংলাদেশ').split(',').map((part, i) => (
+                    <span key={i}>{i > 0 && <br />}{part.trim()}</span>
+                  ))}
                 </p>
                 <div className="mt-3">
                   <a 

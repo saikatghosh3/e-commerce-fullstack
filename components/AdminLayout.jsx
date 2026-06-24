@@ -119,7 +119,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Menu, X, LogOut, Package, ShoppingCart, Users, BarChart3, Tags, Megaphone } from 'lucide-react';
+import { Menu, X, LogOut, Package, ShoppingCart, Users, BarChart3, Tags, Megaphone, Star, Settings, TrendingUp, Gift } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 export default function AdminLayout({ children }) {
@@ -170,6 +170,11 @@ if (loading) {
       icon: BarChart3,
     },
     {
+      name: 'অ্যানালিটিক্স',
+      href: '/admin/analytics',
+      icon: TrendingUp,
+    },
+    {
       name: 'পণ্যসমূহ',
       href: '/admin/products/new',
       icon: Package,
@@ -188,6 +193,21 @@ if (loading) {
       name: 'অর্ডার',
       href: '/admin/orders',
       icon: ShoppingCart,
+    },
+    {
+      name: 'রিভিউ',
+      href: '/admin/reviews',
+      icon: Star,
+    },
+    {
+      name: 'প্রোমো কোড',
+      href: '/admin/promocodes',
+      icon: Gift,
+    },
+    {
+      name: 'সেটিংস',
+      href: '/admin/settings',
+      icon: Settings,
     },
   
   ];

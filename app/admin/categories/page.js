@@ -40,7 +40,7 @@ export default function AdminCategoriesPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name.trim()) {
-      showError('Category name is required');
+      showError('ক্যাটাগরির নাম আবশ্যক');
       return;
     }
 
@@ -54,7 +54,7 @@ export default function AdminCategoriesPage() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Category save failed');
+        throw new Error(data.message || 'ক্যাটাগরি সংরক্ষণ ব্যর্থ');
       }
 
       resetForm();
@@ -75,7 +75,7 @@ export default function AdminCategoriesPage() {
   };
 
   const handleDelete = async (category) => {
-    const ok = await confirmAction(`Delete category "${category.name}"?`);
+    const ok = await confirmAction(`ক্যাটাগরি "${category.name}" ডিলিট করবেন?`);
     if (!ok) return;
 
     try {

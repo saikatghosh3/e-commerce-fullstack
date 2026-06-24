@@ -18,6 +18,7 @@ const defaultCategories = [
 ];
 
 export default function Header() {
+  const [settings, setSettings] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [cartCount, setCartCount] = useState(0);
@@ -25,6 +26,15 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [categories, setCategories] = useState(defaultCategories);
   const router = useRouter();
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.success) setSettings(data.settings);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const updateCartCount = () => setCartCount(getCartCount(readCart()));
@@ -54,21 +64,16 @@ export default function Header() {
       try {
         const response = await fetch('/api/categories');
         const data = await response.json();
-
         if (response.ok && data.success) {
           setCategories([
             defaultCategories[0],
-            ...(data.categories || []).map((category) => ({
-              id: category.name,
-              name: category.name,
-            })),
+            ...(data.categories || []).map((cat) => ({ id: cat.name, name: cat.name })),
           ]);
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
-
     fetchCategories();
   }, []);
 
@@ -79,6 +84,8 @@ export default function Header() {
       setIsOpen(false);
     }
   };
+
+  const s = settings || {};
 
   return (
     <header
@@ -92,11 +99,17 @@ export default function Header() {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
-              <span className="text-white font-bold text-lg">ই</span>
-            </div>
+            {s.logo ? (
+              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-300 flex-shrink-0">
+                <img src={s.logo} alt="" className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+                <span className="text-white font-bold text-lg">{s.logoLetter || 'ই'}</span>
+              </div>
+            )}
             <span className="hidden sm:inline text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              ইলিট স্টোর
+              {s.siteName || 'ইলিট স্টোর'}
             </span>
           </Link>
 
@@ -118,11 +131,8 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/products" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
-              কেনাকাটা
-            </Link>
+            <Link href="/products" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">কেনাকাটা</Link>
 
-            {/* Category Dropdown */}
             <div className="relative group">
               <button className="flex items-center gap-1 text-gray-700 hover:text-indigo-600 font-medium transition-colors">
                 ক্যাটাগরি
@@ -130,15 +140,13 @@ export default function Header() {
               </button>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute right-0 top-full pt-3 transition-all duration-200 z-50">
                 <div className="w-56 bg-white border border-gray-200 rounded-xl shadow-xl p-2">
-                  {categories.map((cat,index) => (
-                   // Debug log
+                  {categories.map((cat, index) => (
                     <Link
-                     key={`${cat.id}-${index}`}
-                     // Fixed: unique string key
-                      href={`/products?category=${encodeURIComponent(cat.id)}`} // Fixed: directly using cat.id
+                      key={`${cat.id}-${index}`}
+                      href={`/products?category=${encodeURIComponent(cat.id)}`}
                       className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
                     >
-                      {cat.name} {/* Fixed: rendering string name */}
+                      {cat.name}
                     </Link>
                   ))}
                 </div>
@@ -189,23 +197,23 @@ export default function Header() {
 
             <nav className="flex flex-col space-y-1">
               <Link href="/products" onClick={() => setIsOpen(false)} className="px-4 py-3 text-gray-700 hover:bg-indigo-50 rounded-xl font-medium">কেনাকাটা</Link>
-              
+
               <div className="bg-gray-50 rounded-xl p-4 space-y-3">
                 <p className="text-[10px] font-bold uppercase text-gray-400 tracking-widest">ক্যাটাগরি সমূহ</p>
                 <div className="grid grid-cols-2 gap-2">
                   {categories.map((cat) => (
                     <Link
-                      key={cat.id} // Fixed
-                      href={`/products?category=${encodeURIComponent(cat.id)}`} // Fixed
+                      key={cat.id}
+                      href={`/products?category=${encodeURIComponent(cat.id)}`}
                       onClick={() => setIsOpen(false)}
                       className="px-3 py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-white rounded-lg transition-all"
                     >
-                      {cat.name} {/* Fixed */}
+                      {cat.name}
                     </Link>
                   ))}
                 </div>
               </div>
-              
+
               <Link href="/wishlist" onClick={() => setIsOpen(false)} className="px-4 py-3 text-gray-700 hover:bg-indigo-50 rounded-xl font-medium flex justify-between items-center">
                 উইশলিস্ট <span>{wishlistCount > 0 ? `(${wishlistCount})` : ''}</span>
               </Link>

@@ -66,6 +66,19 @@ const orderSchema = new mongoose.Schema(
       default: 'pending',
     },
     notes: String,
+    discount: {
+      type: Number,
+      default: 0,
+    },
+    promoCode: {
+      type: String,
+      default: null,
+    },
+    discountType: {
+      type: String,
+      enum: ['percentage', 'fixed', null],
+      default: null,
+    },
   },
   { timestamps: true }
 );

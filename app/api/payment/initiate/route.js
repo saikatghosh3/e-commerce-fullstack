@@ -1,6 +1,7 @@
 import axios from 'axios';
 import connectDB from '@/lib/db';
 import Order from '@/models/Order';
+import PromoCode from '@/models/PromoCode';
 
 export async function POST(request) {
   try {
@@ -16,6 +17,7 @@ export async function POST(request) {
       totalAmount,
       shippingAddress,
       paymentMethod,
+      promoCode: rawPromoCode,
     } = await request.json();
 
     if (!items?.length) {
@@ -30,18 +32,87 @@ export async function POST(request) {
       0
     );
 
+    let discountAmount = 0;
+    let discountType = null;
+    let promoCodeUsed = null;
+
+    if (rawPromoCode) {
+      const promo = await PromoCode.findOne({ code: rawPromoCode.toUpperCase().trim() });
+
+      if (!promo) {
+        return Response.json(
+          { success: false, message: 'Invalid promo code' },
+          { status: 400 }
+        );
+      }
+
+      if (!promo.isActive) {
+        return Response.json(
+          { success: false, message: 'This promo code is no longer active' },
+          { status: 400 }
+        );
+      }
+
+      if (promo.expiresAt && new Date(promo.expiresAt) < new Date()) {
+        return Response.json(
+          { success: false, message: 'This promo code has expired' },
+          { status: 400 }
+        );
+      }
+
+      if (promo.usageLimit !== null && promo.usedCount >= promo.usageLimit) {
+        return Response.json(
+          { success: false, message: 'This promo code has reached its usage limit' },
+          { status: 400 }
+        );
+      }
+
+      if (calculatedSubtotal < promo.minOrderAmount) {
+        return Response.json(
+          {
+            success: false,
+            message: `Minimum order amount of ৳${promo.minOrderAmount.toLocaleString('en-IN')} required for this promo code`,
+          },
+          { status: 400 }
+        );
+      }
+
+      if (promo.type === 'percentage') {
+        discountAmount = (calculatedSubtotal * promo.value) / 100;
+        if (promo.maxDiscount !== null && discountAmount > promo.maxDiscount) {
+          discountAmount = promo.maxDiscount;
+        }
+      } else {
+        discountAmount = Math.min(promo.value, calculatedSubtotal);
+      }
+
+      discountAmount = Math.round(discountAmount * 100) / 100;
+
+      await PromoCode.findByIdAndUpdate(promo._id, { $inc: { usedCount: 1 } });
+
+      discountType = promo.type;
+      promoCodeUsed = promo.code;
+    }
+
+    const finalShipping = shippingCost ?? 0;
+    const finalTax = tax ?? 0;
+    const finalTotal = calculatedSubtotal + finalShipping + finalTax - discountAmount;
+
     const orderPayload = {
       orderNumber,
       items,
       customerType: userId ? 'registered' : 'guest',
-      subtotal: subtotal ?? calculatedSubtotal,
-      shippingCost: shippingCost ?? 0,
-      tax: tax ?? 0,
-      totalAmount,
+      subtotal: calculatedSubtotal,
+      shippingCost: finalShipping,
+      tax: finalTax,
+      totalAmount: finalTotal,
       shippingAddress,
       paymentMethod,
       paymentStatus: 'pending',
       orderStatus: 'pending',
+      discount: discountAmount,
+      promoCode: promoCodeUsed,
+      discountType,
     };
 
     if (userId) {
@@ -57,7 +128,7 @@ export async function POST(request) {
         const sslPayload = {
           store_id: process.env.SSL_COMMERZ_STORE_ID,
           store_passwd: process.env.SSL_COMMERZ_STORE_PASSWORD,
-          total_amount: totalAmount,
+          total_amount: finalTotal,
           currency: 'BDT',
           tran_id: orderNumber,
           success_url: `${process.env.NEXT_PUBLIC_API_URL}/api/payment/success`,
@@ -112,7 +183,7 @@ export async function POST(request) {
             _id: order._id,
             orderNumber: order.orderNumber,
           },
-          message: 'Order created. Proceed to payment.',
+          message: 'Order created successfully.',
         },
         { status: 201 }
       );

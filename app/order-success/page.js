@@ -560,6 +560,7 @@ function OrderSuccess() {
   const orderNumber = searchParams.get('orderNumber');
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [settings, setSettings] = useState(null);
   const invoiceRef = useRef();
 
   // এপিআই বা ডাটাবেজ না থাকলে টেস্ট করার জন্য মক ডেটা
@@ -581,10 +582,13 @@ function OrderSuccess() {
   });
 
   useEffect(() => {
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setSettings(data.settings); })
+      .catch(() => {});
     if (orderNumber) {
       fetchOrderData();
     } else {
-      // অর্ডার নম্বর না থাকলে টেস্টিংয়ের সুবিধার্থে মক ডেটা লোড হবে
       setOrderData(getMockOrderData());
       setLoading(false);
     }
@@ -798,7 +802,7 @@ function OrderSuccess() {
         <div className="mt-12 bg-gray-50 rounded-lg p-6 text-center">
           <p className="text-gray-600 mb-2">কোনো প্রশ্ন আছে?</p>
           <p className="text-gray-900 font-semibold mb-4">
-            support@elitestore.com
+            {settings?.email || 'support@elitestore.com'}
           </p>
           <p className="text-sm text-gray-600">
             Available 24/7 to assist you
@@ -819,11 +823,10 @@ function OrderSuccess() {
                   <p className="text-gray-700">তারিখ: <span className="font-semibold">{new Date().toLocaleDateString()}</span></p>
                 </div>
                 <div className="text-right">
-                  <h2 className="text-2xl font-bold text-blue-600 mb-2">Elite Store</h2>
-                  <p className="text-sm text-gray-600">123 Business Street</p>
-                  <p className="text-sm text-gray-600">Dhaka, Bangladesh</p>
-                  <p className="text-sm text-gray-600">Phone: +880 1234-567890</p>
-                  <p className="text-sm text-gray-600">support@elitestore.com</p>
+                  <h2 className="text-2xl font-bold text-blue-600 mb-2">{settings?.siteNameEnglish || 'Elite Store'}</h2>
+                  <p className="text-sm text-gray-600">{(settings?.addressEnglish || '123 Business Street, Dhaka, Bangladesh').split(',').map((part, i) => <span key={i}>{i > 0 && <br />}{part.trim()}</span>)}</p>
+                  <p className="text-sm text-gray-600">Phone: {settings?.phoneEnglish || '+880 1234-567890'}</p>
+                  <p className="text-sm text-gray-600">{settings?.email || 'support@elitestore.com'}</p>
                 </div>
               </div>
             </div>
@@ -908,7 +911,7 @@ function OrderSuccess() {
             <div className="border-t-2 border-gray-300 pt-6 text-center">
               <p className="text-gray-600 mb-2">আমাদের সাথে কেনাকাটা করার জন্য ধন্যবাদ!</p>
               <p className="text-sm text-gray-500">
-                যেকোনো প্রশ্নের জন্য, অনুগ্রহ করে আমাদের সাথে support@elitestore.com ঠিকানায় যোগাযোগ করুন।
+                যেকোনো প্রশ্নের জন্য, অনুগ্রহ করে আমাদের সাথে {settings?.email || 'support@elitestore.com'} ঠিকানায় যোগাযোগ করুন।
               </p>
             </div>
           </div>

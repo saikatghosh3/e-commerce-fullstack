@@ -1,29 +1,52 @@
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import AppShell from '@/components/AppShell';
+import connectDB from '@/lib/db';
+import SiteSetting from '@/models/SiteSetting';
 
-export const metadata = {
-  title: 'Elite Store - Premium E-commerce',
-  description: 'Shop the finest collection of premium products',
-  generator: 'v0.app',
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
-};
+export async function generateMetadata() {
+  try {
+    await connectDB();
+    const setting = await SiteSetting.findOne();
+    if (setting) {
+      return {
+        title: setting.siteNameEnglish || 'Elite Store',
+        description: setting.description || 'Shop the finest collection of premium products',
+        icons: {
+          icon: [
+            {
+              url: '/icon-light-32x32.png',
+              media: '(prefers-color-scheme: light)',
+            },
+            {
+              url: '/icon-dark-32x32.png',
+              media: '(prefers-color-scheme: dark)',
+            },
+            {
+              url: '/icon.svg',
+              type: 'image/svg+xml',
+            },
+          ],
+          apple: '/apple-icon.png',
+        },
+      };
+    }
+  } catch (e) {
+    // fallback
+  }
+  return {
+    title: 'Elite Store - Premium E-commerce',
+    description: 'Shop the finest collection of premium products',
+    icons: {
+      icon: [
+        { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
+        { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      ],
+      apple: '/apple-icon.png',
+    },
+  };
+}
 
 export default function RootLayout({ children }) {
   return (

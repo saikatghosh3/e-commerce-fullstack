@@ -664,8 +664,10 @@ export default function ProductDetailPage() {
             )}
             {activeTab === 'reviews' && (
               <div className="space-y-6">
-                {product.reviews?.length > 0 ? (
-                  product.reviews.map((review, index) => (
+                {(() => {
+                  const approvedReviews = (product.reviews || []).filter((r) => r.approved !== false);
+                  return approvedReviews.length > 0 ? (
+                    approvedReviews.map((review, index) => (
                     <div key={index} className="rounded-3xl bg-slate-50 border border-slate-200 p-6 shadow-sm">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                         <div>
@@ -699,7 +701,7 @@ export default function ProductDetailPage() {
                     <Star size={48} className="mx-auto text-slate-200 mb-4" />
                     <p className="text-slate-500 text-lg">এখনো কোনো রিভিউ নেই</p>
                   </div>
-                )}
+                )})()}
               </div>
             )}
           </div>

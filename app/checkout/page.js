@@ -469,7 +469,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Loader2, Truck, CreditCard, Package, Clock } from 'lucide-react';
+import { ArrowLeft, Loader2, Truck, CreditCard, Package, Clock, Gift, Tag } from 'lucide-react';
 import { clearCart, readCart, saveCart } from '@/lib/cart';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -497,6 +497,12 @@ export default function CheckoutPage() {
   });
 
   const [paymentMethod, setPaymentMethod] = useState('cod');
+  const [promoCode, setPromoCode] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState('');
+  const [validatingPromo, setValidatingPromo] = useState(false);
+  const [promoInfo, setPromoInfo] = useState(null);
 
   useEffect(() => {
     fetchCartData();
@@ -618,12 +624,52 @@ export default function CheckoutPage() {
 
     // বাংলাদেশী শিপিং (৫০০০+ টাকায় ফ্রি)
     const shippingCost = subtotal > 5000 ? 0 : 150;
-    const total = subtotal + shippingCost;
+    const total = subtotal + shippingCost - discount;
 
     return { subtotal, shippingCost, total };
   };
 
   const { subtotal, shippingCost, total } = calculateTotals();
+
+  const applyPromo = async () => {
+    if (!promoCode.trim()) {
+      setPromoError('প্রোমো কোড লিখুন');
+      return;
+    }
+    setValidatingPromo(true);
+    setPromoError('');
+    try {
+      const res = await fetch('/api/promocodes/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: promoCode, orderAmount: subtotal }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setDiscount(data.promoCode.discountAmount);
+        setPromoApplied(true);
+        setPromoInfo(data.promoCode);
+        toast.success(`${data.promoCode.discountAmount.toFixed(0)} ৳ ছাড় প্রয়োগ করা হয়েছে!`);
+      } else {
+        setPromoError(data.message || 'ভুল প্রোমো কোড');
+        setDiscount(0);
+        setPromoApplied(false);
+        setPromoInfo(null);
+      }
+    } catch (err) {
+      setPromoError('প্রোমো কোড যাচাই করতে ত্রুটি');
+    } finally {
+      setValidatingPromo(false);
+    }
+  };
+
+  const removePromo = () => {
+    setPromoCode('');
+    setDiscount(0);
+    setPromoApplied(false);
+    setPromoError('');
+    setPromoInfo(null);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -678,6 +724,7 @@ export default function CheckoutPage() {
           totalAmount: total,
           shippingAddress: formData,
           paymentMethod,
+          ...(promoApplied && promoCode.trim() ? { promoCode: promoCode.trim() } : {}),
         }),
       });
 
@@ -1011,7 +1058,7 @@ export default function CheckoutPage() {
                 })}
               </div>
 
-              <div className="space-y-3 mb-6 pb-6 border-b border-gray-100">
+                <div className="space-y-3 mb-4 pb-4 border-b border-gray-100">
                 <div className="flex justify-between text-gray-600">
                   <span>সাবটোটাল</span>
                   <span className="font-medium">৳{subtotal.toFixed(2)}</span>
@@ -1031,6 +1078,57 @@ export default function CheckoutPage() {
                     )}
                   </span>
                 </div>
+                {discount > 0 && (
+                  <div className="flex justify-between text-green-700">
+                    <span>ছাড় (প্রোমো)</span>
+                    <span className="font-semibold">- ৳{discount.toFixed(2)}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* প্রোমো কোড */}
+              <div className="mb-4 pb-4 border-b border-gray-100">
+                {promoApplied && promoInfo ? (
+                  <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl">
+                    <div className="flex items-center gap-2">
+                      <Tag size={14} className="text-green-600" />
+                      <div>
+                        <span className="text-sm font-semibold text-green-700">{promoInfo.code}</span>
+                        <p className="text-xs text-green-600">ছাড়: {promoInfo.type === 'percentage' ? `${promoInfo.value}%` : `৳${promoInfo.value}`}</p>
+                      </div>
+                    </div>
+                    <button onClick={removePromo} className="text-green-700 hover:text-green-800 p-1">
+                      <X size={14} />
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <label className="block text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                      <Gift size={16} className="text-indigo-600" />
+                      প্রোমো কোড
+                    </label>
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        placeholder="কোড লিখুন"
+                        value={promoCode}
+                        onChange={(e) => { setPromoCode(e.target.value); setPromoError(''); }}
+                        className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 uppercase"
+                      />
+                      <button
+                        type="button"
+                        onClick={applyPromo}
+                        disabled={validatingPromo}
+                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-indigo-100 hover:text-indigo-700 transition font-semibold text-sm disabled:opacity-50 flex items-center gap-1"
+                      >
+                        {validatingPromo ? <Loader2 size={14} className="animate-spin" /> : 'প্রযোজ্য'}
+                      </button>
+                    </div>
+                    {promoError && (
+                      <p className="text-xs text-red-600 mt-1">{promoError}</p>
+                    )}
+                  </>
+                )}
               </div>
 
               <div className="flex justify-between items-center mb-4">

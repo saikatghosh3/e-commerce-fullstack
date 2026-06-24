@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Mail, Lock, Loader2 } from 'lucide-react';
@@ -9,6 +9,14 @@ import { showSuccess, showError } from '@/components/ToastUtils';
 export default function LoginPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then((r) => r.json())
+      .then((data) => { if (data.success) setSettings(data.settings); })
+      .catch(() => {});
+  }, []);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -66,9 +74,9 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl mb-4">
-              <span className="text-white font-bold text-2xl">E</span>
+              <span className="text-white font-bold text-2xl">{settings?.logoLetterEnglish || 'E'}</span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">Elite Store</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{settings?.siteNameEnglish || 'Elite Store'}</h1>
             <p className="text-gray-600 mt-2">Welcome back</p>
           </div>
 

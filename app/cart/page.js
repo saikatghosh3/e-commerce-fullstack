@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Trash2, Plus, Minus, ArrowLeft, ChevronRight, ShoppingBag, CreditCard, Gift } from 'lucide-react';
-import { showError } from '@/components/ToastUtils';
+import { Trash2, Plus, Minus, ArrowLeft, ChevronRight, ShoppingBag, CreditCard, Gift, Loader2, X, Tag } from 'lucide-react';
+import { showError, showSuccess } from '@/components/ToastUtils';
 import { readCart, saveCart } from '@/lib/cart';
 
 export default function CartPage() {
@@ -14,6 +14,10 @@ export default function CartPage() {
   const [products, setProducts] = useState({});
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState('');
+  const [validatingPromo, setValidatingPromo] = useState(false);
+  const [promoInfo, setPromoInfo] = useState(null);
 
   useEffect(() => {
     fetchCartItems();
@@ -97,16 +101,44 @@ export default function CartPage() {
   const shippingCost = subtotal > 5000 ? 0 : 150; // ৫০০০+ টাকায় ফ্রি শিপিং
   const total = subtotal + shippingCost - discount;
 
-  const handleApplyPromo = () => {
-    // প্রোমো কোড লজিক (উদাহরণ)
-    if (promoCode === 'WELCOME10') {
-      setDiscount(subtotal * 0.1);
-    } else if (promoCode === 'FREESHIP') {
-      // ফ্রি শিপিং ইতিমধ্যে কন্ডিশনে আছে
-      setDiscount(0);
-    } else {
-      showError('ভুল প্রোমো কোড');
+  const handleApplyPromo = async () => {
+    if (!promoCode.trim()) {
+      setPromoError('প্রোমো কোড লিখুন');
+      return;
     }
+    setValidatingPromo(true);
+    setPromoError('');
+    try {
+      const res = await fetch('/api/promocodes/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: promoCode, orderAmount: subtotal }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setDiscount(data.promoCode.discountAmount);
+        setPromoApplied(true);
+        setPromoInfo(data.promoCode);
+        showSuccess(`${data.promoCode.discountAmount.toFixed(0)} ৳ ছাড় প্রয়োগ করা হয়েছে!`);
+      } else {
+        setPromoError(data.message || 'ভুল প্রোমো কোড');
+        setDiscount(0);
+        setPromoApplied(false);
+        setPromoInfo(null);
+      }
+    } catch (err) {
+      setPromoError('প্রোমো কোড যাচাই করতে ত্রুটি');
+    } finally {
+      setValidatingPromo(false);
+    }
+  };
+
+  const removePromo = () => {
+    setPromoCode('');
+    setDiscount(0);
+    setPromoApplied(false);
+    setPromoError('');
+    setPromoInfo(null);
   };
 
   if (loading) {
@@ -313,28 +345,46 @@ export default function CartPage() {
 
                 {/* প্রোমো কোড */}
                 <div className="mt-6 pt-6 border-t border-gray-100">
-                  <label className="block text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                    <Gift size={16} className="text-indigo-600" />
-                    প্রোমো কোড
-                  </label>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="কোড লিখুন"
-                      value={promoCode}
-                      onChange={(e) => setPromoCode(e.target.value)}
-                      className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
-                    />
-                    <button
-                      onClick={handleApplyPromo}
-                      className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-xl hover:bg-indigo-100 hover:text-indigo-700 transition-all duration-200 font-semibold"
-                    >
-                      প্রযোজ্য
-                    </button>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-2">
-                    WELCOME10 (১০% ছাড়)
-                  </p>
+                  {promoApplied && promoInfo ? (
+                    <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl">
+                      <div className="flex items-center gap-2">
+                        <Tag size={16} className="text-green-600" />
+                        <div>
+                          <span className="text-sm font-semibold text-green-700">{promoInfo.code}</span>
+                          <p className="text-xs text-green-600">ছাড়: {promoInfo.type === 'percentage' ? `${promoInfo.value}%` : `৳${promoInfo.value}`}</p>
+                        </div>
+                      </div>
+                      <button onClick={removePromo} className="text-green-700 hover:text-green-800 p-1">
+                        <X size={16} />
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <label className="block text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                        <Gift size={16} className="text-indigo-600" />
+                        প্রোমো কোড
+                      </label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="কোড লিখুন"
+                          value={promoCode}
+                          onChange={(e) => { setPromoCode(e.target.value); setPromoError(''); }}
+                          className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all uppercase"
+                        />
+                        <button
+                          onClick={handleApplyPromo}
+                          disabled={validatingPromo}
+                          className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-xl hover:bg-indigo-100 hover:text-indigo-700 transition-all duration-200 font-semibold disabled:opacity-50 flex items-center gap-1"
+                        >
+                          {validatingPromo ? <Loader2 size={14} className="animate-spin" /> : 'প্রযোজ্য'}
+                        </button>
+                      </div>
+                      {promoError && (
+                        <p className="text-xs text-red-600 mt-2">{promoError}</p>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,118 +1,112 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Mail, Lock, Loader2 } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from '@/lib/redux/slices/authSlice';
 
 export default function AdminLoginPage() {
-  const router = useRouter()
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setLoading(true)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
 
-    if (username === 'admin' && password === 'admin@gmail.com') {
-      localStorage.setItem('adminToken', 'authenticated')
+    try {
+      const res = await fetch('/api/auth/admin-login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
 
-      router.push('/admin/dashboard')
-    } else {
-      alert('Invalid credentials')
+      const data = await res.json();
+
+      if (data.success) {
+        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('adminUser', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        dispatch(loginSuccess({ user: data.user, token: data.token }));
+        router.push('/admin/dashboard');
+      } else {
+        setError(data.message || 'Invalid credentials');
+      }
+    } catch (err) {
+      console.error('Admin login error:', err);
+      setError('Connection failed. Please check your network and try again.');
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false)
-  }
+  };
 
   return (
-    <div style={styles.wrapper}>
-      <div style={styles.card}>
-        <h1 style={styles.title}>Admin Login</h1>
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
+      <div className="w-full max-w-sm bg-white rounded-xl shadow-2xl p-8">
+        <div className="text-center mb-6">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-600 rounded-xl mb-3">
+            <span className="text-white font-bold text-xl">A</span>
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900">Admin Login</h1>
+          <p className="text-sm text-gray-500 mt-1">Sign in to your admin panel</p>
+        </div>
 
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <label>Username</label>
-          <input
-            style={styles.input}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-1.5">Email</label>
+            <div className="relative">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); setError(''); }}
+                placeholder="admin@gmail.com"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+          </div>
 
-          <label>Password</label>
-          <input
-            style={styles.input}
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div>
+            <label className="block text-sm font-semibold text-gray-900 mb-1.5">Password</label>
+            <div className="relative">
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => { setPassword(e.target.value); setError(''); }}
+                placeholder="••••••••"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+          </div>
+
+          {error && (
+            <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>
+          )}
 
           <button
             type="submit"
             disabled={loading}
-            style={styles.button}
+            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading && <Loader2 size={18} className="animate-spin" />}
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
 
-        <div style={styles.demo}>
-          <p>Demo: admin</p>
-          <p>Pass: admin@gmail.com</p>
+        <div className="mt-6 text-center text-xs text-gray-500">
+          <p>Admin: admin@gmail.com</p>
+          <p>Password: Admin@123456</p>
         </div>
       </div>
     </div>
-  )
-}
-
-const styles = {
-  wrapper: {
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    background: '#0f172a',
-  },
-
-  card: {
-    width: '320px',
-    background: '#fff',
-    padding: '20px',
-    borderRadius: '10px',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-    fontFamily: 'sans-serif',
-  },
-
-  title: {
-    textAlign: 'center',
-    marginBottom: '15px',
-  },
-
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '8px',
-  },
-
-  input: {
-    padding: '10px',
-    border: '1px solid #ccc',
-    borderRadius: '6px',
-    outline: 'none',
-  },
-
-  button: {
-    marginTop: '10px',
-    padding: '10px',
-    background: '#2563eb',
-    color: 'white',
-    border: 'none',
-    borderRadius: '6px',
-    cursor: 'pointer',
-  },
-
-  demo: {
-    marginTop: '12px',
-    fontSize: '12px',
-    textAlign: 'center',
-    color: '#555',
-  },
+  );
 }

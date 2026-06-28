@@ -1,15 +1,43 @@
 import axios from 'axios';
 import connectDB from '@/lib/db';
 import Order from '@/models/Order';
+import User from '@/models/User';
 import PromoCode from '@/models/PromoCode';
+import jwt from 'jsonwebtoken';
 
 export async function POST(request) {
   try {
     await connectDB();
 
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return Response.json(
+        { success: false, message: 'Authentication required. Please login first.' },
+        { status: 401 }
+      );
+    }
+
+    const token = authHeader.split(' ')[1];
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.JWT_SECRET);
+    } catch {
+      return Response.json(
+        { success: false, message: 'Invalid or expired token. Please login again.' },
+        { status: 401 }
+      );
+    }
+
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return Response.json(
+        { success: false, message: 'User not found. Please register first.' },
+        { status: 404 }
+      );
+    }
+
     const {
       orderNumber,
-      userId,
       items,
       subtotal,
       shippingCost,
@@ -100,8 +128,9 @@ export async function POST(request) {
 
     const orderPayload = {
       orderNumber,
+      userId: user._id,
       items,
-      customerType: userId ? 'registered' : 'guest',
+      customerType: 'registered',
       subtotal: calculatedSubtotal,
       shippingCost: finalShipping,
       tax: finalTax,
@@ -114,10 +143,6 @@ export async function POST(request) {
       promoCode: promoCodeUsed,
       discountType,
     };
-
-    if (userId) {
-      orderPayload.userId = userId;
-    }
 
     const order = new Order(orderPayload);
 

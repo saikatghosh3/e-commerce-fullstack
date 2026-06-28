@@ -620,22 +620,30 @@ function OrderSuccess() {
     }
   };
 
+  const [printError, setPrintError] = useState(null);
+
   const handlePrint = useReactToPrint({
-    contentRef: invoiceRef, // v3+ সংস্করণ সামঞ্জস্যপূর্ণ
-    content: () => invoiceRef.current, // v2 সংস্করণ সামঞ্জস্যপূর্ণ
+    contentRef: invoiceRef,
     documentTitle: `Invoice-${orderNumber || 'Test'}`,
     pageStyle: `
       @page {
         size: A4;
-        margin: 20mm;
+        margin: 15mm;
       }
       @media print {
         body {
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
+        .no-print {
+          display: none !important;
+        }
       }
     `,
+    onPrintError: (error) => {
+      console.error('Print error:', error);
+      setPrintError(error?.message || 'Print failed');
+    },
   });
 
   return (
@@ -671,8 +679,11 @@ function OrderSuccess() {
           {/* Print Invoice Button - মক ডেটা থাকার কারণে এখন সবসময় দৃশ্যমান থাকবে */}
           {orderData && (
             <div className="flex justify-center gap-4">
+              {printError && (
+                <p className="text-red-600 text-sm mb-2">{printError}</p>
+              )}
               <button
-                onClick={() => handlePrint()}
+                onClick={handlePrint}
                 className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md"
               >
                 <Printer size={20} />
@@ -805,15 +816,15 @@ function OrderSuccess() {
             {settings?.email || 'support@elitestore.com'}
           </p>
           <p className="text-sm text-gray-600">
-            Available 24/7 to assist you
+            ২৪/৭ আপনাকে সহায়তা করতে প্রস্তুত
           </p>
         </div>
       </div>
 
-      {/* Hidden Invoice for Printing - অফ-স্ক্রিন রেন্ডারিং মেথড ব্যবহার করে সংশোধন করা হয়েছে */}
+      {/* Hidden Invoice for Printing */}
       {orderData && (
-        <div className="absolute top-[-9999px] left-[-9999px] print:static print:block">
-          <div ref={invoiceRef} className="bg-white p-12 max-w-4xl mx-auto">
+        <div ref={invoiceRef} className="no-print" style={{ display: 'none' }}>
+          <div className="bg-white p-12" style={{ width: '210mm', margin: '0 auto' }}>
             {/* Invoice Header */}
             <div className="border-b-2 border-gray-300 pb-6 mb-8">
               <div className="flex justify-between items-start">
@@ -837,7 +848,7 @@ function OrderSuccess() {
                 <h3 className="font-bold text-gray-900 mb-3 text-lg">বিলিং ঠিকানা:</h3>
                 <div className="text-gray-700">
                   <p className="font-semibold text-gray-900">{orderData.shippingAddress?.name}</p>
-                  <p>{orderData.shippingAddress?.address}</p>
+                  <p>{orderData.shippingAddress?.address || orderData.shippingAddress?.street || ''}</p>
                   <p>Phone: {orderData.shippingAddress?.phone}</p>
                   <p>Email: {orderData.shippingAddress?.email}</p>
                 </div>
@@ -870,10 +881,10 @@ function OrderSuccess() {
                   {orderData.items?.map((item, index) => (
                     <tr key={index} className="border-b border-gray-200">
                       <td className="py-3 px-4 text-gray-800">{item.name}</td>
-                      <td className="py-3 px-4 text-center text-gray-700">৳{item.price.toFixed(2)}</td>
+                      <td className="py-3 px-4 text-center text-gray-700">৳{(Number(item.price) || 0).toFixed(2)}</td>
                       <td className="py-3 px-4 text-center text-gray-700">{item.quantity}</td>
                       <td className="py-3 px-4 text-right font-semibold text-gray-900">
-                        ৳{(item.price * item.quantity).toFixed(2)}
+                        ৳{((Number(item.price) || 0) * Number(item.quantity) || 0).toFixed(2)}
                       </td>
                     </tr>
                   ))}
@@ -886,7 +897,7 @@ function OrderSuccess() {
               <div className="w-80">
                 <div className="flex justify-between py-2 text-gray-700">
                   <span>উপ-মোট:</span>
-                  <span className="font-semibold">৳{orderData.subtotal?.toFixed(2)}</span>
+                  <span className="font-semibold">৳{(Number(orderData.subtotal) || 0).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between py-2 text-gray-700">
                   <span>শিপিং চার্জ:</span>
@@ -894,14 +905,14 @@ function OrderSuccess() {
                     {orderData.shippingCost === 0 ? (
                       <span className="text-green-600">ফ্রি</span>
                     ) : (
-                      `৳${orderData.shippingCost?.toFixed(2)}`
+                      `৳${(Number(orderData.shippingCost) || 0).toFixed(2)}`
                     )}
                   </span>
                 </div>
                 <div className="flex justify-between py-3 border-t-2 border-gray-300 mt-2">
                   <span className="text-xl font-bold text-gray-900">মোট:</span>
                   <span className="text-xl font-bold text-blue-600">
-                    ৳{orderData.totalAmount?.toFixed(2)}
+                    ৳{(Number(orderData.totalAmount) || 0).toFixed(2)}
                   </span>
                 </div>
               </div>

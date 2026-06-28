@@ -469,7 +469,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Loader2, Truck, CreditCard, Package, Clock, Gift, Tag } from 'lucide-react';
+import { ArrowLeft, Loader2, Truck, CreditCard, Package, Clock, Gift, Tag, X } from 'lucide-react';
 import { clearCart, readCart, saveCart } from '@/lib/cart';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -480,6 +480,40 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [removedItemsCount, setRemovedItemsCount] = useState(0);
+  const [authChecked, setAuthChecked] = useState(false);
+
+  const fetchUserProfile = async (t) => {
+    try {
+      const res = await fetch('/api/auth/me', {
+        headers: { Authorization: `Bearer ${t}` },
+      });
+      const data = await res.json();
+      if (data.success) {
+        const u = data.user;
+        const addr = u.address || {};
+        const addrParts = [addr.street, addr.city, addr.state, addr.zipCode, addr.country].filter(Boolean);
+        setFormData({
+          name: u.name || '',
+          email: u.email || '',
+          phone: u.phone || '',
+          address: addrParts.join(', '),
+        });
+      }
+    } catch (err) {
+      console.error('Error fetching user profile:', err);
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error('অর্ডার করতে প্রথমে লগইন করুন');
+      router.push('/auth/login?redirect=checkout');
+      return;
+    }
+    setAuthChecked(true);
+    fetchUserProfile(token);
+  }, []);
 
   // শুধু প্রয়োজনীয় ফিল্ড
   const [formData, setFormData] = useState({
@@ -505,8 +539,8 @@ export default function CheckoutPage() {
   const [promoInfo, setPromoInfo] = useState(null);
 
   useEffect(() => {
-    fetchCartData();
-  }, []);
+    if (authChecked) fetchCartData();
+  }, [authChecked]);
 
   const fetchCartData = async () => {
     try {
@@ -711,10 +745,17 @@ export default function CheckoutPage() {
         return;
       }
 
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('Please login to place an order');
+        router.push('/auth/login');
+        return;
+      }
       const response = await fetch('/api/payment/initiate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
           orderNumber,

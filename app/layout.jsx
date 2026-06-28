@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import AppShell from '@/components/AppShell';
+import ReduxProvider from '@/lib/redux/Provider';
 import connectDB from '@/lib/db';
 import SiteSetting from '@/models/SiteSetting';
 
@@ -52,7 +53,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased text-foreground">
-        <AppShell>{children}</AppShell>
+        <ReduxProvider>
+          <AppShell>{children}</AppShell>
+        </ReduxProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

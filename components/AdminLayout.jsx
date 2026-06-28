@@ -119,7 +119,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Menu, X, LogOut, Package, ShoppingCart, Users, BarChart3, Tags, Megaphone, Star, Settings, TrendingUp, Gift } from 'lucide-react';
+import { Menu, X, LogOut, Package, ShoppingCart, Users, BarChart3, Tags, Megaphone, Star, Settings, TrendingUp, Gift, RefreshCw, UserCog } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 
 export default function AdminLayout({ children }) {
@@ -205,11 +205,20 @@ if (loading) {
       icon: Gift,
     },
     {
+      name: 'রিফান্ড',
+      href: '/admin/refunds',
+      icon: RefreshCw,
+    },
+    {
+      name: 'ইউজার',
+      href: '/admin/users',
+      icon: UserCog,
+    },
+    {
       name: 'সেটিংস',
       href: '/admin/settings',
       icon: Settings,
     },
-  
   ];
 
   return (

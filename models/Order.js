@@ -79,6 +79,18 @@ const orderSchema = new mongoose.Schema(
       enum: ['percentage', 'fixed', null],
       default: null,
     },
+    cancelRequested: { type: Boolean, default: false },
+    cancelReason: String,
+    cancelDate: Date,
+    refundRequested: { type: Boolean, default: false },
+    refundReason: String,
+    refundStatus: {
+      type: String,
+      enum: ['none', 'requested', 'approved', 'rejected'],
+      default: 'none',
+    },
+    refundDate: Date,
+    refundNote: String,
   },
   { timestamps: true }
 );

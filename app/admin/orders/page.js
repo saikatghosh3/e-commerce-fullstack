@@ -280,9 +280,17 @@ export default function AdminOrdersPage() {
                         </select>
                       </td>
                       <td className="px-4 py-3">
-                        <span className={`inline-block px-2 py-1 text-xs rounded ${getStatusColor(order.paymentStatus)}`}>
-                          {getStatusLabel(order.paymentStatus)}
-                        </span>
+                        <select
+                          value={drafts[order._id]?.paymentStatus || order.paymentStatus}
+                          onChange={(event) => updateDraft(order._id, 'paymentStatus', event.target.value)}
+                          className={`px-2 py-1 text-xs rounded border border-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 ${getStatusColor(drafts[order._id]?.paymentStatus || order.paymentStatus)}`}
+                        >
+                          {paymentStatuses.map((status) => (
+                            <option key={status} value={status} className="text-gray-700">
+                              {getStatusLabel(status)}
+                            </option>
+                          ))}
+                        </select>
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center justify-center gap-2">

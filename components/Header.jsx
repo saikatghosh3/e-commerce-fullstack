@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { ChevronDown, Heart, Menu, Search, ShoppingCart, X } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState, useCallback } from 'react';
+import { ChevronDown, Heart, Menu, Search, ShoppingCart, X, User, LogOut } from 'lucide-react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '@/lib/redux/slices/authSlice';
 import { CART_UPDATED_EVENT, getCartCount, readCart } from '@/lib/cart';
 import { getWishlistCount, readWishlist, WISHLIST_UPDATED_EVENT } from '@/lib/wishlist';
 
@@ -25,7 +27,29 @@ export default function Header() {
   const [wishlistCount, setWishlistCount] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [categories, setCategories] = useState(defaultCategories);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const { user: authUser, isAuthenticated } = useSelector((s) => s.auth);
+  const dispatch = useDispatch();
   const router = useRouter();
+  const pathname = usePathname();
+
+  const [storedUser, setStoredUser] = useState(null);
+  const [hasToken, setHasToken] = useState(false);
+
+  useEffect(() => {
+    try {
+      const u = localStorage.getItem('user');
+      const t = localStorage.getItem('token');
+      setStoredUser(u ? JSON.parse(u) : null);
+      setHasToken(!!t);
+    } catch {
+      setStoredUser(null);
+      setHasToken(false);
+    }
+  }, [pathname]);
+
+  const isLoggedIn = isAuthenticated || hasToken;
+  const activeUser = authUser || storedUser;
 
   useEffect(() => {
     fetch('/api/settings')
@@ -171,6 +195,62 @@ export default function Header() {
                 </span>
               )}
             </Link>
+
+            {isLoggedIn ? (
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="p-2 text-gray-700 hover:text-indigo-600 transition-colors rounded-full hover:bg-gray-100"
+                >
+                  <User size={22} />
+                </button>
+                {showUserMenu && (
+                  <div className="absolute right-0 top-full pt-3 z-50" onMouseLeave={() => setShowUserMenu(false)}>
+                    <div className="w-48 bg-white border border-gray-200 rounded-xl shadow-xl p-2">
+                      <Link
+                        href="/profile"
+                        onClick={() => setShowUserMenu(false)}
+                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+                      >
+                        <User size={16} />
+                        My Profile
+                      </Link>
+                      <Link
+                        href="/profile"
+                        onClick={() => setShowUserMenu(false)}
+                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+                      >
+                        <ShoppingCart size={16} />
+                        My Orders
+                      </Link>
+                      <hr className="my-1 border-gray-100" />
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem('token');
+                          localStorage.removeItem('user');
+                          localStorage.removeItem('adminToken');
+                          localStorage.removeItem('adminUser');
+                          dispatch(logout());
+                          setShowUserMenu(false);
+                          router.push('/');
+                        }}
+                        className="w-full flex items-center gap-2 px-3 py-2.5 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                      >
+                        <LogOut size={16} />
+                        Sign Out
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/auth/login"
+                className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}

@@ -22,6 +22,7 @@ const siteSettingSchema = new mongoose.Schema(
     whatsapp: { type: String, default: '' },
     copyright: { type: String, default: '© ২০২৬ ইলিট স্টোর। সকল অধিকার সংরক্ষিত।' },
     footerTagline: { type: String, default: 'ইলিট কমার্স দ্বারা পরিচালিত' },
+    favicon: { type: String, default: '' },
   },
   { timestamps: true }
 );

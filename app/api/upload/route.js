@@ -4,7 +4,7 @@ import path from 'path';
 
 export const runtime = 'nodejs';
 
-const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/x-icon', 'image/vnd.microsoft.icon', 'image/svg+xml'];
 
 export async function POST(request) {
   try {

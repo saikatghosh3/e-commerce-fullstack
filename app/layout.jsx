@@ -10,24 +10,20 @@ export async function generateMetadata() {
     await connectDB();
     const setting = await SiteSetting.findOne();
     if (setting) {
+      const iconEntries = [];
+      if (setting.favicon) {
+        iconEntries.push({ url: setting.favicon });
+      }
+      iconEntries.push(
+        { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
+        { url: '/icon-dark-32x32.png', media: '(prefers-color-scheme: dark)' },
+        { url: '/icon.svg', type: 'image/svg+xml' },
+      );
       return {
         title: setting.siteNameEnglish || 'Elite Store',
         description: setting.description || 'Shop the finest collection of premium products',
         icons: {
-          icon: [
-            {
-              url: '/icon-light-32x32.png',
-              media: '(prefers-color-scheme: light)',
-            },
-            {
-              url: '/icon-dark-32x32.png',
-              media: '(prefers-color-scheme: dark)',
-            },
-            {
-              url: '/icon.svg',
-              type: 'image/svg+xml',
-            },
-          ],
+          icon: iconEntries,
           apple: '/apple-icon.png',
         },
       };

@@ -30,7 +30,7 @@ export async function PUT(request) {
       'tagline', 'description', 'email', 'phone', 'phoneEnglish',
       'address', 'addressEnglish',
       'facebook', 'twitter', 'instagram', 'linkedin', 'youtube', 'whatsapp',
-      'copyright', 'footerTagline',
+      'copyright', 'footerTagline', 'favicon',
     ];
 
     for (const field of allowedFields) {

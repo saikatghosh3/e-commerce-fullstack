@@ -30,6 +30,7 @@ export default function AdminSettingsPage() {
     whatsapp: '',
     copyright: '',
     footerTagline: '',
+    favicon: '',
   });
 
   useEffect(() => {
@@ -63,6 +64,7 @@ export default function AdminSettingsPage() {
           whatsapp: s.whatsapp || '',
           copyright: s.copyright || '',
           footerTagline: s.footerTagline || '',
+          favicon: s.favicon || '',
         });
       }
     } catch (err) {
@@ -90,6 +92,28 @@ export default function AdminSettingsPage() {
       if (data.success) {
         setForm((prev) => ({ ...prev, logo: data.url }));
         showSuccess('Logo uploaded');
+      } else {
+        showError(data.message || 'Upload failed');
+      }
+    } catch (err) {
+      showError('Upload failed');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleFaviconUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append('image', file);
+      const res = await fetch('/api/upload', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (data.success) {
+        setForm((prev) => ({ ...prev, favicon: data.url }));
+        showSuccess('Favicon uploaded');
       } else {
         showError(data.message || 'Upload failed');
       }
@@ -182,6 +206,30 @@ export default function AdminSettingsPage() {
                     <button type="button" onClick={() => setForm((p) => ({ ...p, logo: '' }))} className="ml-2 text-sm text-red-600 hover:text-red-700">Remove</button>
                   )}
                   <p className="text-xs text-gray-400 mt-1">Leave empty to use text-based logo</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Favicon</label>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden border border-gray-200">
+                  {form.favicon ? (
+                    <img src={form.favicon} alt="Favicon" className="w-full h-full object-cover" />
+                  ) : (
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 4h2a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2m4-1v8m0 0l-3-3m3 3l3-3" /></svg>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <label className="inline-flex items-center gap-2 px-4 py-2.5 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition text-sm font-medium text-gray-700">
+                    <Upload size={16} />
+                    Upload Favicon
+                    <input type="file" accept="image/png,image/x-icon,image/svg+xml,image/jpeg,image/webp" onChange={handleFaviconUpload} className="hidden" />
+                  </label>
+                  {form.favicon && (
+                    <button type="button" onClick={() => setForm((p) => ({ ...p, favicon: '' }))} className="ml-2 text-sm text-red-600 hover:text-red-700">Remove</button>
+                  )}
+                  <p className="text-xs text-gray-400 mt-1">Recommended: PNG 32x32 or ICO format</p>
                 </div>
               </div>
             </div>

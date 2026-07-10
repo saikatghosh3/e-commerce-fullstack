@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { useSiteData } from '@/lib/SiteDataContext';
 
 const socialIcons = {
   facebook: Facebook,
@@ -12,17 +12,7 @@ const socialIcons = {
 };
 
 export default function Footer() {
-  const [settings, setSettings] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/settings')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.success) setSettings(data.settings);
-      })
-      .catch(() => {});
-  }, []);
-
+  const { settings } = useSiteData();
   const s = settings || {};
 
   return (

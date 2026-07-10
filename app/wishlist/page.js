@@ -38,15 +38,18 @@ export default function WishlistPage() {
     setLoading(true);
 
     try {
-      const results = await Promise.all(
-        ids.map((id) => fetch(`/api/products/${id}`).then((response) => response.json()))
-      );
+      const response = await fetch('/api/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids }),
+      });
+      const data = await response.json();
 
-      const nextProducts = results
-        .filter((result) => result.success && result.product)
-        .map((result) => result.product);
-
-      setProducts(nextProducts);
+      if (data.success && data.products) {
+        setProducts(data.products);
+      } else {
+        setProducts([]);
+      }
     } catch (error) {
       console.error('Error fetching wishlist products:', error);
     } finally {

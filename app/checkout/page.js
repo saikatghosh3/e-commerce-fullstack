@@ -548,18 +548,20 @@ export default function CheckoutPage() {
       setCartItems(cart);
 
       if (cart.length > 0) {
-        const productPromises = cart.map((item) =>
-          fetch(`/api/products/${item.productId}`).then((res) => res.json())
-        );
-
-        const results = await Promise.all(productPromises);
-        const productsMap = {};
-
-        results.forEach((result) => {
-          if (result.success) {
-            productsMap[result.product._id] = result.product;
-          }
+        const ids = cart.map((item) => item.productId);
+        const response = await fetch('/api/products/bulk', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ids }),
         });
+        const data = await response.json();
+
+        const productsMap = {};
+        if (data.success && data.products) {
+          data.products.forEach((product) => {
+            productsMap[product._id] = product;
+          });
+        }
 
         setProducts(productsMap);
 

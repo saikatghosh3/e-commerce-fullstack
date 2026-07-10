@@ -2,13 +2,12 @@ import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 import AppShell from '@/components/AppShell';
 import ReduxProvider from '@/lib/redux/Provider';
-import connectDB from '@/lib/db';
-import SiteSetting from '@/models/SiteSetting';
+import { SiteDataProvider } from '@/lib/SiteDataContext';
+import { getSiteSettings, getCategories } from '@/lib/queries';
 
 export async function generateMetadata() {
   try {
-    await connectDB();
-    const setting = await SiteSetting.findOne();
+    const setting = await getSiteSettings();
     if (setting) {
       const iconEntries = [];
       if (setting.favicon) {
@@ -45,12 +44,19 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const [settings, categories] = await Promise.all([
+    getSiteSettings(),
+    getCategories(),
+  ]);
+
   return (
     <html lang="en" className="bg-background">
       <body className="font-sans antialiased text-foreground">
         <ReduxProvider>
-          <AppShell>{children}</AppShell>
+          <SiteDataProvider settings={settings} categories={categories}>
+            <AppShell>{children}</AppShell>
+          </SiteDataProvider>
         </ReduxProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

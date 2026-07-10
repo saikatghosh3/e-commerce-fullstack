@@ -41,18 +41,20 @@ export default function CartPage() {
 
   const fetchProductDetails = async (cartItems) => {
     try {
-      const productPromises = cartItems.map((item) =>
-        fetch(`/api/products/${item.productId}`).then((res) => res.json())
-      );
-
-      const results = await Promise.all(productPromises);
-      const productsMap = {};
-
-      results.forEach((result) => {
-        if (result.success) {
-          productsMap[result.product._id] = result.product;
-        }
+      const ids = cartItems.map((item) => item.productId);
+      const response = await fetch('/api/products/bulk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids }),
       });
+      const data = await response.json();
+
+      const productsMap = {};
+      if (data.success && data.products) {
+        data.products.forEach((product) => {
+          productsMap[product._id] = product;
+        });
+      }
 
       setProducts(productsMap);
     } catch (error) {

@@ -1,19 +1,12 @@
+import { getSiteSettings } from '@/lib/queries';
 
-'use client';
-
-import { useEffect, useState } from 'react';
-
-export default function ContactPage() {
-  const [settings, setSettings] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/settings')
-      .then((r) => r.json())
-      .then((data) => { if (data.success) setSettings(data.settings); })
-      .catch(() => {});
-  }, []);
-
-  const s = settings || {};
+export default async function ContactPage() {
+  let s = {};
+  try {
+    s = await getSiteSettings();
+  } catch {
+    // use defaults
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 px-4 py-12 md:py-20">

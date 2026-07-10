@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '@/lib/redux/slices/authSlice';
 import { CART_UPDATED_EVENT, getCartCount, readCart } from '@/lib/cart';
 import { getWishlistCount, readWishlist, WISHLIST_UPDATED_EVENT } from '@/lib/wishlist';
+import { useSiteData } from '@/lib/SiteDataContext';
 
 const defaultCategories = [
   { id: 'all', name: 'সব পণ্য' },
@@ -20,13 +21,17 @@ const defaultCategories = [
 ];
 
 export default function Header() {
-  const [settings, setSettings] = useState(null);
+  const { settings: contextSettings, categories: contextCategories } = useSiteData();
+  const [settings, setSettings] = useState(contextSettings);
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
   const [scrolled, setScrolled] = useState(false);
-  const [categories, setCategories] = useState(defaultCategories);
+  const [categories, setCategories] = useState([
+    defaultCategories[0],
+    ...(contextCategories || []).map((cat) => ({ id: cat.name, name: cat.name })),
+  ]);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user: authUser, isAuthenticated } = useSelector((s) => s.auth);
   const dispatch = useDispatch();
@@ -52,15 +57,6 @@ export default function Header() {
   const activeUser = authUser || storedUser;
 
   useEffect(() => {
-    fetch('/api/settings')
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.success) setSettings(data.settings);
-      })
-      .catch(() => {});
-  }, []);
-
-  useEffect(() => {
     const updateCartCount = () => setCartCount(getCartCount(readCart()));
     const updateWishlistCount = () => setWishlistCount(getWishlistCount(readWishlist()));
 
@@ -81,24 +77,6 @@ export default function Header() {
       window.removeEventListener('storage', updateWishlistCount);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await fetch('/api/categories');
-        const data = await response.json();
-        if (response.ok && data.success) {
-          setCategories([
-            defaultCategories[0],
-            ...(data.categories || []).map((cat) => ({ id: cat.name, name: cat.name })),
-          ]);
-        }
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-    fetchCategories();
   }, []);
 
   const handleSearch = (e) => {

@@ -21,13 +21,13 @@ export default function ProductDetailClient({ product, relatedProducts }) {
   if (!product) {
     return (
       <div className="min-h-screen bg-slate-50/30 flex items-center justify-center">
-        <div className="text-center bg-white rounded-3xl shadow-xl p-12 max-w-md">
-          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="text-center bg-white rounded-lg shadow-xl p-12 max-w-md">
+          <div className="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
             <X size={32} className="text-slate-400" />
           </div>
           <h2 className="text-2xl font-bold text-slate-800 mb-3">পণ্য পাওয়া যায়নি</h2>
           <p className="text-slate-500 mb-6">এই পণ্যটি বর্তমানে unavailable</p>
-          <button onClick={() => router.push('/products')} className="bg-slate-900 text-white px-8 py-3 rounded-xl font-medium hover:bg-slate-800 transition-all">
+          <button onClick={() => router.push('/products')} className="bg-slate-900 text-white px-8 py-3 rounded-lg font-medium hover:bg-slate-800 transition-all">
             সকল পণ্য দেখুন
           </button>
         </div>
@@ -73,11 +73,11 @@ export default function ProductDetailClient({ product, relatedProducts }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="bg-white rounded-3xl shadow-sm border border-slate-200/60 overflow-hidden mb-8">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200/60 overflow-hidden mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            <div className="bg-slate-50/50 p-6 lg:p-8">
+            <div className="bg-slate-50/50 p-4 lg:p-5">
               <div
-                className="relative bg-white rounded-2xl overflow-hidden mb-4 aspect-square cursor-crosshair group shadow-sm border border-slate-200/60"
+                className="relative bg-white rounded-lg overflow-hidden mb-4 aspect-square cursor-crosshair group shadow-sm border border-slate-200/60"
                 ref={imageRef}
                 onMouseMove={handleMouseMove}
                 onMouseEnter={handleMouseEnter}
@@ -89,11 +89,11 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                   className={`w-full h-full object-cover transition-transform duration-200 ${isZoomed ? 'scale-150' : 'scale-100'}`}
                   style={isZoomed ? { transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%` } : undefined}
                 />
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-2.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg p-2.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
                   <ZoomIn size={20} className="text-slate-700" />
                 </div>
                 {product.discount > 0 && (
-                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1.5 rounded-xl font-bold text-sm shadow-lg">
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1.5 rounded-lg font-bold text-sm shadow-lg">
                     -{product.discount}%
                   </div>
                 )}
@@ -104,7 +104,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 ${selectedImage === index ? 'border-indigo-600 shadow-lg shadow-indigo-600/20 scale-105' : 'border-slate-200 hover:border-slate-300 hover:shadow-md'}`}
+                      className={`flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden border-2 transition-all duration-200 ${selectedImage === index ? 'border-indigo-600 shadow-md border-indigo-600/60' : 'border-slate-200 hover:border-slate-300 hover:shadow-md'}`}
                     >
                       <img src={image} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                     </button>
@@ -113,15 +113,15 @@ export default function ProductDetailClient({ product, relatedProducts }) {
               )}
             </div>
 
-            <div className="p-6 lg:p-8 flex flex-col">
+            <div className="p-4 lg:p-5 flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-xl text-sm font-medium">{product.category}</span>
-                <button className="p-2 hover:bg-slate-100 rounded-xl transition-colors">
+                <span className="inline-flex items-center px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-medium">{product.category}</span>
+                <button className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
                   <Share2 size={20} className="text-slate-600" />
                 </button>
               </div>
 
-              <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight">{product.name}</h1>
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 mb-6 leading-tight">{product.name}</h1>
 
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex text-amber-400">
@@ -134,13 +134,13 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                 </span>
               </div>
 
-              <div className="bg-slate-50 rounded-2xl p-6 mb-6 border border-slate-200/60">
+              <div className="bg-slate-50 rounded-lg p-6 mb-6 border border-slate-200/60">
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-4xl lg:text-5xl font-bold text-slate-900">৳{discountedPrice.toFixed(2)}</span>
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900">৳{discountedPrice.toFixed(2)}</span>
                   {product.discount > 0 && (
                     <>
                       <span className="text-xl text-slate-400 line-through">৳{product.price.toFixed(2)}</span>
-                      <span className="bg-red-50 text-red-600 px-3 py-1 rounded-xl font-semibold text-sm border border-red-200">{product.discount}% ছাড়</span>
+                      <span className="bg-red-50 text-red-600 px-3 py-1 rounded-lg font-semibold text-sm border border-red-200">{product.discount}% ছাড়</span>
                     </>
                   )}
                 </div>
@@ -163,8 +163,8 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                 <div className="space-y-4 mt-auto">
                   <div className="flex flex-col items-center w-full">
                     <label className="block text-sm font-semibold text-slate-700 mb-3 text-center">পরিমাণ</label>
-                    <div className="flex items-center gap-0 bg-slate-100 rounded-2xl p-1 w-fit">
-                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-3 text-slate-600 hover:bg-white hover:text-slate-900 rounded-xl transition-all">
+                    <div className="flex items-center gap-0 bg-slate-100 rounded-lg p-1 w-fit">
+                      <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-3 text-slate-600 hover:bg-white hover:text-slate-900 rounded-lg transition-all">
                         <Minus size={18} />
                       </button>
                       <input
@@ -173,17 +173,17 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                         onChange={(e) => setQuantity(Math.min(product.stock, Math.max(1, parseInt(e.target.value) || 1)))}
                         className="w-16 text-center bg-transparent font-bold text-slate-900 text-lg focus:outline-none"
                       />
-                      <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))} className="p-3 text-slate-600 hover:bg-white hover:text-slate-900 rounded-xl transition-all">
+                      <button onClick={() => setQuantity(Math.min(product.stock, quantity + 1))} className="p-3 text-slate-600 hover:bg-white hover:text-slate-900 rounded-lg transition-all">
                         <Plus size={18} />
                       </button>
                     </div>
                   </div>
                   <div className="flex gap-3">
-                    <button onClick={handleAddToCart} className="flex-1 bg-slate-900 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all text-lg shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 active:scale-[0.98]">
+                    <button onClick={handleAddToCart} className="flex-1 bg-slate-900 text-white py-4 rounded-lg font-bold flex items-center justify-center gap-3 hover:bg-slate-800 transition-all text-lg shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 active:scale-[0.98]">
                       <ShoppingCart size={22} />
                       কার্টে যোগ করুন
                     </button>
-                    <button onClick={() => setIsWishlisted(!isWishlisted)} className={`px-5 py-4 rounded-2xl border-2 transition-all font-medium ${isWishlisted ? 'border-red-500 bg-red-50 text-red-600' : 'border-slate-200 hover:border-red-300 text-slate-600 hover:bg-red-50'}`}>
+                    <button onClick={() => setIsWishlisted(!isWishlisted)} className={`px-5 py-4 rounded-lg border-2 transition-all font-medium ${isWishlisted ? 'border-red-500 bg-red-50 text-red-600' : 'border-slate-200 hover:border-red-300 text-slate-600 hover:bg-red-50'}`}>
                       <Heart size={22} className={isWishlisted ? 'fill-red-500 text-red-500' : ''} />
                     </button>
                   </div>
@@ -193,17 +193,17 @@ export default function ProductDetailClient({ product, relatedProducts }) {
           </div>
         </div>
 
-        <div className="bg-white rounded-3xl shadow-sm border border-slate-200/60 overflow-hidden mb-8">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200/60 overflow-hidden mb-8">
           <div className="border-b border-slate-100">
             <div className="flex">
               {[{ id: 'description', label: 'বিবরণ' }, { id: 'details', label: 'বিস্তারিত' }, { id: 'reviews', label: 'রিভিউ' }].map((tab) => (
-                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-6 py-4 font-medium text-sm transition-all border-b-2 -mb-[1px] ${activeTab === tab.id ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700'}`}>
+                <button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-3 font-medium text-sm transition-all border-b-2 -mb-[1px] ${activeTab === tab.id ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-slate-500 hover:text-slate-700'}`}>
                   {tab.label}
                 </button>
               ))}
             </div>
           </div>
-          <div className="p-6 lg:p-8">
+          <div className="p-4 lg:p-5">
             {activeTab === 'description' && (
               <div className="prose max-w-none">
                 <p className="text-slate-600 leading-relaxed text-lg">{product.description}</p>
@@ -212,16 +212,16 @@ export default function ProductDetailClient({ product, relatedProducts }) {
             {activeTab === 'details' && (
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-slate-50 rounded-xl p-4">
+                  <div className="bg-slate-50 rounded-md p-3">
                     <p className="text-sm text-slate-500 mb-1">ক্যাটাগরি</p>
                     <p className="font-semibold text-slate-900">{product.category}</p>
                   </div>
-                  <div className="bg-slate-50 rounded-xl p-4">
+                  <div className="bg-slate-50 rounded-md p-3">
                     <p className="text-sm text-slate-500 mb-1">স্টক</p>
                     <p className="font-semibold text-slate-900">{product.stock} টি</p>
                   </div>
                   {product.discount > 0 && (
-                    <div className="bg-slate-50 rounded-xl p-4">
+                    <div className="bg-slate-50 rounded-md p-3">
                       <p className="text-sm text-slate-500 mb-1">ছাড়</p>
                       <p className="font-semibold text-red-600">{product.discount}%</p>
                     </div>
@@ -235,7 +235,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                   const approvedReviews = (product.reviews || []).filter((r) => r.approved !== false);
                   return approvedReviews.length > 0 ? (
                     approvedReviews.map((review, index) => (
-                      <div key={index} className="rounded-3xl bg-slate-50 border border-slate-200 p-6 shadow-sm">
+                      <div key={index} className="rounded-lg bg-slate-50 border border-slate-200 p-6 shadow-sm">
                         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
                           <div>
                             <p className="font-semibold text-slate-900">{review.user || 'Anonymous'}</p>
@@ -270,7 +270,7 @@ export default function ProductDetailClient({ product, relatedProducts }) {
                 <h2 className="text-3xl font-bold text-slate-900">একই ধরনের পণ্য</h2>
                 <p className="text-slate-500 mt-2">আপনার পছন্দ হতে পারে এমন আরও কিছু পণ্য</p>
               </div>
-              <Link href={`/products?category=${product.category}`} className="hidden sm:flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium">
+              <Link href={`/products?category=${product.category}`} className="hidden sm:flex items-center gap-2 text-slate-900 hover:text-slate-700 font-medium">
                 সবগুলো দেখুন <ChevronRight size={18} />
               </Link>
             </div>

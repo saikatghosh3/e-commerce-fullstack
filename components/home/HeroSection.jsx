@@ -21,7 +21,7 @@
 //       ></div>
 
 //       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           
 //           <div className="text-white">
 //             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full mb-8 animate-slide-down">
@@ -47,7 +47,7 @@
 //             <div className="flex flex-col sm:flex-row gap-4 animate-slide-up animation-delay-400">
 //               <Link
 //                 href="/products"
-//                 className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:-translate-y-1"
+//                 className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 px-5 py-2.5 rounded-full font-semibold text-white transition-all duration-300 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] hover:-translate-y-1"
 //               >
 //                 <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
 //                 <span className="relative flex items-center">
@@ -57,7 +57,7 @@
 //                 </span>
 //               </Link>
               
-//               <button className="group relative inline-flex items-center justify-center overflow-hidden border-2 border-white/30 px-8 py-3.5 rounded-full font-semibold text-white transition-all duration-300 hover:border-white hover:bg-white/10 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:-translate-y-1">
+//               <button className="group relative inline-flex items-center justify-center overflow-hidden border-2 border-white/30 px-5 py-2.5 rounded-full font-semibold text-white transition-all duration-300 hover:border-white hover:bg-white/10 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:-translate-y-1">
 //                 <span className="relative flex items-center">
 //                   <Info className="mr-2 group-hover:rotate-12 transition-transform duration-300" size={20} />
 //                   আরও জানুন
@@ -200,7 +200,7 @@ export default function HeroSlider() {
 
   return (
     <section 
-      className="relative w-full h-screen max-h-[600px] min-h-[500px] overflow-hidden"
+      className="relative w-full h-screen max-h-[420px] min-h-[360px] overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
       onTouchStart={onTouchStart}
@@ -215,13 +215,13 @@ export default function HeroSlider() {
       <div className="absolute bottom-20 left-20 w-96 h-96 bg-gradient-to-tr from-blue-300/20 to-cyan-300/20 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full py-12">
           
           {/* Left Content */}
-          <div className="space-y-8">
+          <div className="space-y-4">
             {/* Subtitle Badge */}
             <div 
-              className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r ${slide.accentColor} text-white text-sm font-semibold shadow-lg transform transition-all duration-700 ${
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${slide.accentColor} text-white text-xs sm:text-sm font-medium shadow-md transform transition-all duration-700 ${
                 currentSlide === slides.findIndex(s => s.id === slide.id)
                   ? 'translate-y-0 opacity-100'
                   : 'translate-y-4 opacity-0'
@@ -234,7 +234,7 @@ export default function HeroSlider() {
             
             {/* Main Title */}
             <h1 
-              className={`text-5xl sm:text-6xl lg:text-7xl font-bold ${slide.textColor} leading-tight transform transition-all duration-700 ${
+              className={`text-base sm:text-lg md:text-xl lg:text-2xl font-semibold ${slide.textColor} leading-tight tracking-tight transform transition-all duration-700 ${
                 currentSlide === slides.findIndex(s => s.id === slide.id)
                   ? 'translate-y-0 opacity-100'
                   : 'translate-y-4 opacity-0'
@@ -246,7 +246,7 @@ export default function HeroSlider() {
             
             {/* Description */}
             <p 
-              className={`text-lg sm:text-xl ${slide.textColor}/80 leading-relaxed max-w-xl transform transition-all duration-700 ${
+              className={`text-sm sm:text-base ${slide.textColor}/80 leading-relaxed max-w-xl transform transition-all duration-700 ${
                 currentSlide === slides.findIndex(s => s.id === slide.id)
                   ? 'translate-y-0 opacity-100'
                   : 'translate-y-4 opacity-0'

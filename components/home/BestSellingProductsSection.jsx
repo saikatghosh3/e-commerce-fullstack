@@ -16,7 +16,7 @@
 //               <Flame size={16} />
 //               Best Selling
 //             </div>
-//             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+//             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
 //               Customer Favorites
 //             </h2>
 //           </div>
@@ -69,7 +69,7 @@ export default function BestSellingProductsSection({ products, loading }) {
               <Flame size={16} />
                সেরা বিক্রি হওয়া পণ্য
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
              গ্রাহকদের পছন্দ
             </h2>
           </div>

@@ -4,6 +4,7 @@ import AppShell from '@/components/AppShell';
 import ReduxProvider from '@/lib/redux/Provider';
 import { SiteDataProvider } from '@/lib/SiteDataContext';
 import { getSiteSettings, getCategories } from '@/lib/queries';
+import GlobalLoader from '@/components/GlobalLoader';
 
 export async function generateMetadata() {
   try {
@@ -23,6 +24,7 @@ export async function generateMetadata() {
         description: setting.description || 'Shop the finest collection of premium products',
         icons: {
           icon: iconEntries,
+          shortcut: ["/icon-light-32x32.png"],
           apple: '/apple-icon.png',
         },
       };
@@ -52,9 +54,13 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" className="bg-background">
-      <body className="font-sans antialiased text-foreground">
+      <body
+        className="font-sans antialiased text-foreground"
+        suppressHydrationWarning
+      >
         <ReduxProvider>
           <SiteDataProvider settings={settings} categories={categories}>
+            <GlobalLoader />
             <AppShell>{children}</AppShell>
           </SiteDataProvider>
         </ReduxProvider>

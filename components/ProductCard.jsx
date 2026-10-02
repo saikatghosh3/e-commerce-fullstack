@@ -47,9 +47,9 @@
 //   };
 
 //   return (
-//     <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-500 group flex flex-col h-full relative">
+//     <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-500 group flex flex-col h-full relative">
 //       {/* ইমেজ সেকশন */}
-//       <div className="relative h-64 overflow-hidden bg-gray-50">
+//       <div className="relative aspect-square overflow-hidden bg-gray-50">
 //         <Image
 //           src={product?.images?.[0] || product?.image || '/placeholder.png'}
 //           alt={product?.name || 'Product'}
@@ -77,13 +77,13 @@
 //       </div>
 
 //       {/* কন্টেন্ট সেকশন */}
-//       <div className="p-5 flex flex-col flex-grow">
+//       <div className="p-4 flex flex-col flex-grow">
 //         <h3 className="text-lg font-bold text-gray-900 mb-2 truncate">
 //           {product?.name || "নামহীন পণ্য"}
 //         </h3>
         
 //         <div className="flex items-baseline gap-2 mb-4">
-//           <span className="text-xl font-bold text-gray-900">
+//           <span className="text-lg font-semibold text-gray-900">
 //             ৳{discountedPrice.toFixed(2)}
 //           </span>
 //           {discount > 0 && (
@@ -97,14 +97,14 @@
 //         <div className="flex gap-2 mt-auto">
 //           <Link
 //             href={`/products/${product?._id}`}
-//             className="flex-1 flex items-center justify-center gap-2 bg-gray-100 text-gray-900 py-2.5 rounded-xl font-semibold hover:bg-gray-200 transition-colors"
+//             className="flex-1 flex items-center justify-center gap-2 bg-gray-100 text-gray-900 py-2.5 rounded-md font-semibold hover:bg-gray-200 transition-colors"
 //           >
 //             <Eye size={18} /> বিস্তারিত
 //           </Link>
           
 //           <button 
 //             onClick={handleAddToCart}
-//             className="bg-indigo-600 text-white p-3 rounded-xl hover:bg-indigo-700 transition-colors active:scale-95"
+//             className="bg-indigo-600 text-white p-3 rounded-md hover:bg-indigo-700 transition-colors active:scale-95"
 //           >
 //             <ShoppingCart size={20} />
 //           </button>
@@ -167,10 +167,10 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="group flex flex-col h-full relative bg-white rounded-2xl border border-slate-100 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(79,70,229,0.15)] hover:border-indigo-100 transition-all duration-500 overflow-hidden">
+    <div className="group flex flex-col h-full relative bg-white rounded-lg border border-slate-200/80 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-500 overflow-hidden">
       
       {/* ইমেজ সেকশন */}
-      <div className="relative h-64 w-full overflow-hidden bg-slate-50/50">
+      <div className="relative aspect-square w-full overflow-hidden bg-slate-50/50">
         <Image
           src={product?.images?.[0] || product?.image || '/placeholder.png'}
           alt={product?.name || 'Product'}
@@ -183,7 +183,7 @@ export default function ProductCard({ product }) {
         {/* উইশলিস্ট বাটন */}
         <button 
           onClick={handleWishlistToggle}
-          className="absolute top-3.5 right-3.5 bg-white/80 backdrop-blur-md border border-slate-200/50 p-2.5 rounded-full shadow-sm z-10 transition-all duration-300 hover:bg-white hover:scale-110 active:scale-95 group/heart"
+          className="absolute top-2 right-3.5 bg-white/80 backdrop-blur-md border border-slate-200/50 p-1.5 rounded-full shadow-sm z-10 transition-all duration-300 hover:bg-white hover:scale-110 active:scale-95 group/heart"
         >
           <Heart 
             size={18} 
@@ -193,22 +193,22 @@ export default function ProductCard({ product }) {
 
         {/* ডিসকাউন্ট ব্যাজ */}
         {discount > 0 && (
-          <div className="absolute top-3.5 left-3.5 bg-rose-500/90 backdrop-blur-sm border border-rose-400/20 text-white px-3 py-1 rounded-lg text-xs font-semibold tracking-wide shadow-sm">
+          <div className="absolute top-2 left-3.5 bg-rose-500/90 backdrop-blur-sm border border-rose-400/20 text-white px-3 py-1 rounded-lg text-xs font-semibold tracking-wide shadow-sm">
             {discount}% ছাড়
           </div>
         )}
       </div>
 
       {/* কন্টেন্ট সেকশন */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-4 flex flex-col flex-grow">
         {/* প্রোডাক্ট নাম */}
-        <h3 className="text-base font-semibold text-slate-800 line-clamp-2 min-h-[3rem] mb-2 group-hover:text-indigo-600 transition-colors duration-300">
+        <h3 className="text-sm font-medium text-slate-800 line-clamp-2 min-h-[2.5rem] mb-1.5 group-hover:text-slate-900 transition-colors duration-300">
           {product?.name || "নামহীন পণ্য"}
         </h3>
         
         {/* প্রাইস সেকশন */}
-        <div className="flex items-center gap-2 mb-5">
-          <span className="text-xl font-bold text-slate-900 tracking-tight">
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-lg font-semibold text-slate-900 tracking-tight">
             ৳{discountedPrice.toLocaleString('bn-BD', { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
           </span>
           {discount > 0 && (
@@ -219,10 +219,10 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* অ্যাকশন বাটন গ্রুপ */}
-        <div className="flex gap-2.5 mt-auto">
+        <div className="flex gap-1.5 mt-auto">
           <Link
             href={`/products/${product?._id}`}
-            className="flex-1 flex items-center justify-center gap-2 bg-slate-50 border border-slate-200/60 text-slate-700 py-2.5 px-4 rounded-xl text-sm font-medium hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 transition-all duration-300"
+            className="flex-1 flex items-center justify-center gap-2 bg-slate-50 border border-slate-200/60 text-slate-700 py-2.5 px-4 rounded-md text-sm font-medium hover:bg-indigo-50 hover:text-indigo-600 hover:border-indigo-200 transition-all duration-300"
           >
             <Eye size={16} className="opacity-80" /> 
             <span>বিস্তারিত</span>
@@ -230,7 +230,7 @@ export default function ProductCard({ product }) {
           
           <button 
             onClick={handleAddToCart}
-            className="bg-indigo-600 text-white p-2.5 px-3.5 rounded-xl hover:bg-indigo-700 shadow-md shadow-indigo-600/10 hover:shadow-indigo-600/20 transition-all duration-300 active:scale-95"
+            className="bg-indigo-600 text-white p-1.5 px-3.5 rounded-md hover:bg-indigo-700 shadow-md shadow-indigo-600/10 hover:shadow-indigo-600/20 transition-all duration-300 active:scale-95"
             title="কার্টে যোগ করুন"
           >
             <ShoppingCart size={18} />

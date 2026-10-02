@@ -353,6 +353,7 @@ export default function AdminUsersPage() {
         </div>
       )}
     </div>
+    <div className="border-t border-gray-100 px-4 py-3 flex justify-between items-center bg-gray-50/30 mt-4"><button onClick={() => setPage(Math.max(1,page-1))} disabled={page===1} className="px-3 py-1.5 text-sm border rounded-lg disabled:opacity-40 bg-white">Previous</button><span className="text-xs text-gray-500">Page {page} / {totalPages}</span><button onClick={() => setPage(Math.min(totalPages,page+1))} disabled={page===totalPages} className="px-3 py-1.5 text-sm border rounded-lg disabled:opacity-40 bg-white">Next</button></div>
     </AdminLayout>
   );
 }

@@ -133,8 +133,8 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
           <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6">
-              {category === 'all' ? 'আমাদের কালেকশন' : categories.find(c => c.id === category)?.name || category}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
+              {category === 'all' ? '��+��r��_��݅؅�� ����_����؅�����"' : categories.find(c => c.id === category)?.name || category}
             </h1>
             <p className="text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
               প্রিমিয়াম কোয়ালিটির পণ্যের বিশাল সংগ্রহ থেকে আপনার পছন্দের পণ্যটি খুঁজে নিন
@@ -144,7 +144,7 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 p-4 bg-white rounded-2xl shadow-sm border border-slate-200/60">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 p-4 bg-white rounded-lg shadow-sm border border-slate-200/60">
           <div className="flex items-center gap-3 text-slate-600">
             <Grid3X3 size={20} className="text-slate-400" />
             <span className="font-medium">
@@ -193,7 +193,7 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
                 </div>
               )}
               <div className="p-5 lg:p-0 space-y-6">
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
+                <div className="bg-white rounded-lg shadow-sm border border-slate-200/60 overflow-hidden">
                   <div className="p-5 pb-4 border-b border-slate-100">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-indigo-50 rounded-xl">
@@ -215,7 +215,7 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
                     ))}
                   </div>
                 </div>
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200/60 overflow-hidden">
+                <div className="bg-white rounded-lg shadow-sm border border-slate-200/60 overflow-hidden">
                   <div className="p-5 pb-4 border-b border-slate-100">
                     <div className="flex items-center gap-3">
                       <div className="p-2 bg-indigo-50 rounded-xl">
@@ -229,14 +229,14 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
                       <label className="block text-sm font-medium text-slate-600">সর্বনিম্ন মূল্য</label>
                       <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">৳</span>
-                        <input type="number" value={priceRange[0] === 0 ? '' : priceRange[0]} onChange={(e) => setPriceRange([e.target.value === '' ? 0 : Number(e.target.value), priceRange[1]])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-slate-50/50 focus:bg-white" placeholder="০" />
+                        <input type="number" value={priceRange[0] === 0 ? '' : priceRange[0]} onChange={(e) => setPriceRange([e.target.value === '' ? 0 : Number(e.target.value), priceRange[1]])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-slate-900/20 focus:border-indigo-500 bg-slate-50/50 focus:bg-white" placeholder="০" />
                       </div>
                     </div>
                     <div className="space-y-3">
                       <label className="block text-sm font-medium text-slate-600">সর্বোচ্চ মূল্য</label>
                       <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">৳</span>
-                        <input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], e.target.value === '' ? '' : Number(e.target.value)])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 bg-slate-50/50 focus:bg-white" placeholder="সর্বোচ্চ" />
+                        <input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], e.target.value === '' ? '' : Number(e.target.value)])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-slate-900/20 focus:border-indigo-500 bg-slate-50/50 focus:bg-white" placeholder="সর্বোচ্চ" />
                       </div>
                     </div>
                     <button onClick={handlePriceFilter} className="w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 active:scale-[0.98]">
@@ -250,7 +250,7 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
 
           <div className="flex-1 min-w-0">
             <div className="lg:hidden mb-6">
-              <button onClick={() => setShowMobileFilters(true)} className="w-full flex items-center justify-center gap-2 bg-white px-5 py-3.5 rounded-2xl shadow-sm border border-slate-200/60 text-slate-700 font-medium hover:bg-slate-50 transition-all active:scale-[0.98]">
+              <button onClick={() => setShowMobileFilters(true)} className="w-full flex items-center justify-center gap-2 bg-white px-5 py-3.5 rounded-lg shadow-sm border border-slate-200/60 text-slate-700 font-medium hover:bg-slate-50 transition-all active:scale-[0.98]">
                 <Filter size={18} className="text-indigo-600" />
                 ফিল্টার ও সার্চ
                 {hasActiveFilters && <span className="w-2 h-2 bg-indigo-600 rounded-full" />}
@@ -294,7 +294,7 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
                 )}
               </>
             ) : (
-              <div className="text-center py-20 bg-white rounded-2xl border border-slate-200/60 shadow-sm">
+              <div className="text-center py-20 bg-white rounded-lg border border-slate-200/60 shadow-sm">
                 <div className="max-w-md mx-auto">
                   <Search size={48} className="mx-auto text-slate-300 mb-4" />
                   <h3 className="text-xl font-semibold text-slate-800 mb-2">কোন পণ্য পাওয়া যায়নি</h3>

@@ -93,25 +93,34 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200/50'
-          : 'bg-white/90 backdrop-blur-sm border-b border-gray-200'
+          ? 'bg-white/98 backdrop-blur-md shadow-sm border-b border-slate-200/80'
+          : 'bg-white/98 backdrop-blur-md border-b border-slate-200/80'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            {s.logo ? (
-              <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-300 flex-shrink-0">
-                <img src={s.logo} alt="" className="w-full h-full object-cover" />
+            {s.logo && s.logo.trim() ? (
+              <div className="w-9 h-9 rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-all duration-300 flex-shrink-0 bg-slate-50">
+                <img 
+                  src={s.logo} 
+                  alt="Logo" 
+                  className="w-full h-full object-cover object-center" 
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.parentElement.innerHTML = '<div class="w-9 h-9 bg-slate-900 rounded-lg flex items-center justify-center"><span class="text-white font-bold text-base">' + (s.logoLetter || 'E') + '</span></div>';
+                  }}
+                />
               </div>
             ) : (
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+              <div className="w-9 h-9 bg-slate-900 rounded-lg flex items-center justify-center shadow-sm group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
                 <span className="text-white font-bold text-lg">{s.logoLetter || 'ই'}</span>
               </div>
             )}
-            <span className="hidden sm:inline text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
-              {s.siteName || 'ইলিট স্টোর'}
+            <span className="hidden sm:inline text-xl font-bold text-slate-900">
+              {s.siteName || s.siteNameEnglish || ""}
             </span>
           </Link>
 
@@ -123,7 +132,7 @@ export default function Header() {
                 placeholder="পণ্য খুঁজুন..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2.5 bg-gray-50/50 backdrop-blur-sm border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200"
+                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200"
               />
               <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-indigo-600 transition-colors">
                 <Search size={20} />
@@ -141,7 +150,7 @@ export default function Header() {
                 <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
               </button>
               <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute right-0 top-full pt-3 transition-all duration-200 z-50">
-                <div className="w-56 bg-white border border-gray-200 rounded-xl shadow-xl p-2">
+                <div className="w-56 bg-white border border-slate-200 rounded-lg shadow-lg p-1.5">
                   {categories.map((cat, index) => (
                     <Link
                       key={`${cat.id}-${index}`}
@@ -184,7 +193,7 @@ export default function Header() {
                 </button>
                 {showUserMenu && (
                   <div className="absolute right-0 top-full pt-3 z-50" onMouseLeave={() => setShowUserMenu(false)}>
-                    <div className="w-48 bg-white border border-gray-200 rounded-xl shadow-xl p-2">
+                    <div className="w-48 bg-white border border-slate-200 rounded-lg shadow-lg p-1.5">
                       <Link
                         href="/profile"
                         onClick={() => setShowUserMenu(false)}

@@ -68,9 +68,9 @@ const filteredProducts = products.filter((product) => {
 
   const getStockBadge = (stock) => {
     const stockCount = Number(stock) || 0;
-    if (stockCount > 50) return <span className="px-2 py-0.5 text-xs rounded-full bg-green-100 text-green-700">স্টকে আছে</span>;
-    if (stockCount > 0) return <span className="px-2 py-0.5 text-xs rounded-full bg-amber-100 text-amber-700">স্বল্প স্টক</span>;
-    return <span className="px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-700">স্টক আউট</span>;
+    if (stockCount > 50) return <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">স্টকে আছে</span>;
+    if (stockCount > 0) return <span className="px-2 py-0.5 text-xs rounded-full bg-amber-50 text-amber-600 border border-amber-200">স্বল্প স্টক</span>;
+    return <span className="px-2 py-0.5 text-xs rounded-full bg-red-50 text-red-600 border border-red-200">স্টক আউট</span>;
   };
 
   return (
@@ -90,7 +90,7 @@ const filteredProducts = products.filter((product) => {
           </Link>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-100 p-3">
+        <div className="bg-white rounded-md border border-slate-200/80 p-3">
           <div className="flex flex-col sm:flex-row gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
@@ -99,7 +99,7 @@ const filteredProducts = products.filter((product) => {
                 placeholder="নাম বা ক্যাটাগরি দিয়ে খুঁজুন..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
               />
             </div>
             <button className="inline-flex items-center gap-1.5 px-3 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 transition text-gray-600">
@@ -109,7 +109,7 @@ const filteredProducts = products.filter((product) => {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-md border border-slate-200/80 overflow-hidden">
           {loading ? (
             <div className="flex justify-center items-center h-64">
               <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-600"></div>

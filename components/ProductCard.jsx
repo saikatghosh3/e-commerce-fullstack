@@ -130,7 +130,11 @@ import { toggleWishlist, isWishlisted, WISHLIST_UPDATED_EVENT } from '@/lib/wish
 import { addToCart } from '@/lib/cart'; // আপনার দেওয়া কার্ট লজিক
 import { showSuccess } from '@/components/ToastUtils';
 
-export default function ProductCard({ product }) {
+// 10x10 neutral placeholder shown while the real image decodes
+const BLUR_DATA_URL =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCI+PHJlY3Qgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiBmaWxsPSIjZjFmMmY1Ii8+PC9zdmc+';
+
+export default function ProductCard({ product, priority = false }) {
   const [favorite, setFavorite] = useState(false);
 
   // ১. প্রাইস এবং ডিসকাউন্ট ক্যালকুলেশন
@@ -172,12 +176,14 @@ export default function ProductCard({ product }) {
       {/* ইমেজ সেকশন */}
       <div className="relative aspect-square w-full overflow-hidden bg-slate-50/50">
         <Image
-          src={product?.images?.[0] || product?.image || '/placeholder.png'}
+          src={product?.images?.[0] || product?.image || '/placeholder.jpg'}
           alt={product?.name || 'Product'}
           fill
           className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-          sizes="(max-width: 768px) 100vw, 33vw"
-          priority={false}
+          sizes="(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw"
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+          priority={priority}
         />
         
         {/* উইশলিস্ট বাটন */}

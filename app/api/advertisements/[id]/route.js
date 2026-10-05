@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import Advertisement from '@/models/Advertisement';
+import { invalidateAdvertisements } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
@@ -39,6 +40,7 @@ export async function PUT(request, { params }) {
       },
       { new: true, runValidators: true }
     );
+    if (advertisement) invalidateAdvertisements();
 
     if (!advertisement) {
       return NextResponse.json(
@@ -61,6 +63,7 @@ export async function DELETE(request, { params }) {
     await connectDB();
     const { id } = await params;
     const advertisement = await Advertisement.findByIdAndDelete(id);
+    if (advertisement) invalidateAdvertisements();
 
     if (!advertisement) {
       return NextResponse.json(

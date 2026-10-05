@@ -1,8 +1,9 @@
 'use client';
 
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState, useTransition } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
+import { useSiteData } from '@/lib/SiteDataContext';
 import { Filter, SlidersHorizontal, Tag, X, Search, ChevronLeft, ChevronRight, Grid3X3 } from 'lucide-react';
 
 const defaultCategories = [
@@ -19,160 +20,172 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const [products, setProducts] = useState(initialProducts || []);
-  const [loading, setLoading] = useState(false);
-  const [categories, setCategories] = useState([
+const { settings } = useSiteData();
+  const [isPending, startTransition] = useTransition();
+
+  const [categories] = useState(() => [
     defaultCategories[0],
-    ...(serverCategories || []).map((category) => ({
-      id: category.name,
-      name: category.name,
-    })),
+    ...(serverCategories || []).map((c) => ({ id: c.name, name: c.name })),
   ]);
+
   const [category, setCategory] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
   const [priceRange, setPriceRange] = useState([0, '']);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(initialPagination?.pages || 1);
+  const [products, setProducts] = useState(initialProducts || []);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
 
+  // The server component already queried Mongo for exactly this result set, so
+  // mirror its props instead of re-fetching the same rows from the browser.
   useEffect(() => {
-    const search = searchParams.get('search') || '';
-    const initialCategory = searchParams.get('category') || 'all';
-    const initialMinPrice = Number(searchParams.get('minPrice') || 0);
-    const initialMaxPrice = searchParams.get('maxPrice') ? Number(searchParams.get('maxPrice')) : '';
-    const page = Number(searchParams.get('page')) || 1;
+    setProducts(initialProducts || []);
+    setTotalPages(initialPagination?.pages || 1);
+  }, [initialProducts, initialPagination]);
 
-    setSearchTerm(search);
-    setCategory(initialCategory);
-    setPriceRange([initialMinPrice, initialMaxPrice]);
-    setCurrentPage(page);
-
-    const hasFilters = search || initialCategory !== 'all' || initialMinPrice > 0 || initialMaxPrice !== '' || page > 1;
-    if (hasFilters) {
-      fetchProducts(initialCategory, search, page, [initialMinPrice, initialMaxPrice]);
-    }
+  useEffect(() => {
+    setCategory(searchParams.get('category') || 'all');
+    const min = Number(searchParams.get('minPrice') || 0);
+    const max = searchParams.get('maxPrice') ? Number(searchParams.get('maxPrice')) : '';
+    setPriceRange([min, max]);
+    setCurrentPage(Number(searchParams.get('page')) || 1);
   }, [searchParams]);
 
-  const fetchProducts = async (
-    selectedCategory = category,
-    search = searchTerm,
-    page = 1,
-    range = priceRange
-  ) => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (selectedCategory && selectedCategory !== 'all') {
-        params.append('category', selectedCategory);
-      }
-      if (search) params.append('search', search);
-      if (Number(range[0]) > 0) params.append('minPrice', range[0]);
-      if (range[1] !== '' && Number(range[1]) > 0) params.append('maxPrice', range[1]);
-      params.append('page', page);
-      params.append('limit', 12);
+  const loading = isPending;
 
-      const response = await fetch(`/api/products?${params.toString()}`);
-      const data = await response.json();
+  const shopName = settings?.siteName?.trim() || 'রাধুনী মশলা';
+  const activeCategoryName =
+    category === 'all' ? null : categories.find((c) => c.id === category)?.name || category;
+  const title = activeCategoryName || shopName;
+  const subtitle = activeCategoryName
+    ? 'এই ক্যাটাগরির সব পণ্য এক জায়গায় দেখুন এবং পছন্দমতো বেছে নিন।'
+    : 'প্রিমিয়াম কোয়ালিটির পণ্যের বিশাল সংগ্রহ থেকে আপনার পছন্দের পণ্যটি খুঁজে নিন';
+  const total = initialPagination?.total ?? products.length;
 
-      if (response.ok && data.success) {
-        const cleanProducts = (data.products || []).filter(p => p && p.price != null);
-        setProducts(cleanProducts);
-        setTotalPages(data.pagination?.pages || 1);
-        setCurrentPage(page);
-      }
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleCategoryChange = (newCategory) => {
-    setCategory(newCategory);
-    setCurrentPage(1);
+    if (newCategory === category) return;
     const params = new URLSearchParams(searchParams.toString());
     if (newCategory === 'all') {
       params.delete('category');
     } else {
       params.set('category', newCategory);
     }
-    router.push(`/products?${params.toString()}`);
+    params.delete('page');
+    startTransition(() => {
+      router.push(`/products?${params.toString()}`);
+    });
     setShowMobileFilters(false);
   };
 
   const handlePriceFilter = () => {
-    setCurrentPage(1);
     const params = new URLSearchParams(searchParams.toString());
-    params.set('minPrice', priceRange[0]);
-    if (priceRange[1]) params.set('maxPrice', priceRange[1]);
+    if (priceRange[0] > 0) params.set('minPrice', priceRange[0]);
+    else params.delete('minPrice');
+    if (priceRange[1] !== '') params.set('maxPrice', priceRange[1]);
     else params.delete('maxPrice');
-    router.push(`/products?${params.toString()}`);
+    params.delete('page');
+    startTransition(() => {
+      router.push(`/products?${params.toString()}`);
+    });
     setShowMobileFilters(false);
   };
 
   const goToPage = (page) => {
     const nextPage = Math.min(Math.max(1, page), totalPages);
+    if (nextPage === currentPage) return;
     const params = new URLSearchParams(searchParams.toString());
     params.set('page', nextPage);
-    router.push(`/products?${params.toString()}`);
+    startTransition(() => {
+      router.push(`/products?${params.toString()}`);
+    });
   };
 
   const clearAllFilters = () => {
-    setCategory('all');
-    setPriceRange([0, '']);
-    setCurrentPage(1);
-    router.push('/products');
+    startTransition(() => {
+      router.push('/products');
+    });
+    setShowMobileFilters(false);
   };
 
   const hasActiveFilters = category !== 'all' || priceRange[0] > 0 || priceRange[1] !== '';
 
   return (
     <div className="min-h-screen bg-slate-50/50">
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="text-center">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
-              {category === 'all' ? '��+��r��_��݅؅�� ����_����؅�����"' : categories.find(c => c.id === category)?.name || category}
-            </h1>
-            <p className="text-lg lg:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              প্রিমিয়াম কোয়ালিটির পণ্যের বিশাল সংগ্রহ থেকে আপনার পছন্দের পণ্যটি খুঁজে নিন
-            </p>
+<div className="border-b border-slate-200/80 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 sm:py-9 lg:px-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-indigo-600">
+                {activeCategoryName ? 'ক্যাটাগরি' : 'সব পণ্য'}
+              </p>
+              <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+                {title}
+              </h1>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-500 sm:text-[15px]">
+                {subtitle}
+              </p>
+            </div>
+            <dl className="flex shrink-0 items-center gap-6 self-start rounded-xl border border-slate-200/80 bg-slate-50/70 px-5 py-4 lg:self-auto">
+              <div>
+                <dt className="text-[11px] font-medium uppercase tracking-wider text-slate-500">পণ্য</dt>
+                <dd className="mt-0.5 text-xl font-bold tabular-nums text-slate-900">{total}</dd>
+              </div>
+              <div className="h-10 w-px bg-slate-200" />
+              <div>
+                <dt className="text-[11px] font-medium uppercase tracking-wider text-slate-500">পাতা</dt>
+                <dd className="mt-0.5 text-xl font-bold tabular-nums text-slate-900">
+                  {currentPage}
+                  <span className="text-slate-400">/{Math.max(totalPages, 1)}</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div className="-mx-1 mt-6 flex gap-2 overflow-x-auto px-1 pb-1">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => handleCategoryChange(cat.id)}
+                className={
+                  'shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium transition-colors ' +
+                  (category === cat.id
+                    ? 'border-slate-900 bg-slate-900 text-white'
+                    : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900')
+                }
+              >
+                {cat.name}
+              </button>
+            ))}
           </div>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 p-4 bg-white rounded-lg shadow-sm border border-slate-200/60">
-          <div className="flex items-center gap-3 text-slate-600">
-            <Grid3X3 size={20} className="text-slate-400" />
-            <span className="font-medium">
-              {loading ? 'লোড হচ্ছে...' : `${products.length} টি পণ্য পাওয়া গেছে`}
-            </span>
+{hasActiveFilters && (
+          <div className="mb-6 flex flex-wrap items-center gap-2">
+            {category !== 'all' && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
+                {categories.find((c) => c.id === category)?.name || category}
+                <button onClick={() => handleCategoryChange('all')} aria-label="ক্যাটাগরি ফিল্টার সরান">
+                  <X size={14} />
+                </button>
+              </span>
+            )}
+            {(priceRange[0] > 0 || priceRange[1] !== '') && (
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
+                {`৳${priceRange[0]} - ${priceRange[1] ? `৳${priceRange[1]}` : '∞'}`}
+                <button onClick={() => handlePriceFilter()} aria-label="মূল্য ফিল্টার সরান">
+                  <X size={14} />
+                </button>
+              </span>
+            )}
+            <button
+              onClick={clearAllFilters}
+              className="rounded-full px-3 py-1.5 text-sm font-medium text-slate-500 underline-offset-4 hover:text-slate-900 hover:underline"
+            >
+              সব ফিল্টার ক্লিয়ার করুন
+            </button>
           </div>
-          {hasActiveFilters && (
-            <div className="flex flex-wrap gap-2">
-              {category !== 'all' && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium">
-                  {categories.find(c => c.id === category)?.name || category}
-                  <button onClick={() => handleCategoryChange('all')}>
-                    <X size={14} className="hover:text-indigo-900" />
-                  </button>
-                </span>
-              )}
-              {(priceRange[0] > 0 || priceRange[1] !== '') && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-full text-sm font-medium">
-                  ৳{priceRange[0]} - {priceRange[1] ? `৳${priceRange[1]}` : '∞'}
-                  <button onClick={() => { setPriceRange([0, '']); router.push('/products'); }}>
-                    <X size={14} className="hover:text-indigo-900" />
-                  </button>
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-
+        )}
         <div className="flex flex-col lg:flex-row gap-8">
           <aside className={`${showMobileFilters ? 'fixed inset-0 z-50 lg:relative' : 'hidden lg:block'} lg:relative lg:w-80 lg:flex-shrink-0`}>
             {showMobileFilters && (
@@ -257,19 +270,15 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
               </button>
             </div>
 
-            {loading ? (
-              <div className="flex flex-col justify-center items-center h-96 gap-4">
-                <div className="relative">
-                  <div className="w-16 h-16 border-4 border-slate-200 rounded-full" />
-                  <div className="absolute top-0 left-0 w-16 h-16 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin" />
-                </div>
-                <p className="text-slate-500 font-medium animate-pulse">পণ্য লোড হচ্ছে...</p>
-              </div>
-            ) : products.length > 0 ? (
+            {products.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
-                  {products.map((product) => (
-                    <ProductCard key={product._id} product={product} />
+                <div
+                  className={`grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
+                    loading ? 'pointer-events-none opacity-50 transition-opacity duration-200' : 'transition-opacity duration-200'
+                  } mb-10`}
+                >
+                  {products.map((product, index) => (
+                    <ProductCard key={product._id} product={product} priority={index < 3} />
                   ))}
                 </div>
                 {totalPages > 1 && (
@@ -314,15 +323,30 @@ function ProductsPageContent({ initialProducts, initialPagination, serverCategor
 
 export default function ProductsClient({ initialProducts, initialPagination, serverCategories }) {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-slate-50/50 flex flex-col items-center justify-center gap-4">
-        <div className="relative">
-          <div className="w-20 h-20 border-4 border-slate-200 rounded-full" />
-          <div className="absolute top-0 left-0 w-20 h-20 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin" />
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-slate-50/50">
+          <div className="h-[104px] border-b border-slate-200/80 bg-white sm:h-[124px]" />
+          <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="overflow-hidden rounded-lg border border-slate-200/80 bg-white shadow-sm"
+                >
+                  <div className="aspect-square w-full animate-shimmer bg-slate-100" />
+                  <div className="space-y-2.5 p-4">
+                    <div className="h-3.5 w-4/5 animate-shimmer rounded bg-slate-100" />
+                    <div className="h-3.5 w-1/3 animate-shimmer rounded bg-slate-100" />
+                    <div className="h-8 w-full animate-shimmer rounded-lg bg-slate-100" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <p className="text-slate-600 font-medium text-lg">লোড হচ্ছে...</p>
-      </div>
-    }>
+      }
+    >
       <ProductsPageContent
         initialProducts={initialProducts}
         initialPagination={initialPagination}

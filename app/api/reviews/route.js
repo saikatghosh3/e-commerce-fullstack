@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import Product from '@/models/Product';
+import { invalidateProducts } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
@@ -114,6 +115,7 @@ export async function POST(request) {
         : 0;
 
     await product.save();
+    invalidateProducts();
 
     return NextResponse.json(
       { success: true, message: 'Review added successfully', product },

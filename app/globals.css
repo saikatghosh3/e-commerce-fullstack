@@ -199,6 +199,15 @@
   animation: shimmer 2s infinite;
 }
 
+@keyframes progress-bar {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+.animate-progress-bar {
+  animation: progress-bar 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
 /* Humanized heading styles */
 h1,h2,h3,h4,h5,h6 { line-height: 1.15; letter-spacing: -0.01em; }
 h1 { font-weight: 700; }

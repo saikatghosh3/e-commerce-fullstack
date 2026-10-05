@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import Advertisement from '@/models/Advertisement';
+import { invalidateAdvertisements } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
@@ -51,6 +52,7 @@ export async function POST(request) {
       displayOrder: Number(body.displayOrder) || 0,
       active: body.active !== false,
     });
+    invalidateAdvertisements();
 
     return NextResponse.json(
       { success: true, advertisement },

@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import SiteSetting from '@/models/SiteSetting';
+import { invalidateSettings } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
@@ -40,6 +41,7 @@ export async function PUT(request) {
     }
 
     await settings.save();
+    invalidateSettings();
 
     return NextResponse.json({ success: true, settings });
   } catch (error) {

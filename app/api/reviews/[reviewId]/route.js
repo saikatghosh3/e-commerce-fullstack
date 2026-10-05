@@ -1,5 +1,6 @@
 import connectDB from '@/lib/db';
 import Product from '@/models/Product';
+import { invalidateProducts } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function PUT(request, { params }) {
@@ -33,6 +34,7 @@ export async function PUT(request, { params }) {
         : 0;
 
     await product.save();
+    invalidateProducts();
 
     return NextResponse.json({ success: true, message: 'Review updated successfully', review });
   } catch (error) {
@@ -62,6 +64,7 @@ export async function DELETE(request, { params }) {
         : 0;
 
     await product.save();
+    invalidateProducts();
 
     return NextResponse.json({ success: true, message: 'Review deleted successfully' });
   } catch (error) {

@@ -63,6 +63,7 @@
 import connectDB from '@/lib/db';
 import Category from '@/models/Category';
 import Product from '@/models/Product';
+import { invalidateProducts } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
@@ -141,6 +142,7 @@ export async function POST(request) {
     }
 
     const newProduct = await Product.create(body);
+    invalidateProducts();
 
     return NextResponse.json(
       { success: true, message: 'পণ্য সফলভাবে তৈরি হয়েছে', product: newProduct },

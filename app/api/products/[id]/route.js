@@ -1,6 +1,7 @@
 import connectDB from '@/lib/db';
 import Category from '@/models/Category';
 import Product from '@/models/Product';
+import { invalidateProducts } from '@/lib/cache';
 import { NextResponse } from 'next/server'; // Response এর বদলে NextResponse ব্যবহার করা ভালো
 
 export async function GET(request, { params }) {
@@ -54,10 +55,11 @@ export async function PUT(request, { params }) {
       runValidators: true,
     });
 
-    if (!product) {
-      return NextResponse.json({ success: false, message: 'পণ্য পাওয়া যায়নি' }, { status: 404 });
+if (!product) {
+      return NextResponse.json({ success: false, message: 'পণ্য পাওয়া যায়নি' }, { status: 404 });
     }
 
+    invalidateProducts();
     return NextResponse.json({ success: true, product }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ success: false, message: error.message }, { status: 400 });
@@ -73,6 +75,7 @@ export async function DELETE(request, { params }) {
     const { id } = await params;
 
     const product = await Product.findByIdAndDelete(id);
+    if (product) invalidateProducts();
 
     if (!product) {
       return NextResponse.json({ success: false, message: 'পণ্য পাওয়া যায়নি' }, { status: 404 });

@@ -1,6 +1,7 @@
 import connectDB from '@/lib/db';
 import Category from '@/models/Category';
 import Product from '@/models/Product';
+import { invalidateCategories, invalidateProducts } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 export async function PUT(request, { params }) {
@@ -26,7 +27,9 @@ export async function PUT(request, { params }) {
 
     if (oldName !== name) {
       await Product.updateMany({ category: oldName }, { $set: { category: name } });
+      invalidateProducts();
     }
+    invalidateCategories();
 
     return NextResponse.json({ success: true, category: existing }, { status: 200 });
   } catch (error) {
@@ -58,6 +61,7 @@ export async function DELETE(request, { params }) {
     }
 
     await Category.findByIdAndDelete(id);
+    invalidateCategories();
 
     return NextResponse.json({ success: true, message: 'Category deleted' }, { status: 200 });
   } catch (error) {

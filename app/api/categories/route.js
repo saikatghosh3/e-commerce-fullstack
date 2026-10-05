@@ -1,6 +1,7 @@
 import connectDB from '@/lib/db';
 import Category from '@/models/Category';
 import Product from '@/models/Product';
+import { invalidateCategories } from '@/lib/cache';
 import { NextResponse } from 'next/server';
 
 async function createCategoriesFromProducts() {
@@ -46,6 +47,7 @@ export async function POST(request) {
       name,
       description: body.description?.trim() || '',
     });
+    invalidateCategories();
 
     return NextResponse.json({ success: true, category }, { status: 201 });
   } catch (error) {

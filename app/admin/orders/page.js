@@ -162,8 +162,8 @@ export default function AdminOrdersPage() {
   const getStatusColor = (status) => {
     const colors = {
       pending: 'bg-amber-100 text-amber-700',
-      processing: 'bg-blue-100 text-blue-700',
-      shipped: 'bg-indigo-100 text-indigo-700',
+      processing: 'bg-orange-100 text-orange-700',
+      shipped: 'bg-rose-500 text-white',
       delivered: 'bg-green-100 text-green-700',
       cancelled: 'bg-red-100 text-red-700',
       completed: 'bg-green-100 text-green-700',
@@ -220,10 +220,10 @@ export default function AdminOrdersPage() {
                 placeholder="অর্ডার নম্বর, নাম বা ফোন দিয়ে খুঁজুন..."
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
-            <button className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg font-medium hover:bg-indigo-700 transition">
+            <button className="px-4 py-2 bg-orange-600 text-white text-sm rounded-lg font-medium hover:bg-orange-700 transition">
               খুঁজুন
             </button>
           </div>
@@ -232,7 +232,7 @@ export default function AdminOrdersPage() {
         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-orange-600"></div>
             </div>
           ) : orders.length > 0 ? (
             <div className="overflow-x-auto">
@@ -270,7 +270,7 @@ export default function AdminOrdersPage() {
                         <select
                           value={drafts[order._id]?.orderStatus || order.orderStatus}
                           onChange={(event) => updateDraft(order._id, 'orderStatus', event.target.value)}
-                          className={`px-2 py-1 text-xs rounded border border-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 ${getStatusColor(drafts[order._id]?.orderStatus || order.orderStatus)}`}
+                          className={`px-2 py-1 text-xs rounded border border-gray-200 focus:outline-none focus:ring-1 focus:ring-orange-500 ${getStatusColor(drafts[order._id]?.orderStatus || order.orderStatus)}`}
                         >
                           {orderStatuses.map((status) => (
                             <option key={status} value={status} className="text-gray-700">
@@ -283,7 +283,7 @@ export default function AdminOrdersPage() {
                         <select
                           value={drafts[order._id]?.paymentStatus || order.paymentStatus}
                           onChange={(event) => updateDraft(order._id, 'paymentStatus', event.target.value)}
-                          className={`px-2 py-1 text-xs rounded border border-gray-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 ${getStatusColor(drafts[order._id]?.paymentStatus || order.paymentStatus)}`}
+                          className={`px-2 py-1 text-xs rounded border border-gray-200 focus:outline-none focus:ring-1 focus:ring-orange-500 ${getStatusColor(drafts[order._id]?.paymentStatus || order.paymentStatus)}`}
                         >
                           {paymentStatuses.map((status) => (
                             <option key={status} value={status} className="text-gray-700">
@@ -296,7 +296,7 @@ export default function AdminOrdersPage() {
                         <div className="flex items-center justify-center gap-2">
                           <button
                             onClick={() => viewCustomerDetails(order)}
-                            className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded transition"
+                            className="p-1.5 text-orange-600 hover:bg-orange-50 rounded transition"
                             title="গ্রাহকের তথ্য দেখুন"
                           >
                             <Eye size={16} />
@@ -392,7 +392,7 @@ export default function AdminOrdersPage() {
             <div className="sticky bottom-0 bg-gray-50 border-t border-gray-100 px-5 py-3">
               <button
                 onClick={() => setShowCustomerModal(false)}
-                className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition"
+                className="w-full px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition"
               >
                 বন্ধ করুন
               </button>

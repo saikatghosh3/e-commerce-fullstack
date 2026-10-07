@@ -50,11 +50,9 @@ export default function LoginPage() {
         localStorage.setItem('user', JSON.stringify(data.user));
 
         showSuccess('সাইন ইন সফল হয়েছে');
-        if (data.user.role === 'admin') {
-          router.push('/admin/dashboard');
-        } else {
-          router.push('/');
-        }
+        const params = new URLSearchParams(window.location.search);
+        const redirectTo = params.get('redirect');
+        router.push(redirectTo && redirectTo.startsWith('/') ? redirectTo : '/');
       } else {
         showError(data.message || 'Login failed');
       }
@@ -67,13 +65,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-600 to-orange-800 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           {/* Logo */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl mb-4">
               <span className="text-white font-bold text-2xl">{settings?.logoLetterEnglish || 'E'}</span>
             </div>
             <h1 className="text-3xl font-bold text-gray-900">{settings?.siteNameEnglish || 'Elite Store'}</h1>
@@ -94,7 +92,7 @@ export default function LoginPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="you@example.com"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
@@ -112,7 +110,7 @@ export default function LoginPage() {
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="••••••••"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   required
                 />
               </div>
@@ -123,7 +121,7 @@ export default function LoginPage() {
                 <input type="checkbox" className="w-4 h-4 rounded" />
                 <span className="text-gray-600">Remember me</span>
               </label>
-              <Link href="#" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link href="#" className="text-orange-600 hover:text-orange-700 font-medium">
                 Forgot password?
               </Link>
             </div>
@@ -131,7 +129,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 rounded-lg font-bold hover:from-blue-700 hover:to-blue-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-orange-600 to-orange-700 text-white py-3 rounded-lg font-bold hover:from-orange-700 hover:to-orange-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading && <Loader2 size={20} className="animate-spin" />}
               {loading ? 'Signing in...' : 'Sign in'}
@@ -153,7 +151,7 @@ export default function LoginPage() {
           {/* Footer */}
           <p className="text-center text-gray-600 mt-6">
             Don&apos;t have an account?{' '}
-            <Link href="/auth/register" className="text-blue-600 hover:text-blue-700 font-semibold">
+            <Link href="/auth/register" className="text-orange-600 hover:text-orange-700 font-semibold">
               Sign up
             </Link>
           </p>

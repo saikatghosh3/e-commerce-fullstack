@@ -211,8 +211,8 @@ export default function ProfilePage() {
 
   const getStatusColor = (s) => ({
     pending: 'bg-amber-100 text-amber-700',
-    processing: 'bg-blue-100 text-blue-700',
-    shipped: 'bg-indigo-100 text-indigo-700',
+    processing: 'bg-orange-100 text-orange-700',
+    shipped: 'bg-rose-500 text-white',
     delivered: 'bg-green-100 text-green-700',
     cancelled: 'bg-red-100 text-red-700',
   }[s] || 'bg-gray-100 text-gray-700');
@@ -229,7 +229,7 @@ export default function ProfilePage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -274,16 +274,16 @@ export default function ProfilePage() {
           <div className="lg:w-72 shrink-0">
             <div className="bg-white rounded-2xl shadow-sm border p-6 text-center">
               <div className="relative inline-block mb-4">
-                <div className="w-24 h-24 rounded-full overflow-hidden bg-indigo-100 mx-auto">
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-orange-100 mx-auto">
                   {p.avatar ? (
                     <img src={p.avatar} alt="" className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <User size={40} className="text-indigo-500" />
+                      <User size={40} className="text-orange-500" />
                     </div>
                   )}
                 </div>
-                <label className="absolute bottom-0 right-0 w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center cursor-pointer hover:bg-indigo-700 shadow-md">
+                <label className="absolute bottom-0 right-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center cursor-pointer hover:bg-orange-700 shadow-md">
                   <Camera size={14} />
                   <input type="file" accept="image/*" className="hidden" onChange={handleAvatarUpload} />
                 </label>
@@ -301,7 +301,7 @@ export default function ProfilePage() {
                     onClick={() => setActiveTab(tab.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition ${
                       activeTab === tab.id
-                        ? 'bg-indigo-50 text-indigo-700'
+                        ? 'bg-orange-50 text-orange-700'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
@@ -329,7 +329,7 @@ export default function ProfilePage() {
                       type="text"
                       value={form.name}
                       onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                       required
                     />
                   </div>
@@ -356,13 +356,13 @@ export default function ProfilePage() {
                       type="tel"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
 
                   <div className="border-t pt-6">
                     <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                      <MapPin size={18} className="text-indigo-600" />
+                      <MapPin size={18} className="text-orange-600" />
                       ঠিকানা
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -372,7 +372,7 @@ export default function ProfilePage() {
                           type="text"
                           value={form.street}
                           onChange={(e) => setForm({ ...form, street: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
                       <div>
@@ -381,7 +381,7 @@ export default function ProfilePage() {
                           type="text"
                           value={form.city}
                           onChange={(e) => setForm({ ...form, city: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
                       <div>
@@ -390,7 +390,7 @@ export default function ProfilePage() {
                           type="text"
                           value={form.state}
                           onChange={(e) => setForm({ ...form, state: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
                       <div>
@@ -399,7 +399,7 @@ export default function ProfilePage() {
                           type="text"
                           value={form.zipCode}
                           onChange={(e) => setForm({ ...form, zipCode: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
                       <div>
@@ -408,7 +408,7 @@ export default function ProfilePage() {
                           type="text"
                           value={form.country}
                           onChange={(e) => setForm({ ...form, country: e.target.value })}
-                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
                     </div>
@@ -417,7 +417,7 @@ export default function ProfilePage() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-3 rounded-xl font-bold hover:from-indigo-700 hover:to-indigo-800 transition disabled:opacity-50 flex items-center justify-center gap-2 shadow-md"
+                    className="w-full bg-gradient-to-r from-orange-600 to-orange-700 text-white py-3 rounded-xl font-bold hover:from-orange-700 hover:to-orange-800 transition disabled:opacity-50 flex items-center justify-center gap-2 shadow-md"
                   >
                     {saving && <Loader2 size={18} className="animate-spin" />}
                     {saving ? 'সেভ হচ্ছে...' : 'পরিবর্তন সংরক্ষণ'}
@@ -449,7 +449,7 @@ export default function ProfilePage() {
                     )}
                     <button
                       onClick={fetchOrders}
-                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-indigo-600 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition"
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-orange-600 bg-orange-50 rounded-lg hover:bg-orange-100 transition"
                     >
                       <RefreshCw size={14} />
                       রিফ্রেশ
@@ -462,7 +462,7 @@ export default function ProfilePage() {
                     <p className="text-gray-500 text-lg mb-4">এখনো কোনো অর্ডার নেই</p>
                     <Link
                       href="/products"
-                      className="inline-flex items-center bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-indigo-800 transition shadow-md"
+                      className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-orange-700 hover:to-orange-800 transition shadow-md"
                     >
                       কেনাকাটা শুরু করুন
                     </Link>
@@ -491,7 +491,7 @@ export default function ProfilePage() {
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="text-xl font-bold text-indigo-600">৳{Number(order.totalAmount || 0).toFixed(2)}</p>
+                          <p className="text-xl font-bold text-orange-600">৳{Number(order.totalAmount || 0).toFixed(2)}</p>
                           <p className="text-xs text-gray-400">{order.items?.length || 0} টি পণ্য</p>
                         </div>
                       </div>

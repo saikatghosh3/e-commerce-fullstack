@@ -115,10 +115,10 @@ const { settings } = useSiteData();
         <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 sm:py-9 lg:px-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="min-w-0">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-indigo-600">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-orange-600">
                 {activeCategoryName ? 'ক্যাটাগরি' : 'সব পণ্য'}
               </p>
-              <h1 className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+              <h1 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
                 {title}
               </h1>
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-500 sm:text-[15px]">
@@ -163,7 +163,7 @@ const { settings } = useSiteData();
 {hasActiveFilters && (
           <div className="mb-6 flex flex-wrap items-center gap-2">
             {category !== 'all' && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-100 bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-700">
                 {categories.find((c) => c.id === category)?.name || category}
                 <button onClick={() => handleCategoryChange('all')} aria-label="ক্যাটাগরি ফিল্টার সরান">
                   <X size={14} />
@@ -171,7 +171,7 @@ const { settings } = useSiteData();
               </span>
             )}
             {(priceRange[0] > 0 || priceRange[1] !== '') && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-orange-100 bg-orange-50 px-3 py-1.5 text-sm font-medium text-orange-700">
                 {`৳${priceRange[0]} - ${priceRange[1] ? `৳${priceRange[1]}` : '∞'}`}
                 <button onClick={() => handlePriceFilter()} aria-label="মূল্য ফিল্টার সরান">
                   <X size={14} />
@@ -195,8 +195,8 @@ const { settings } = useSiteData();
               {showMobileFilters && (
                 <div className="sticky top-0 z-10 bg-white border-b border-slate-200 p-5 flex justify-between items-center lg:hidden">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-indigo-50 rounded-xl">
-                      <Filter size={20} className="text-indigo-600" />
+                    <div className="p-2 bg-orange-50 rounded-xl">
+                      <Filter size={20} className="text-orange-600" />
                     </div>
                     <h3 className="font-bold text-lg text-slate-900">ফিল্টার</h3>
                   </div>
@@ -209,8 +209,8 @@ const { settings } = useSiteData();
                 <div className="bg-white rounded-lg shadow-sm border border-slate-200/60 overflow-hidden">
                   <div className="p-5 pb-4 border-b border-slate-100">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-indigo-50 rounded-xl">
-                        <Tag size={18} className="text-indigo-600" />
+                      <div className="p-2 bg-orange-50 rounded-xl">
+                        <Tag size={18} className="text-orange-600" />
                       </div>
                       <h3 className="font-semibold text-slate-900">ক্যাটাগরি</h3>
                     </div>
@@ -220,7 +220,7 @@ const { settings } = useSiteData();
                       <button
                         key={cat.id}
                         onClick={() => handleCategoryChange(cat.id)}
-                        className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${category === cat.id ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : 'text-slate-700 hover:bg-slate-50'}`}
+                        className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-between group ${category === cat.id ? 'bg-orange-600 text-white shadow-lg shadow-orange-600/20' : 'text-slate-700 hover:bg-slate-50'}`}
                       >
                         <span className="font-medium">{cat.name}</span>
                         {category === cat.id && <div className="w-2 h-2 bg-white rounded-full shadow-inner" />}
@@ -231,8 +231,8 @@ const { settings } = useSiteData();
                 <div className="bg-white rounded-lg shadow-sm border border-slate-200/60 overflow-hidden">
                   <div className="p-5 pb-4 border-b border-slate-100">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-indigo-50 rounded-xl">
-                        <SlidersHorizontal size={18} className="text-indigo-600" />
+                      <div className="p-2 bg-orange-50 rounded-xl">
+                        <SlidersHorizontal size={18} className="text-orange-600" />
                       </div>
                       <h3 className="font-semibold text-slate-900">মূল্য পরিসীমা</h3>
                     </div>
@@ -242,14 +242,14 @@ const { settings } = useSiteData();
                       <label className="block text-sm font-medium text-slate-600">সর্বনিম্ন মূল্য</label>
                       <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">৳</span>
-                        <input type="number" value={priceRange[0] === 0 ? '' : priceRange[0]} onChange={(e) => setPriceRange([e.target.value === '' ? 0 : Number(e.target.value), priceRange[1]])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-slate-900/20 focus:border-indigo-500 bg-slate-50/50 focus:bg-white" placeholder="০" />
+                        <input type="number" value={priceRange[0] === 0 ? '' : priceRange[0]} onChange={(e) => setPriceRange([e.target.value === '' ? 0 : Number(e.target.value), priceRange[1]])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-slate-900/20 focus:border-orange-500 bg-slate-50/50 focus:bg-white" placeholder="০" />
                       </div>
                     </div>
                     <div className="space-y-3">
                       <label className="block text-sm font-medium text-slate-600">সর্বোচ্চ মূল্য</label>
                       <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">৳</span>
-                        <input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], e.target.value === '' ? '' : Number(e.target.value)])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-slate-900/20 focus:border-indigo-500 bg-slate-50/50 focus:bg-white" placeholder="সর্বোচ্চ" />
+                        <input type="number" value={priceRange[1]} onChange={(e) => setPriceRange([priceRange[0], e.target.value === '' ? '' : Number(e.target.value)])} className="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl outline-none transition-all focus:ring-2 focus:ring-slate-900/20 focus:border-orange-500 bg-slate-50/50 focus:bg-white" placeholder="সর্বোচ্চ" />
                       </div>
                     </div>
                     <button onClick={handlePriceFilter} className="w-full bg-slate-900 text-white py-3 rounded-xl font-medium hover:bg-slate-800 transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-slate-900/20 active:scale-[0.98]">
@@ -264,16 +264,16 @@ const { settings } = useSiteData();
           <div className="flex-1 min-w-0">
             <div className="lg:hidden mb-6">
               <button onClick={() => setShowMobileFilters(true)} className="w-full flex items-center justify-center gap-2 bg-white px-5 py-3.5 rounded-lg shadow-sm border border-slate-200/60 text-slate-700 font-medium hover:bg-slate-50 transition-all active:scale-[0.98]">
-                <Filter size={18} className="text-indigo-600" />
+                <Filter size={18} className="text-orange-600" />
                 ফিল্টার ও সার্চ
-                {hasActiveFilters && <span className="w-2 h-2 bg-indigo-600 rounded-full" />}
+                {hasActiveFilters && <span className="w-2 h-2 bg-orange-600 rounded-full" />}
               </button>
             </div>
 
             {products.length > 0 ? (
               <>
                 <div
-                  className={`grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3 ${
+                  className={`grid grid-cols-2 gap-3 sm:gap-5 xl:grid-cols-3 ${
                     loading ? 'pointer-events-none opacity-50 transition-opacity duration-200' : 'transition-opacity duration-200'
                   } mb-10`}
                 >
@@ -328,7 +328,7 @@ export default function ProductsClient({ initialProducts, initialPagination, ser
         <div className="min-h-screen bg-slate-50/50">
           <div className="h-[104px] border-b border-slate-200/80 bg-white sm:h-[124px]" />
           <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 xl:grid-cols-3">
               {Array.from({ length: 6 }).map((_, i) => (
                 <div
                   key={i}

@@ -170,26 +170,26 @@ export default function AdminSettingsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Site Name (Bengali)</label>
-                <input name="siteName" value={form.siteName} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="siteName" value={form.siteName} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Site Name (English)</label>
-                <input name="siteNameEnglish" value={form.siteNameEnglish} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="siteNameEnglish" value={form.siteNameEnglish} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Logo Letter (Bengali)</label>
-                <input name="logoLetter" value={form.logoLetter} onChange={handleChange} maxLength={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="logoLetter" value={form.logoLetter} onChange={handleChange} maxLength={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Logo Letter (English)</label>
-                <input name="logoLetterEnglish" value={form.logoLetterEnglish} onChange={handleChange} maxLength={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="logoLetterEnglish" value={form.logoLetterEnglish} onChange={handleChange} maxLength={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Logo Image</label>
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-20 h-20 bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-xl flex items-center justify-center shadow-md overflow-hidden">
+                <div className="flex-shrink-0 w-20 h-20 bg-gradient-to-br from-orange-600 to-orange-800 rounded-xl flex items-center justify-center shadow-md overflow-hidden">
                   {form.logo ? (
                     <img src={form.logo} alt="Logo" className="w-full h-full object-cover" />
                   ) : (
@@ -236,11 +236,11 @@ export default function AdminSettingsPage() {
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Tagline (Bengali)</label>
-              <textarea name="tagline" value={form.tagline} onChange={handleChange} rows={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm resize-none" />
+              <textarea name="tagline" value={form.tagline} onChange={handleChange} rows={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm resize-none" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Description / Meta Description (English)</label>
-              <textarea name="description" value={form.description} onChange={handleChange} rows={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm resize-none" />
+              <textarea name="description" value={form.description} onChange={handleChange} rows={2} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm resize-none" />
             </div>
           </div>
 
@@ -250,23 +250,23 @@ export default function AdminSettingsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input name="email" value={form.email} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="email" value={form.email} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Phone (Bengali)</label>
-                <input name="phone" value={form.phone} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="phone" value={form.phone} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Phone (English)</label>
-                <input name="phoneEnglish" value={form.phoneEnglish} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="phoneEnglish" value={form.phoneEnglish} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Address (Bengali)</label>
-                <input name="address" value={form.address} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="address" value={form.address} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Address (English)</label>
-                <input name="addressEnglish" value={form.addressEnglish} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="addressEnglish" value={form.addressEnglish} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
             </div>
           </div>
@@ -285,7 +285,7 @@ export default function AdminSettingsPage() {
               ].map(({ key, label }) => (
                 <div key={key}>
                   <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
-                  <input name={key} value={form[key]} onChange={handleChange} placeholder={`https://${key}.com/...`} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                  <input name={key} value={form[key]} onChange={handleChange} placeholder={`https://${key}.com/...`} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
                 </div>
               ))}
             </div>
@@ -297,11 +297,11 @@ export default function AdminSettingsPage() {
             <div className="grid grid-cols-1 gap-5">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Copyright Text</label>
-                <input name="copyright" value={form.copyright} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="copyright" value={form.copyright} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Footer Tagline (e.g. "Powered by...")</label>
-                <input name="footerTagline" value={form.footerTagline} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" />
+                <input name="footerTagline" value={form.footerTagline} onChange={handleChange} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm" />
               </div>
             </div>
           </div>
@@ -311,7 +311,7 @@ export default function AdminSettingsPage() {
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition font-medium disabled:opacity-50"
             >
               {saving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
               {saving ? 'Saving...' : 'Save Settings'}

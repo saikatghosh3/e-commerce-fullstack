@@ -2,19 +2,19 @@
 
 export default function TermsOfServicePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 px-4 py-12 md:py-20">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 px-4 py-12 md:py-20">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
         
         {/* হেডার সেকশন */}
-        <div className="bg-gradient-to-r from-blue-100 to-indigo-100 px-6 py-8 md:px-10 border-b border-blue-200">
+        <div className="bg-gradient-to-r from-orange-100 to-amber-100 px-6 py-8 md:px-10 border-b border-orange-200">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="bg-blue-200 rounded-full w-14 h-14 flex items-center justify-center">
-                <i className="fas fa-file-contract text-blue-700 text-2xl"></i>
+              <div className="bg-orange-200 rounded-full w-14 h-14 flex items-center justify-center">
+                <i className="fas fa-file-contract text-orange-700 text-2xl"></i>
               </div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-slate-800">পরিষেবার শর্তাবলী</h1>
-                <p className="text-blue-700 mt-1">আমাদের প্ল্যাটফর্ম ব্যবহারের নিয়ম ও শর্ত</p>
+                <p className="text-orange-700 mt-1">আমাদের প্ল্যাটফর্ম ব্যবহারের নিয়ম ও শর্ত</p>
               </div>
             </div>
             
@@ -26,9 +26,9 @@ export default function TermsOfServicePage() {
         <div className="p-6 md:p-10 space-y-8">
           
           {/* ভূমিকা */}
-          <div className="bg-blue-50/70 p-5 rounded-xl border-l-8 border-blue-500">
+          <div className="bg-orange-50/70 p-5 rounded-xl border-l-8 border-orange-500">
             <h2 className="font-bold text-xl text-slate-800 flex items-center gap-2">
-              <i className="fas fa-info-circle text-blue-600"></i>
+              <i className="fas fa-info-circle text-orange-600"></i>
               ভূমিকা
             </h2>
             <p className="text-slate-600 mt-2 leading-relaxed">
@@ -43,8 +43,8 @@ export default function TermsOfServicePage() {
             {/* শর্ত ১ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-700 font-bold">১</span>
+                <div className="bg-orange-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-700 font-bold">১</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">অ্যাকাউন্ট নিবন্ধন</h3>
@@ -59,8 +59,8 @@ export default function TermsOfServicePage() {
             {/* শর্ত ২ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-700 font-bold">২</span>
+                <div className="bg-orange-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-700 font-bold">২</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">পণ্য ক্রয় ও মূল্য</h3>
@@ -75,8 +75,8 @@ export default function TermsOfServicePage() {
             {/* শর্ত ৩ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-700 font-bold">৩</span>
+                <div className="bg-orange-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-700 font-bold">৩</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">ডেলিভারি ও শিপিং</h3>
@@ -91,8 +91,8 @@ export default function TermsOfServicePage() {
             {/* শর্ত ৪ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-700 font-bold">৪</span>
+                <div className="bg-orange-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-700 font-bold">৪</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">পেমেন্ট পদ্ধতি</h3>
@@ -107,8 +107,8 @@ export default function TermsOfServicePage() {
             {/* শর্ত ৫ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-700 font-bold">৫</span>
+                <div className="bg-orange-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-700 font-bold">৫</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">ব্যবহারকারীর আচরণবিধি</h3>
@@ -123,8 +123,8 @@ export default function TermsOfServicePage() {
             {/* শর্ত ৬ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <span className="text-blue-700 font-bold">৬</span>
+                <div className="bg-orange-100 rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-orange-700 font-bold">৬</span>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">কপিরাইট ও কন্টেন্ট</h3>
@@ -155,9 +155,9 @@ export default function TermsOfServicePage() {
           </div>
 
           {/* যোগাযোগ সেকশন */}
-          <div className="bg-indigo-50 rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="bg-orange-50 rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <i className="fas fa-envelope text-indigo-600 text-xl"></i>
+              <i className="fas fa-envelope text-orange-600 text-xl"></i>
               <div>
                 <p className="text-sm text-slate-500">প্রশ্ন বা অভিযোগ জানাতে</p>
                 <p className="font-semibold text-slate-700">legal@yourstore.com</p>
@@ -165,7 +165,7 @@ export default function TermsOfServicePage() {
             </div>
             <a 
               href="/contact" 
-              className="text-indigo-600 hover:text-indigo-700 font-medium text-sm flex items-center gap-1"
+              className="text-orange-600 hover:text-orange-700 font-medium text-sm flex items-center gap-1"
             >
               কন্টাক্ট পেজে যান
               <i className="fas fa-arrow-right text-xs"></i>

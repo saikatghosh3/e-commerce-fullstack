@@ -189,7 +189,7 @@
 //           >
 //             <div className="mb-5 flex items-center justify-between gap-3">
 //               <div className="flex items-center gap-2">
-//                 <Megaphone size={20} className="text-indigo-600" />
+//                 <Megaphone size={20} className="text-orange-600" />
 //                 <h2 className="text-lg font-bold text-gray-900">
 //                   {editingId ? 'Edit Advertisement' : 'New Advertisement'}
 //                 </h2>
@@ -216,7 +216,7 @@
 //                   name="title"
 //                   value={formData.title}
 //                   onChange={handleChange}
-//                   className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+//                   className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
 //                   placeholder="Offer title"
 //                 />
 //               </div>
@@ -230,7 +230,7 @@
 //                   value={formData.subtitle}
 //                   onChange={handleChange}
 //                   rows={3}
-//                   className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+//                   className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
 //                   placeholder="Small offer details"
 //                 />
 //               </div>
@@ -243,7 +243,7 @@
 //                   name="position"
 //                   value={formData.position}
 //                   onChange={handleChange}
-//                   className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+//                   className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
 //                 >
 //                   {positions.map((position) => (
 //                     <option key={position.value} value={position.value}>
@@ -263,7 +263,7 @@
 //                     name="displayOrder"
 //                     value={formData.displayOrder}
 //                     onChange={handleChange}
-//                     className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+//                     className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
 //                   />
 //                 </div>
 //                 <label className="mt-7 flex items-center gap-2 text-sm font-semibold text-gray-700">
@@ -272,7 +272,7 @@
 //                     name="active"
 //                     checked={formData.active}
 //                     onChange={handleChange}
-//                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+//                     className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
 //                   />
 //                   Active
 //                 </label>
@@ -287,7 +287,7 @@
 //                   name="link"
 //                   value={formData.link}
 //                   onChange={handleChange}
-//                   className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+//                   className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
 //                   placeholder="/products or https://example.com"
 //                 />
 //               </div>
@@ -296,7 +296,7 @@
 //                 <label className="mb-1.5 block text-sm font-semibold text-gray-700">
 //                   Image
 //                 </label>
-//                 <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-indigo-200 bg-indigo-50 px-4 py-3 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">
+//                 <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold text-orange-700 hover:bg-orange-100">
 //                   {uploading ? (
 //                     <Loader2 size={18} className="animate-spin" />
 //                   ) : (
@@ -326,7 +326,7 @@
 //               <button
 //                 type="submit"
 //                 disabled={saving || uploading}
-//                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+//                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50"
 //               >
 //                 {saving ? <Loader2 size={17} className="animate-spin" /> : <Plus size={17} />}
 //                 {editingId ? 'Update Advertisement' : 'Add Advertisement'}
@@ -337,7 +337,7 @@
 //           <div className="rounded-lg border border-gray-100 bg-white shadow-sm">
 //             {loading ? (
 //               <div className="flex h-64 items-center justify-center">
-//                 <Loader2 className="animate-spin text-indigo-600" size={30} />
+//                 <Loader2 className="animate-spin text-orange-600" size={30} />
 //               </div>
 //             ) : advertisements.length === 0 ? (
 //               <div className="flex h-64 flex-col items-center justify-center text-center">
@@ -397,7 +397,7 @@
 //                             <button
 //                               type="button"
 //                               onClick={() => handleEdit(advertisement)}
-//                               className="rounded-md p-1.5 text-indigo-600 hover:bg-indigo-50"
+//                               className="rounded-md p-1.5 text-orange-600 hover:bg-orange-50"
 //                               title="Edit"
 //                             >
 //                               <Edit2 size={15} />
@@ -624,7 +624,7 @@ export default function AdvertisementsPage() {
           >
             <div className="mb-5 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
-                <Megaphone size={20} className="text-indigo-600" />
+                <Megaphone size={20} className="text-orange-600" />
                 <h2 className="text-lg font-bold text-gray-900">
                   {editingId ? 'বিজ্ঞাপন সংশোধন করুন' : 'নতুন বিজ্ঞাপন'}
                 </h2>
@@ -651,7 +651,7 @@ export default function AdvertisementsPage() {
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="অফারের মূল শিরোনাম লিখুন"
                 />
               </div>
@@ -665,7 +665,7 @@ export default function AdvertisementsPage() {
                   value={formData.subtitle}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full resize-none rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="অফারের সংক্ষিপ্ত বিবরণ এখানে লিখুন"
                 />
               </div>
@@ -678,7 +678,7 @@ export default function AdvertisementsPage() {
                   name="position"
                   value={formData.position}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                 >
                   {positions.map((position) => (
                     <option key={position.value} value={position.value}>
@@ -698,7 +698,7 @@ export default function AdvertisementsPage() {
                     name="displayOrder"
                     value={formData.displayOrder}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
                 <label className="mt-7 flex items-center gap-2 text-sm font-semibold text-gray-700 cursor-pointer">
@@ -707,7 +707,7 @@ export default function AdvertisementsPage() {
                     name="active"
                     checked={formData.active}
                     onChange={handleChange}
-                    className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    className="h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
                   />
                   সক্রিয় (Active)
                 </label>
@@ -722,7 +722,7 @@ export default function AdvertisementsPage() {
                   name="link"
                   value={formData.link}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="/products অথবা https://example.com"
                 />
               </div>
@@ -731,7 +731,7 @@ export default function AdvertisementsPage() {
                 <label className="mb-1.5 block text-sm font-semibold text-gray-700">
                   বিজ্ঞাপন ইমেজ (Image)
                 </label>
-                <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-indigo-200 bg-indigo-50 px-4 py-3 text-sm font-semibold text-indigo-700 hover:bg-indigo-100 transition">
+                <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-dashed border-orange-200 bg-orange-50 px-4 py-3 text-sm font-semibold text-orange-700 hover:bg-orange-100 transition">
                   {uploading ? (
                     <Loader2 size={18} className="animate-spin" />
                   ) : (
@@ -761,7 +761,7 @@ export default function AdvertisementsPage() {
               <button
                 type="submit"
                 disabled={saving || uploading}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-orange-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {saving ? <Loader2 size={17} className="animate-spin" /> : <Plus size={17} />}
                 {editingId ? 'বিজ্ঞাপন আপডেট করুন' : 'বিজ্ঞাপন যুক্ত করুন'}
@@ -772,7 +772,7 @@ export default function AdvertisementsPage() {
           <div className="rounded-lg border border-gray-100 bg-white shadow-sm">
             {loading ? (
               <div className="flex h-64 items-center justify-center">
-                <Loader2 className="animate-spin text-indigo-600" size={30} />
+                <Loader2 className="animate-spin text-orange-600" size={30} />
               </div>
             ) : advertisements.length === 0 ? (
               <div className="flex h-64 flex-col items-center justify-center text-center p-5">
@@ -832,7 +832,7 @@ export default function AdvertisementsPage() {
                             <button
                               type="button"
                               onClick={() => handleEdit(advertisement)}
-                              className="rounded-md p-1.5 text-indigo-600 hover:bg-indigo-50 transition"
+                              className="rounded-md p-1.5 text-orange-600 hover:bg-orange-50 transition"
                               title="সম্পাদনা করুন"
                             >
                               <Edit2 size={15} />

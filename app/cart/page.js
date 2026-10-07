@@ -146,7 +146,7 @@ export default function CartPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96 bg-gradient-to-b from-gray-50 to-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -159,7 +159,7 @@ export default function CartPage() {
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium mb-4 transition-colors group"
+            className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium mb-4 transition-colors group"
           >
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition" />
             কেনাকাটা চালিয়ে যান
@@ -170,14 +170,14 @@ export default function CartPage() {
 
         {cartItems.length === 0 ? (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-indigo-50 rounded-full mb-6">
-              <ShoppingBag size={48} className="text-indigo-600" />
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-orange-50 rounded-full mb-6">
+              <ShoppingBag size={48} className="text-orange-600" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">আপনার কার্ট খালি</h2>
             <p className="text-gray-600 mb-8">পণ্য যোগ করতে এখনই কেনাকাটা শুরু করুন</p>
             <Link
               href="/products"
-              className="inline-flex items-center bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 shadow-md hover:shadow-lg"
+              className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-orange-700 hover:to-orange-800 transition-all duration-200 shadow-md hover:shadow-lg"
             >
               কেনাকাটা শুরু করুন
               <ChevronRight size={20} className="ml-2" />
@@ -218,7 +218,7 @@ export default function CartPage() {
                       <div className="flex-1 min-w-0">
                         <Link
                           href={`/products/${product._id}`}
-                          className="block font-semibold text-gray-900 hover:text-indigo-600 transition-colors text-lg mb-1"
+                          className="block font-semibold text-gray-900 hover:text-orange-600 transition-colors text-lg mb-1"
                         >
                           {product.name}
                         </Link>
@@ -245,7 +245,7 @@ export default function CartPage() {
                                 Math.max(1, parseInt(e.target.value) || 1)
                               )
                             }
-                            className="w-14 text-center border border-gray-200 rounded-lg py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-14 text-center border border-gray-200 rounded-lg py-1.5 focus:outline-none focus:ring-2 focus:ring-orange-500"
                             min="1"
                             max={product.stock}
                           />
@@ -325,14 +325,14 @@ export default function CartPage() {
 
                 <div className="flex justify-between items-center mb-6">
                   <span className="text-lg font-bold text-gray-900">মোট</span>
-                  <span className="text-3xl font-bold text-indigo-600">
+                  <span className="text-3xl font-bold text-orange-600">
                     ৳{total.toFixed(2)}
                   </span>
                 </div>
 
                 <button
                   onClick={() => router.push('/checkout')}
-                  className="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-3.5 rounded-xl font-bold hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 shadow-md hover:shadow-lg"
+                  className="w-full bg-gradient-to-r from-orange-600 to-orange-700 text-white py-3.5 rounded-xl font-bold hover:from-orange-700 hover:to-orange-800 transition-all duration-200 shadow-md hover:shadow-lg"
                 >
                   <CreditCard className="inline mr-2" size={18} />
                   চেকআউটে যান
@@ -340,7 +340,7 @@ export default function CartPage() {
 
                 <button
                   onClick={() => router.push('/products')}
-                  className="w-full mt-3 border-2 border-gray-200 text-gray-700 py-3.5 rounded-xl font-semibold hover:bg-gray-50 hover:border-indigo-200 transition-all duration-200"
+                  className="w-full mt-3 border-2 border-gray-200 text-gray-700 py-3.5 rounded-xl font-semibold hover:bg-gray-50 hover:border-orange-200 transition-all duration-200"
                 >
                   আরও কেনাকাটা করুন
                 </button>
@@ -363,7 +363,7 @@ export default function CartPage() {
                   ) : (
                     <>
                       <label className="block text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                        <Gift size={16} className="text-indigo-600" />
+                        <Gift size={16} className="text-orange-600" />
                         প্রোমো কোড
                       </label>
                       <div className="flex gap-2">
@@ -372,12 +372,12 @@ export default function CartPage() {
                           placeholder="কোড লিখুন"
                           value={promoCode}
                           onChange={(e) => { setPromoCode(e.target.value); setPromoError(''); }}
-                          className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all uppercase"
+                          className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all uppercase"
                         />
                         <button
                           onClick={handleApplyPromo}
                           disabled={validatingPromo}
-                          className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-xl hover:bg-indigo-100 hover:text-indigo-700 transition-all duration-200 font-semibold disabled:opacity-50 flex items-center gap-1"
+                          className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-xl hover:bg-orange-100 hover:text-orange-700 transition-all duration-200 font-semibold disabled:opacity-50 flex items-center gap-1"
                         >
                           {validatingPromo ? <Loader2 size={14} className="animate-spin" /> : 'প্রযোজ্য'}
                         </button>

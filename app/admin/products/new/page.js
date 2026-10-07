@@ -176,7 +176,7 @@ export default function NewProductPage() {
               
               <div>
                 <div className="flex items-center gap-2 mb-5 pb-2 border-b border-gray-100 justify-center" >
-                  <Package size={20} className="text-indigo-600" />
+                  <Package size={20} className="text-orange-600" />
                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">মৌলিক তথ্য</h2>
                 </div>
                 <div className="space-y-5">
@@ -190,7 +190,7 @@ export default function NewProductPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="যেমন: অ্যাপল আইফোন ১৫ প্রো"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -205,7 +205,7 @@ export default function NewProductPage() {
                       onChange={handleInputChange}
                       rows={4}
                       placeholder="পণ্যের বিস্তারিত বিবরণ লিখুন..."
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
                       required
                     ></textarea>
                   </div>
@@ -219,7 +219,7 @@ export default function NewProductPage() {
                         name="category"
                         value={formData.category}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all bg-white"
+                        className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all bg-white"
                         required
                       >
                        
@@ -238,7 +238,7 @@ export default function NewProductPage() {
               
               <div>
                 <div className="flex items-center gap-2 mb-5 pb-2 border-b border-gray-100">
-                  <DollarSign size={20} className="text-indigo-600" />
+                  <DollarSign size={20} className="text-orange-600" />
                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">মূল্য ও স্টক</h2>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -254,7 +254,7 @@ export default function NewProductPage() {
                       step="0.01"
                       min="0"
                       placeholder="০.০০"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -272,7 +272,7 @@ export default function NewProductPage() {
                       min="0"
                       max="100"
                       placeholder="০"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                     />
                   </div>
 
@@ -287,7 +287,7 @@ export default function NewProductPage() {
                       onChange={handleInputChange}
                       min="0"
                       placeholder="০"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                       required
                     />
                   </div>
@@ -297,7 +297,7 @@ export default function NewProductPage() {
               
               <div>
                 <div className="flex items-center gap-2 mb-5 pb-2 border-b border-gray-100">
-                  <Image size={20} className="text-indigo-600" />
+                  <Image size={20} className="text-orange-600" />
                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">পণ্যের ছবি</h2>
                 </div>
                 <div className="space-y-5">
@@ -306,13 +306,13 @@ export default function NewProductPage() {
                       প্রধান ছবি আপলোড করুন <span className="text-red-500">*</span>
                     </label>
                     <div className="flex flex-col sm:flex-row gap-4 items-start">
-                      <label className="flex items-center justify-center gap-2 px-6 py-3 bg-indigo-50 border-2 border-dashed border-indigo-300 rounded-xl cursor-pointer hover:bg-indigo-100 transition group">
+                      <label className="flex items-center justify-center gap-2 px-6 py-3 bg-orange-50 border-2 border-dashed border-orange-300 rounded-xl cursor-pointer hover:bg-orange-100 transition group">
                         {uploadingImage ? (
-                          <Loader2 size={20} className="animate-spin text-indigo-600" />
+                          <Loader2 size={20} className="animate-spin text-orange-600" />
                         ) : (
-                          <Upload size={20} className="text-indigo-600 group-hover:scale-110 transition" />
+                          <Upload size={20} className="text-orange-600 group-hover:scale-110 transition" />
                         )}
-                        <span className="text-sm font-semibold text-indigo-700">
+                        <span className="text-sm font-semibold text-orange-700">
                           {uploadingImage ? 'আপলোড হচ্ছে...' : 'ছবি নির্বাচন করুন'}
                         </span>
                         <input
@@ -353,7 +353,7 @@ export default function NewProductPage() {
                       }
                       rows={2}
                       placeholder="https://example.com/img1.jpg, https://example.com/img2.jpg"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
                     ></textarea>
                     <p className="text-xs text-gray-400 mt-1">একাধিক ছবির ইউআরএল কমা দিয়ে আলাদা করুন</p>
                   </div>
@@ -363,7 +363,7 @@ export default function NewProductPage() {
               
               <div>
                 <div className="flex items-center gap-2 mb-5 pb-2 border-b border-gray-100">
-                  <Settings size={20} className="text-indigo-600" />
+                  <Settings size={20} className="text-orange-600" />
                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">অতিরিক্ত তথ্য</h2>
                 </div>
                 <div className="space-y-5">
@@ -377,7 +377,7 @@ export default function NewProductPage() {
                       value={formData.tags}
                       onChange={handleInputChange}
                       placeholder="নতুন, ডিসকাউন্ট"
-                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
                     />
                   </div>
 
@@ -391,14 +391,14 @@ export default function NewProductPage() {
                     }
                     className={`w-full flex items-center gap-3 p-4 rounded-xl border text-left transition-all ${
                       formData.featured
-                        ? 'bg-indigo-50 border-indigo-300 ring-2 ring-indigo-100'
-                        : 'bg-gradient-to-r from-indigo-50/50 to-purple-50/50 border-indigo-100'
+                        ? 'bg-orange-50 border-orange-300 ring-2 ring-orange-100'
+                        : 'bg-gradient-to-r from-orange-50/50 to-amber-50/50 border-orange-100'
                     }`}
                   >
                     <span
                       className={`flex h-5 w-5 shrink-0 items-center justify-center rounded border ${
                         formData.featured
-                          ? 'bg-indigo-600 border-indigo-600 text-white'
+                          ? 'bg-orange-600 border-orange-600 text-white'
                           : 'bg-white border-gray-300'
                       }`}
                     >
@@ -451,7 +451,7 @@ export default function NewProductPage() {
               <button
                 type="submit"
                 disabled={loading || uploadingImage}
-                className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-xl font-semibold hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
+                className="px-6 py-2.5 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-xl font-semibold hover:from-orange-700 hover:to-orange-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm"
               >
                 {loading && <Loader2 size={18} className="animate-spin" />}
                 <PlusCircle size={18} />

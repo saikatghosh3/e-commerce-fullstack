@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
@@ -27,7 +27,7 @@ export default function GlobalLoader() {
         active ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <div className="h-full w-1/3 rounded-full bg-indigo-600 animate-progress-bar" />
+      <div className="h-full w-1/3 rounded-full bg-orange-600 animate-progress-bar" />
     </div>
   )
 }

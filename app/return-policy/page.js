@@ -50,8 +50,8 @@ export default function ReturnPolicyPage() {
             </div>
 
             <div className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all">
-              <div className="bg-blue-100 w-12 h-12 rounded-xl flex items-center justify-center mb-3">
-                <i className="fas fa-clipboard-list text-blue-600 text-xl"></i>
+              <div className="bg-orange-100 w-12 h-12 rounded-xl flex items-center justify-center mb-3">
+                <i className="fas fa-clipboard-list text-orange-600 text-xl"></i>
               </div>
               <h3 className="font-bold text-lg text-slate-800">পণ্যের শর্তাবলী</h3>
               <ul className="text-slate-600 text-sm mt-2 space-y-1 list-disc list-inside leading-relaxed">
@@ -63,8 +63,8 @@ export default function ReturnPolicyPage() {
             </div>
 
             <div className="border p-5 rounded-xl shadow-sm hover:shadow-md transition-all">
-              <div className="bg-purple-100 w-12 h-12 rounded-xl flex items-center justify-center mb-3">
-                <i className="fas fa-arrow-right-arrow-left text-purple-600 text-xl"></i>
+              <div className="bg-amber-100 w-12 h-12 rounded-xl flex items-center justify-center mb-3">
+                <i className="fas fa-arrow-right-arrow-left text-amber-600 text-xl"></i>
               </div>
               <h3 className="font-bold text-lg text-slate-800">রিটার্ন প্রক্রিয়া</h3>
               <ol className="text-slate-600 text-sm mt-2 space-y-1.5 list-decimal list-inside leading-relaxed">

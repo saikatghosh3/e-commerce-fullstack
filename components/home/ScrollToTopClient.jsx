@@ -49,7 +49,7 @@ export default function ScrollToTopClient() {
           aria-label="Scroll to top"
         >
      
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-blue-500 animate-pulse opacity-60"></div>
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-orange-500 animate-pulse opacity-60"></div>
           
       
           <div className="absolute inset-[2px] rounded-full bg-white/5 backdrop-blur-sm"></div>
@@ -63,7 +63,7 @@ export default function ScrollToTopClient() {
             <div 
               className="absolute bottom-0 left-0 right-0 h-full"
               style={{
-                background: 'linear-gradient(180deg, rgba(56,189,248,0.4) 0%, rgba(37,99,235,0.9) 100%)',
+                background: 'linear-gradient(180deg, rgba(251,146,60,0.4) 0%, rgba(234,88,12,0.9) 100%)',
               }}
             ></div>
             
@@ -81,7 +81,7 @@ export default function ScrollToTopClient() {
             <div 
               className="absolute bottom-full left-0 w-[200%] h-6 animate-[wave_4s_ease-in-out_infinite_reverse]"
               style={{
-                background: 'rgba(56, 189, 248, 0.4)',
+                background: 'rgba(251,146,60, 0.4)',
                 borderRadius: '40%',
                 transform: 'translateX(-15%)',
               }}
@@ -120,7 +120,7 @@ export default function ScrollToTopClient() {
           </div>
           
        
-          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs font-bold text-blue-500 whitespace-nowrap bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded-full shadow-md">
+          <div className="absolute -top-7 left-1/2 transform -translate-x-1/2 text-xs font-bold text-orange-500 whitespace-nowrap bg-white/90 backdrop-blur-sm px-1.5 py-0.5 rounded-full shadow-md">
             {Math.round(waterFill)}%
           </div>
         </button>

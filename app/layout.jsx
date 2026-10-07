@@ -1,10 +1,18 @@
 import { Analytics } from '@vercel/analytics/next';
+import { Noto_Sans_Bengali } from 'next/font/google';
 import './globals.css';
 import AppShell from '@/components/AppShell';
 import ReduxProvider from '@/lib/redux/Provider';
 import { SiteDataProvider } from '@/lib/SiteDataContext';
 import { getSiteSettings, getCategories } from '@/lib/queries';
 import GlobalLoader from '@/components/GlobalLoader';
+
+const notoSansBengali = Noto_Sans_Bengali({
+  subsets: ['bengali', 'latin'],
+  display: 'swap',
+  variable: '--font-bangla',
+  fallback: ['Nirmala UI', 'Hind Siliguri', 'system-ui', 'sans-serif'],
+});
 
 export async function generateMetadata() {
   try {
@@ -53,7 +61,7 @@ export default async function RootLayout({ children }) {
   ]);
 
   return (
-    <html lang="en" className="bg-background">
+    <html lang="bn" className={`bg-background ${notoSansBengali.variable}`}>
       <body
         className="font-sans antialiased text-foreground"
         suppressHydrationWarning

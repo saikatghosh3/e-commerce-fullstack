@@ -68,7 +68,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4 text-lg relative inline-block">
               দ্রুত লিংক
-              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-indigo-500 mt-1"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-orange-500 mt-1"></div>
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
@@ -83,7 +83,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4 text-lg relative inline-block">
               সহায়তা
-              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-indigo-500 mt-1"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-orange-500 mt-1"></div>
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
@@ -105,7 +105,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-white mb-4 text-lg relative inline-block">
               যোগাযোগ
-              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-indigo-500 mt-1"></div>
+              <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-orange-500 mt-1"></div>
             </h4>
             <ul className="space-y-3 text-sm text-slate-400">
               {s.email && (

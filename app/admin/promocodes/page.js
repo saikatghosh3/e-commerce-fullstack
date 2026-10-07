@@ -176,7 +176,7 @@ export default function AdminPromoCodesPage() {
           </div>
           <button
             onClick={openCreate}
-            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition shadow-sm"
+            className="inline-flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-orange-700 transition shadow-sm"
           >
             <Plus size={16} />
             নতুন প্রোমো কোড
@@ -193,10 +193,10 @@ export default function AdminPromoCodesPage() {
                 placeholder="কোড দিয়ে খুঁজুন..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
-            <button className="px-4 py-2 bg-indigo-600 text-white text-sm rounded-lg font-medium hover:bg-indigo-700 transition">
+            <button className="px-4 py-2 bg-orange-600 text-white text-sm rounded-lg font-medium hover:bg-orange-700 transition">
               খুঁজুন
             </button>
           </div>
@@ -206,7 +206,7 @@ export default function AdminPromoCodesPage() {
         <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <Loader2 className="animate-spin h-8 w-8 text-indigo-600" />
+              <Loader2 className="animate-spin h-8 w-8 text-orange-600" />
             </div>
           ) : promoCodes.length > 0 ? (
             <div className="overflow-x-auto">
@@ -228,13 +228,13 @@ export default function AdminPromoCodesPage() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
                           <span className="font-semibold text-gray-900 text-sm font-mono">{promo.code}</span>
-                          <button onClick={() => copyCode(promo.code)} className="p-1 text-gray-400 hover:text-indigo-600 transition" title="কপি">
+                          <button onClick={() => copyCode(promo.code)} className="p-1 text-gray-400 hover:text-orange-600 transition" title="কপি">
                             <Copy size={13} />
                           </button>
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <span className={`text-xs font-medium ${promo.type === 'percentage' ? 'text-blue-600' : 'text-purple-600'}`}>
+                        <span className={`text-xs font-medium ${promo.type === 'percentage' ? 'text-orange-600' : 'text-amber-600'}`}>
                           {promo.type === 'percentage' ? 'শতাংশ' : 'নির্দিষ্ট'}
                         </span>
                       </td>
@@ -275,7 +275,7 @@ export default function AdminPromoCodesPage() {
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center justify-center gap-2">
-                          <button onClick={() => openEdit(promo)} className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded transition" title="এডিট">
+                          <button onClick={() => openEdit(promo)} className="p-1.5 text-orange-600 hover:bg-orange-50 rounded transition" title="এডিট">
                             <Edit2 size={15} />
                           </button>
                           <button onClick={() => handleDelete(promo)} className="p-1.5 text-red-600 hover:bg-red-50 rounded transition" title="ডিলিট">
@@ -292,7 +292,7 @@ export default function AdminPromoCodesPage() {
             <div className="text-center py-12">
               <Gift size={48} className="mx-auto text-gray-300 mb-3" />
               <p className="text-gray-500 text-sm">কোন প্রোমো কোড পাওয়া যায়নি</p>
-              <button onClick={openCreate} className="inline-flex items-center gap-1 mt-3 text-indigo-600 text-sm hover:text-indigo-700">
+              <button onClick={openCreate} className="inline-flex items-center gap-1 mt-3 text-orange-600 text-sm hover:text-orange-700">
                 <Plus size={14} />
                 প্রথম প্রোমো কোড তৈরি করুন
               </button>
@@ -322,7 +322,7 @@ export default function AdminPromoCodesPage() {
                   value={formData.code}
                   onChange={handleChange}
                   placeholder="যেমন: SUMMER20"
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 uppercase"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 uppercase"
                   required
                 />
               </div>
@@ -334,7 +334,7 @@ export default function AdminPromoCodesPage() {
                     name="type"
                     value={formData.type}
                     onChange={handleChange}
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
                     <option value="percentage">শতাংশ (%)</option>
                     <option value="fixed">নির্দিষ্ট (৳)</option>
@@ -352,7 +352,7 @@ export default function AdminPromoCodesPage() {
                     placeholder={formData.type === 'percentage' ? 'যেমন: 10' : 'যেমন: 500'}
                     min="0"
                     step="0.01"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     required
                   />
                 </div>
@@ -368,7 +368,7 @@ export default function AdminPromoCodesPage() {
                     onChange={handleChange}
                     placeholder="০ (ঐচ্ছিক)"
                     min="0"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
                 {formData.type === 'percentage' && (
@@ -381,7 +381,7 @@ export default function AdminPromoCodesPage() {
                       onChange={handleChange}
                       placeholder="ঐচ্ছিক"
                       min="0"
-                      className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                   </div>
                 )}
@@ -397,7 +397,7 @@ export default function AdminPromoCodesPage() {
                     onChange={handleChange}
                     placeholder="সীমাহীন"
                     min="1"
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
                 <div>
@@ -407,7 +407,7 @@ export default function AdminPromoCodesPage() {
                     name="expiresAt"
                     value={formData.expiresAt}
                     onChange={handleChange}
-                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   />
                 </div>
               </div>
@@ -418,7 +418,7 @@ export default function AdminPromoCodesPage() {
                   name="isActive"
                   checked={formData.isActive}
                   onChange={handleChange}
-                  className="w-4 h-4 text-indigo-600 rounded focus:ring-indigo-500"
+                  className="w-4 h-4 text-orange-600 rounded focus:ring-orange-500"
                 />
                 <span className="text-sm font-medium text-gray-900">সক্রিয়</span>
               </label>
@@ -434,7 +434,7 @@ export default function AdminPromoCodesPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 px-4 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-semibold hover:bg-indigo-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="flex-1 px-4 py-2.5 bg-orange-600 text-white rounded-xl text-sm font-semibold hover:bg-orange-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
                 >
                   {submitting && <Loader2 size={16} className="animate-spin" />}
                   {editingId ? 'আপডেট' : 'তৈরি করুন'}

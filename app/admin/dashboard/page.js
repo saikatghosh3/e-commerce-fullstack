@@ -83,7 +83,7 @@ const filteredProducts = products.filter((product) => {
           </div>
           <Link
             href="/admin/products/new"
-            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition shadow-sm"
+            className="inline-flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-orange-700 transition shadow-sm"
           >
             <Plus size={16} />
             নতুন পণ্য
@@ -112,7 +112,7 @@ const filteredProducts = products.filter((product) => {
         <div className="bg-white rounded-md border border-slate-200/80 overflow-hidden">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-orange-600"></div>
             </div>
           ) : filteredProducts.length > 0 ? (
             <>
@@ -180,7 +180,7 @@ const filteredProducts = products.filter((product) => {
                             <div className="flex items-center gap-1">
                               <Link
                                 href={`/admin/products/${product._id}/edit`}
-                                className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded transition"
+                                className="p-1.5 text-orange-600 hover:bg-orange-50 rounded transition"
                                 title="এডিট"
                               >
                                 <Edit2 size={15} />
@@ -227,7 +227,7 @@ const filteredProducts = products.filter((product) => {
               <p className="text-gray-500 text-sm">কোন পণ্য পাওয়া যায়নি</p>
               <Link
                 href="/admin/products/new"
-                className="inline-flex items-center gap-1 mt-3 text-indigo-600 text-sm hover:text-indigo-700"
+                className="inline-flex items-center gap-1 mt-3 text-orange-600 text-sm hover:text-orange-700"
               >
                 <Plus size={14} />
                 প্রথম পণ্য যোগ করুন

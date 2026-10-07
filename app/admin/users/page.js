@@ -84,14 +84,14 @@ export default function AdminUsersPage() {
   const getRoleBadge = (role) => {
     if (role === 'admin') {
       return (
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-purple-100 text-purple-700">
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">
           <Shield size={12} />
           অ্যাডমিন
         </span>
       );
     }
     return (
-      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-orange-100 text-orange-700">
         ইউজার
       </span>
     );
@@ -104,7 +104,7 @@ export default function AdminUsersPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Users size={24} className="text-blue-600" />
+            <Users size={24} className="text-orange-600" />
             ইউজার ব্যবস্থাপনা
           </h1>
           <p className="text-sm text-gray-500 mt-1">নিবন্ধিত ইউজার দেখুন ও ব্যবস্থাপনা করুন</p>
@@ -121,12 +121,12 @@ export default function AdminUsersPage() {
                 placeholder="নাম, ইমেইল বা ফোন দিয়ে খুঁজুন..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
               />
             </div>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+              className="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition"
             >
               খুঁজুন
             </button>
@@ -164,7 +164,7 @@ export default function AdminUsersPage() {
                   <tr key={user._id} className="border-b hover:bg-gray-50 transition">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-semibold text-xs">
+                        <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-semibold text-xs">
                           {user.name?.charAt(0)?.toUpperCase() || 'U'}
                         </div>
                         <span className="font-medium text-gray-900">{user.name}</span>
@@ -193,7 +193,7 @@ export default function AdminUsersPage() {
                       <div className="flex items-center justify-end gap-1">
                         <button
                           onClick={() => setSelectedUser(user)}
-                          className="p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                          className="p-1.5 text-gray-500 hover:text-orange-600 hover:bg-orange-50 rounded-lg transition"
                           title="বিস্তারিত দেখুন"
                         >
                           <Eye size={16} />
@@ -262,7 +262,7 @@ export default function AdminUsersPage() {
 
             <div className="p-6 space-y-5">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl">
+                <div className="w-16 h-16 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xl">
                   {selectedUser.name?.charAt(0)?.toUpperCase() || 'U'}
                 </div>
                 <div>
@@ -283,7 +283,7 @@ export default function AdminUsersPage() {
                     onChange={(e) => {
                       setSelectedUser({ ...selectedUser, role: e.target.value });
                     }}
-                    className="w-full px-2 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-2 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
                     <option value="user">ইউজার</option>
                     <option value="admin">অ্যাডমিন</option>
@@ -296,7 +296,7 @@ export default function AdminUsersPage() {
                     onChange={(e) => {
                       setSelectedUser({ ...selectedUser, isActive: e.target.value === 'active' });
                     }}
-                    className="w-full px-2 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-2 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                   >
                     <option value="active">সক্রিয়</option>
                     <option value="inactive">নিষ্ক্রিয়</option>
@@ -343,7 +343,7 @@ export default function AdminUsersPage() {
                   })
                 }
                 disabled={saving}
-                className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 flex items-center gap-2"
+                className="px-4 py-2 text-sm text-white bg-orange-600 rounded-lg hover:bg-orange-700 transition disabled:opacity-50 flex items-center gap-2"
               >
                 {saving && <Loader2 size={14} className="animate-spin" />}
                 {saving ? 'সেভ হচ্ছে...' : 'পরিবর্তন সংরক্ষণ'}

@@ -46,7 +46,7 @@
 //     <div
 //   className={`${
 //     isSidebarOpen ? 'w-64' : 'w-20'
-//   } bg-gradient-to-b from-indigo-900 via-indigo-800 to-indigo-900 text-white transition-all duration-300 flex flex-col shadow-2xl relative overflow-hidden`}
+//   } bg-gradient-to-b from-orange-900 via-orange-800 to-orange-900 text-white transition-all duration-300 flex flex-col shadow-2xl relative overflow-hidden`}
 // >
 //   {/* Glowing Effect */}
 //   <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"></div>
@@ -55,7 +55,7 @@
 //   {/* Logo */}
 //   <div className="h-16 flex items-center justify-center border-b border-white/10 relative">
 //     <Link href="/admin/dashboard" className="flex items-center gap-2 group">
-//       <div className="w-8 h-8 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-indigo-500/50 transition-all duration-300">
+//       <div className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-orange-500/50 transition-all duration-300">
 //         <span className="font-bold text-sm">A</span>
 //       </div>
 //       {isSidebarOpen && <span className="font-bold">Admin</span>}
@@ -148,14 +148,14 @@ export default function AdminLayout({ children }) {
   // if (loading) {
   //   return (
   //     <div className="flex items-center justify-center h-screen bg-slate-100">
-  //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+  //       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
   //     </div>
   //   );
   // }
 if (loading) {
   return (
     <div className="flex items-center justify-center h-screen bg-slate-100">
-      <div className="animate-spin h-10 w-10 border-2 border-blue-600 rounded-full border-t-transparent"></div>
+      <div className="animate-spin h-10 w-10 border-2 border-orange-600 rounded-full border-t-transparent"></div>
     </div>
   );
 }
@@ -232,7 +232,7 @@ if (loading) {
         {/* Logo Section */}
         <div className="h-16 flex items-center border-b border-gray-200 px-4">
           <Link href="/admin/dashboard" className="flex items-center gap-3 w-full">
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
               <span className="font-bold text-base text-white">A</span>
             </div>
             {isSidebarOpen && (

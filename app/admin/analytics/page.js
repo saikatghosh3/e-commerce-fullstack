@@ -15,8 +15,8 @@ import AdminLayout from '@/components/AdminLayout';
 const statusBadge = (status) => {
   const colors = {
     pending: 'bg-amber-100 text-amber-700',
-    processing: 'bg-blue-100 text-blue-700',
-    shipped: 'bg-purple-100 text-purple-700',
+    processing: 'bg-orange-100 text-orange-700',
+    shipped: 'bg-rose-500 text-white',
     delivered: 'bg-emerald-100 text-emerald-700',
     cancelled: 'bg-red-100 text-red-700',
   };
@@ -116,7 +116,7 @@ export default function AnalyticsPage() {
       <AdminLayout>
         <div className="flex items-center justify-center h-[80vh]">
           <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin h-10 w-10 border-2 border-blue-600 rounded-full border-t-transparent" />
+            <div className="animate-spin h-10 w-10 border-2 border-orange-600 rounded-full border-t-transparent" />
             <p className="text-sm text-gray-500">অ্যানালিটিক্স লোড হচ্ছে...</p>
           </div>
         </div>
@@ -149,16 +149,16 @@ export default function AnalyticsPage() {
       value: formatCurrency(overview.totalRevenue),
       sublabel: `${overview.pendingOrders}টি পেন্ডিং পেমেন্ট`,
       icon: DollarSign,
-      gradient: 'from-blue-600 to-blue-400',
-      shadow: 'shadow-blue-500/25',
+      gradient: 'from-orange-600 to-orange-400',
+      shadow: 'shadow-orange-500/25',
     },
     {
       label: 'মোট অর্ডার',
       value: overview.totalOrders.toLocaleString(),
       sublabel: `${completionRate}% সম্পন্ন`,
       icon: ShoppingCart,
-      gradient: 'from-violet-600 to-violet-400',
-      shadow: 'shadow-violet-500/25',
+      gradient: 'from-amber-600 to-amber-400',
+      shadow: 'shadow-amber-500/25',
     },
     {
       label: 'মোট পণ্য',
@@ -195,7 +195,7 @@ export default function AnalyticsPage() {
                   onClick={() => handlePeriodChange(p)}
                   className={`px-3 py-1.5 text-xs font-medium rounded-md transition ${
                     period === p
-                      ? 'bg-blue-600 text-white shadow-sm'
+                      ? 'bg-orange-600 text-white shadow-sm'
                       : 'text-gray-500 hover:text-gray-700'
                   }`}
                 >
@@ -253,7 +253,7 @@ export default function AnalyticsPage() {
                 </p>
               </div>
               {monthlyRevenue.length > 1 && (
-                <div className="flex items-center gap-1 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg text-xs font-medium">
+                <div className="flex items-center gap-1 bg-orange-50 text-orange-700 px-3 py-1.5 rounded-lg text-xs font-medium">
                   <TrendingUp size={14} />
                   {(() => {
                     const last = monthlyRevenue[monthlyRevenue.length - 1]?.revenue || 0;
@@ -269,12 +269,12 @@ export default function AnalyticsPage() {
                   <AreaChart data={monthlyRevenue} margin={{ top: 5, right: 5, left: 0, bottom: 0 }}>
                     <defs>
                       <linearGradient id="revenueGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#3B82F6" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#F97316" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="#F97316" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="ordersGradient" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.2} />
-                        <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0} />
+                        <stop offset="5%" stopColor="#E11D48" stopOpacity={0.2} />
+                        <stop offset="95%" stopColor="#E11D48" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#F3F4F6" />
@@ -295,20 +295,20 @@ export default function AnalyticsPage() {
                       type="monotone"
                       dataKey="revenue"
                       name="Revenue"
-                      stroke="#3B82F6"
+                      stroke="#F97316"
                       strokeWidth={2.5}
                       fill="url(#revenueGradient)"
-                      dot={{ r: 3, fill: '#3B82F6', stroke: '#fff', strokeWidth: 2 }}
-                      activeDot={{ r: 5, fill: '#3B82F6', stroke: '#fff', strokeWidth: 2 }}
+                      dot={{ r: 3, fill: '#F97316', stroke: '#fff', strokeWidth: 2 }}
+                      activeDot={{ r: 5, fill: '#F97316', stroke: '#fff', strokeWidth: 2 }}
                     />
                     <Area
                       type="monotone"
                       dataKey="orders"
                       name="Orders"
-                      stroke="#8B5CF6"
+                      stroke="#E11D48"
                       strokeWidth={2}
                       fill="url(#ordersGradient)"
-                      dot={{ r: 2, fill: '#8B5CF6', stroke: '#fff', strokeWidth: 1.5 }}
+                      dot={{ r: 2, fill: '#E11D48', stroke: '#fff', strokeWidth: 1.5 }}
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -398,7 +398,7 @@ export default function AnalyticsPage() {
                     <Tooltip content={<CustomTooltip currency={false} />} />
                     <Bar dataKey="products" name="Products" radius={[4, 4, 0, 0]} maxBarSize={45}>
                       {categoryDistribution.map((entry, i) => (
-                        <Cell key={i} fill={entry.fill || '#6366F1'} />
+                        <Cell key={i} fill={entry.fill || '#EA580C'} />
                       ))}
                     </Bar>
                   </BarChart>
@@ -476,7 +476,7 @@ export default function AnalyticsPage() {
                             onClick={() => setOrdersPage(pageNum)}
                             className={`w-7 h-7 text-xs font-medium rounded-lg transition ${
                               ordersPage === pageNum
-                                ? 'bg-blue-600 text-white'
+                                ? 'bg-orange-600 text-white'
                                 : 'text-gray-500 hover:bg-gray-100'
                             }`}
                           >

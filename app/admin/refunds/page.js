@@ -103,7 +103,7 @@ export default function AdminRefundsPage() {
           </div>
           <button
             onClick={fetchRefunds}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition"
+            className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg text-sm hover:bg-orange-700 transition"
           >
             <RefreshCw size={16} />
             Refresh
@@ -118,7 +118,7 @@ export default function AdminRefundsPage() {
               placeholder="Search by order number, customer name or email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full pl-9 pr-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function AdminRefundsPage() {
         <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
           {loading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-indigo-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-orange-600"></div>
             </div>
           ) : filteredOrders.length > 0 ? (
             <div className="overflow-x-auto">
@@ -207,7 +207,7 @@ export default function AdminRefundsPage() {
                           )}
                           <button
                             onClick={() => { setSelectedOrder(order); setShowDetail(true); }}
-                            className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded transition"
+                            className="p-1.5 text-orange-600 hover:bg-orange-50 rounded transition"
                             title="View details"
                           >
                             <Eye size={16} />
@@ -310,7 +310,7 @@ export default function AdminRefundsPage() {
             <div className="sticky bottom-0 bg-gray-50 border-t px-5 py-3">
               <button
                 onClick={() => setShowDetail(false)}
-                className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition"
+                className="w-full px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 transition"
               >
                 Close
               </button>

@@ -173,7 +173,7 @@
 //   if (loading) {
 //     return (
 //       <div className="flex justify-center items-center h-96 bg-gradient-to-b from-gray-50 to-white">
-//         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+//         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
 //       </div>
 //     );
 //   }
@@ -184,20 +184,20 @@
 //         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 //           <button
 //             onClick={() => router.back()}
-//             className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium mb-8 group"
+//             className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium mb-8 group"
 //           >
 //             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition" />
 //             ফিরে যান
 //           </button>
 
 //           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
-//             <div className="inline-flex items-center justify-center w-20 h-20 bg-indigo-50 rounded-full mb-6">
-//               <Package size={40} className="text-indigo-600" />
+//             <div className="inline-flex items-center justify-center w-20 h-20 bg-orange-50 rounded-full mb-6">
+//               <Package size={40} className="text-orange-600" />
 //             </div>
 //             <p className="text-gray-600 text-lg mb-8">আপনার কার্ট খালি</p>
 //             <Link
 //               href="/products"
-//               className="inline-flex items-center bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 shadow-md"
+//               className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-orange-700 hover:to-orange-800 transition-all duration-200 shadow-md"
 //             >
 //               কেনাকাটা শুরু করুন
 //             </Link>
@@ -214,7 +214,7 @@
 //         {/* হেডার */}
 //         <button
 //           onClick={() => router.back()}
-//           className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium mb-6 group"
+//           className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium mb-6 group"
 //         >
 //           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition" />
 //           কার্টে ফিরুন
@@ -244,7 +244,7 @@
 //               {/* ডেলিভারি তথ্য */}
 //               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 lg:p-7 hover:shadow-md transition-shadow">
 //                 <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-100">
-//                   <Truck size={24} className="text-indigo-600" />
+//                   <Truck size={24} className="text-orange-600" />
 //                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
 //                     ডেলিভারি তথ্য
 //                   </h2>
@@ -261,7 +261,7 @@
 //                       value={formData.name}
 //                       onChange={handleInputChange}
 //                       placeholder="আপনার পূর্ণ নাম লিখুন"
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
 //                       required
 //                     />
 //                   </div>
@@ -276,7 +276,7 @@
 //                       value={formData.email}
 //                       onChange={handleInputChange}
 //                       placeholder="আপনার ইমেইল ঠিকানা"
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
 //                       required
 //                     />
 //                   </div>
@@ -291,7 +291,7 @@
 //                       value={formData.phone}
 //                       onChange={handleInputChange}
 //                       placeholder="০১XXXXXXXXX"
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
 //                       required
 //                     />
 //                   </div>
@@ -306,7 +306,7 @@
 //                       onChange={handleInputChange}
 //                       placeholder="বাড়ির ঠিকানা, রোড, এরিয়া, জেলা"
 //                       rows={3}
-//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
+//                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
 //                       required
 //                     />
 //                     <p className="text-xs text-gray-400 mt-1">
@@ -319,7 +319,7 @@
 //               {/* পেমেন্ট মেথড */}
 //               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 lg:p-7 hover:shadow-md transition-shadow">
 //                 <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-100">
-//                   <CreditCard size={24} className="text-indigo-600" />
+//                   <CreditCard size={24} className="text-orange-600" />
 //                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
 //                     পেমেন্ট পদ্ধতি
 //                   </h2>
@@ -328,8 +328,8 @@
 //                 <div className="space-y-4">
 //                   <label className={`flex items-start p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
 //                     paymentMethod === 'cod' 
-//                       ? 'border-indigo-500 bg-indigo-50' 
-//                       : 'border-gray-200 hover:border-indigo-200'
+//                       ? 'border-orange-500 bg-orange-50' 
+//                       : 'border-gray-200 hover:border-orange-200'
 //                   }`}>
 //                     <input
 //                       type="radio"
@@ -337,7 +337,7 @@
 //                       value="cod"
 //                       checked={paymentMethod === 'cod'}
 //                       onChange={(e) => setPaymentMethod(e.target.value)}
-//                       className="w-4 h-4 mt-0.5 text-indigo-600 focus:ring-indigo-500"
+//                       className="w-4 h-4 mt-0.5 text-orange-600 focus:ring-orange-500"
 //                     />
 //                     <div className="ml-3 flex-1">
 //                       <span className="block font-semibold text-gray-900">
@@ -351,8 +351,8 @@
 
 //                   <label className={`flex items-start p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
 //                     paymentMethod === 'ssl-commerz' 
-//                       ? 'border-indigo-500 bg-indigo-50' 
-//                       : 'border-gray-200 hover:border-indigo-200'
+//                       ? 'border-orange-500 bg-orange-50' 
+//                       : 'border-gray-200 hover:border-orange-200'
 //                   }`}>
 //                     <input
 //                       type="radio"
@@ -360,7 +360,7 @@
 //                       value="ssl-commerz"
 //                       checked={paymentMethod === 'ssl-commerz'}
 //                       onChange={(e) => setPaymentMethod(e.target.value)}
-//                       className="w-4 h-4 mt-0.5 text-indigo-600 focus:ring-indigo-500"
+//                       className="w-4 h-4 mt-0.5 text-orange-600 focus:ring-orange-500"
 //                     />
 //                     <div className="ml-3 flex-1">
 //                       <span className="block font-semibold text-gray-900">
@@ -378,7 +378,7 @@
 //               <button
 //                 type="submit"
 //                 disabled={processing}
-//                 className="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md"
+//                 className="w-full bg-gradient-to-r from-orange-600 to-orange-700 text-white py-4 rounded-xl font-bold text-lg hover:from-orange-700 hover:to-orange-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md"
 //               >
 //                 {processing && <Loader2 size={20} className="animate-spin" />}
 //                 {processing ? 'প্রক্রিয়াকরণ হচ্ছে...' : 'অর্ডার সম্পন্ন করুন'}
@@ -442,7 +442,7 @@
 
 //               <div className="flex justify-between items-center mb-4">
 //                 <span className="text-lg font-bold text-gray-900">মোট পরিশোধ্য</span>
-//                 <span className="text-2xl lg:text-3xl font-bold text-indigo-600">
+//                 <span className="text-2xl lg:text-3xl font-bold text-orange-600">
 //                   ৳{total.toFixed(2)}
 //                 </span>
 //               </div>
@@ -798,7 +798,7 @@ export default function CheckoutPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-96 bg-gradient-to-b from-gray-50 to-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -809,20 +809,20 @@ export default function CheckoutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium mb-8 group"
+            className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium mb-8 group"
           >
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition" />
             ফিরে যান
           </button>
 
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 bg-indigo-50 rounded-full mb-6">
-              <Package size={40} className="text-indigo-600" />
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-orange-50 rounded-full mb-6">
+              <Package size={40} className="text-orange-600" />
             </div>
             <p className="text-gray-600 text-lg mb-8">আপনার কার্ট খালি</p>
             <Link
               href="/products"
-              className="inline-flex items-center bg-gradient-to-r from-indigo-600 to-indigo-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 shadow-md"
+              className="inline-flex items-center bg-gradient-to-r from-orange-600 to-orange-700 text-white px-8 py-3 rounded-xl font-semibold hover:from-orange-700 hover:to-orange-800 transition-all duration-200 shadow-md"
             >
               কেনাকাটা শুরু করুন
             </Link>
@@ -869,7 +869,7 @@ export default function CheckoutPage() {
         {/* হেডার */}
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-indigo-600 hover:text-indigo-700 font-medium mb-6 group"
+          className="flex items-center gap-2 text-orange-600 hover:text-orange-700 font-medium mb-6 group"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition" />
           কার্টে ফিরুন
@@ -899,7 +899,7 @@ export default function CheckoutPage() {
               {/* ডেলিভারি তথ্য */}
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 lg:p-7 hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-100">
-                  <Truck size={24} className="text-indigo-600" />
+                  <Truck size={24} className="text-orange-600" />
                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
                     ডেলিভারি তথ্য
                   </h2>
@@ -919,7 +919,7 @@ export default function CheckoutPage() {
                       className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                         formErrors.name
                           ? 'border-red-300 focus:ring-red-500'
-                          : 'border-gray-200 focus:ring-indigo-500 focus:border-transparent'
+                          : 'border-gray-200 focus:ring-orange-500 focus:border-transparent'
                       }`}
                       required
                     />
@@ -941,7 +941,7 @@ export default function CheckoutPage() {
                       className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                         formErrors.email
                           ? 'border-red-300 focus:ring-red-500'
-                          : 'border-gray-200 focus:ring-indigo-500 focus:border-transparent'
+                          : 'border-gray-200 focus:ring-orange-500 focus:border-transparent'
                       }`}
                       required
                     />
@@ -963,7 +963,7 @@ export default function CheckoutPage() {
                       className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                         formErrors.phone
                           ? 'border-red-300 focus:ring-red-500'
-                          : 'border-gray-200 focus:ring-indigo-500 focus:border-transparent'
+                          : 'border-gray-200 focus:ring-orange-500 focus:border-transparent'
                       }`}
                       required
                     />
@@ -985,7 +985,7 @@ export default function CheckoutPage() {
                       className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 transition-all resize-none ${
                         formErrors.address
                           ? 'border-red-300 focus:ring-red-500'
-                          : 'border-gray-200 focus:ring-indigo-500 focus:border-transparent'
+                          : 'border-gray-200 focus:ring-orange-500 focus:border-transparent'
                       }`}
                       required
                     />
@@ -1002,7 +1002,7 @@ export default function CheckoutPage() {
               {/* পেমেন্ট মেথড */}
               <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 lg:p-7 hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-100">
-                  <CreditCard size={24} className="text-indigo-600" />
+                  <CreditCard size={24} className="text-orange-600" />
                   <h2 className="text-xl lg:text-2xl font-bold text-gray-900">
                     পেমেন্ট পদ্ধতি
                   </h2>
@@ -1011,8 +1011,8 @@ export default function CheckoutPage() {
                 <div className="space-y-4">
                   <label className={`flex items-start p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
                     paymentMethod === 'cod' 
-                      ? 'border-indigo-500 bg-indigo-50' 
-                      : 'border-gray-200 hover:border-indigo-200'
+                      ? 'border-orange-500 bg-orange-50' 
+                      : 'border-gray-200 hover:border-orange-200'
                   }`}>
                     <input
                       type="radio"
@@ -1020,7 +1020,7 @@ export default function CheckoutPage() {
                       value="cod"
                       checked={paymentMethod === 'cod'}
                       onChange={(e) => setPaymentMethod(e.target.value)}
-                      className="w-4 h-4 mt-0.5 text-indigo-600 focus:ring-indigo-500"
+                      className="w-4 h-4 mt-0.5 text-orange-600 focus:ring-orange-500"
                     />
                     <div className="ml-3 flex-1">
                       <span className="block font-semibold text-gray-900">
@@ -1034,8 +1034,8 @@ export default function CheckoutPage() {
 
                   <label className={`flex items-start p-4 border-2 rounded-xl cursor-pointer transition-all duration-200 ${
                     paymentMethod === 'ssl-commerz' 
-                      ? 'border-indigo-500 bg-indigo-50' 
-                      : 'border-gray-200 hover:border-indigo-200'
+                      ? 'border-orange-500 bg-orange-50' 
+                      : 'border-gray-200 hover:border-orange-200'
                   }`}>
                     <input
                       type="radio"
@@ -1043,7 +1043,7 @@ export default function CheckoutPage() {
                       value="ssl-commerz"
                       checked={paymentMethod === 'ssl-commerz'}
                       onChange={(e) => setPaymentMethod(e.target.value)}
-                      className="w-4 h-4 mt-0.5 text-indigo-600 focus:ring-indigo-500"
+                      className="w-4 h-4 mt-0.5 text-orange-600 focus:ring-orange-500"
                     />
                     <div className="ml-3 flex-1">
                       <span className="block font-semibold text-gray-900">
@@ -1061,7 +1061,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={processing}
-                className="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-indigo-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md"
+                className="w-full bg-gradient-to-r from-orange-600 to-orange-700 text-white py-4 rounded-xl font-bold text-lg hover:from-orange-700 hover:to-orange-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-md"
               >
                 {processing && <Loader2 size={20} className="animate-spin" />}
                 {processing ? 'প্রক্রিয়াকরণ হচ্ছে...' : 'অর্ডার সম্পন্ন করুন'}
@@ -1147,7 +1147,7 @@ export default function CheckoutPage() {
                 ) : (
                   <>
                     <label className="block text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                      <Gift size={16} className="text-indigo-600" />
+                      <Gift size={16} className="text-orange-600" />
                       প্রোমো কোড
                     </label>
                     <div className="flex gap-2">
@@ -1156,13 +1156,13 @@ export default function CheckoutPage() {
                         placeholder="কোড লিখুন"
                         value={promoCode}
                         onChange={(e) => { setPromoCode(e.target.value); setPromoError(''); }}
-                        className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 uppercase"
+                        className="flex-1 px-3 py-2 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 uppercase"
                       />
                       <button
                         type="button"
                         onClick={applyPromo}
                         disabled={validatingPromo}
-                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-indigo-100 hover:text-indigo-700 transition font-semibold text-sm disabled:opacity-50 flex items-center gap-1"
+                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-xl hover:bg-orange-100 hover:text-orange-700 transition font-semibold text-sm disabled:opacity-50 flex items-center gap-1"
                       >
                         {validatingPromo ? <Loader2 size={14} className="animate-spin" /> : 'প্রযোজ্য'}
                       </button>
@@ -1176,7 +1176,7 @@ export default function CheckoutPage() {
 
               <div className="flex justify-between items-center mb-4">
                 <span className="text-lg font-bold text-gray-900">মোট পরিশোধ্য</span>
-                <span className="text-2xl lg:text-3xl font-bold text-indigo-600">
+                <span className="text-2xl lg:text-3xl font-bold text-orange-600">
                   ৳{total.toFixed(2)}
                 </span>
               </div>

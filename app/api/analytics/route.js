@@ -99,8 +99,8 @@ export async function GET(request) {
 
     const orderStatusColors = {
       pending: '#F59E0B',
-      processing: '#3B82F6',
-      shipped: '#8B5CF6',
+      processing: '#F97316',
+      shipped: '#E11D48',
       delivered: '#10B981',
       cancelled: '#EF4444',
     };
@@ -112,8 +112,8 @@ export async function GET(request) {
     }));
 
     const categoryColors = [
-      '#8B5CF6', '#3B82F6', '#10B981', '#F59E0B', '#EF4444',
-      '#EC4899', '#14B8A6', '#F97316', '#6366F1', '#84CC16',
+      '#E11D48', '#F97316', '#10B981', '#F59E0B', '#EF4444',
+      '#EC4899', '#14B8A6', '#FBBF24', '#EA580C', '#84CC16',
     ];
 
     const categoryDistribution = categoryData.map((item, index) => ({

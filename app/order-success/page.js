@@ -100,7 +100,7 @@ function OrderSuccess() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50 py-12">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Success Message */}
         <div className="bg-white rounded-xl shadow-lg p-8 text-center mb-8">
@@ -117,7 +117,7 @@ function OrderSuccess() {
 
           <div className="bg-gray-50 rounded-lg p-6 mb-8">
             <p className="text-sm text-gray-600 mb-2">অর্ডার নম্বর</p>
-            <p className="text-2xl font-bold text-blue-600 font-mono">
+            <p className="text-2xl font-bold text-orange-600 font-mono">
               {orderNumber || "DEMO-123456"}
             </p>
             <p className="text-xs text-gray-600 mt-4">
@@ -137,7 +137,7 @@ function OrderSuccess() {
               )}
               <button
                 onClick={handlePrint}
-                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md"
+                className="inline-flex items-center gap-2 bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition shadow-md"
               >
                 <Printer size={20} />
                 ইনভয়েস প্রিন্ট করুন
@@ -167,8 +167,8 @@ function OrderSuccess() {
             {/* Processing */}
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
-                  <Package className="text-blue-600" size={24} />
+                <div className="flex items-center justify-center h-12 w-12 rounded-full bg-orange-100">
+                  <Package className="text-orange-600" size={24} />
                 </div>
               </div>
               <div className="flex-1">
@@ -216,28 +216,28 @@ function OrderSuccess() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">পরবর্তী ধাপসমূহ কী?</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-blue-600 pl-6">
+            <div className="border-l-4 border-orange-600 pl-6">
               <h3 className="font-semibold text-gray-900 mb-2">আপনার ইমেল চেক করুন</h3>
               <p className="text-gray-600 text-sm">
                 আমরা আপনার অর্ডারের বিবরণ এবং ট্র্যাকিং তথ্য সহ একটি নিশ্চিতকরণ ইমেল পাঠিয়েছি।
               </p>
             </div>
 
-            <div className="border-l-4 border-blue-600 pl-6">
+            <div className="border-l-4 border-orange-600 pl-6">
               <h3 className="font-semibold text-gray-900 mb-2">আপনার অর্ডার ট্র্যাক করুন</h3>
               <p className="text-gray-600 text-sm">
                 আপনি ইমেল থেকে অথবা উপরে দেওয়া অর্ডার নম্বর ব্যবহার করে আপনার অর্ডার ট্র্যাক করতে পারেন।
               </p>
             </div>
 
-            <div className="border-l-4 border-blue-600 pl-6">
+            <div className="border-l-4 border-orange-600 pl-6">
               <h3 className="font-semibold text-gray-900 mb-2">সহায়তা প্রয়োজন?</h3>
               <p className="text-gray-600 text-sm">
                 আপনার অর্ডার সম্পর্কে কোনো প্রশ্ন থাকলে আমাদের কাস্টমার সাপোর্ট টিমের সাথে যোগাযোগ করুন।
               </p>
             </div>
 
-            <div className="border-l-4 border-blue-600 pl-6">
+            <div className="border-l-4 border-orange-600 pl-6">
               <h3 className="font-semibold text-gray-900 mb-2">কেনাকাটা চালিয়ে যান</h3>
               <p className="text-gray-600 text-sm">
                 আমাদের ক্যাটালগ ঘুরে দেখুন এবং আরও দারুণ সব পণ্য খুঁজে নিন।
@@ -250,13 +250,13 @@ function OrderSuccess() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+            className="inline-flex items-center justify-center bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition"
           >
             হোম পেজে ফিরে যান
           </Link>
           <Link
             href="/products"
-            className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition"
+            className="inline-flex items-center justify-center border-2 border-orange-600 text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-orange-50 transition"
           >
             কেনাকাটা চালিয়ে যান
           </Link>
@@ -287,7 +287,7 @@ function OrderSuccess() {
                   <p className="text-gray-700">তারিখ: <span className="font-semibold">{new Date().toLocaleDateString()}</span></p>
                 </div>
                 <div className="text-right">
-                  <h2 className="text-2xl font-bold text-blue-600 mb-2">{settings?.siteNameEnglish || 'Elite Store'}</h2>
+                  <h2 className="text-2xl font-bold text-orange-600 mb-2">{settings?.siteNameEnglish || 'Elite Store'}</h2>
                   <p className="text-sm text-gray-600">{(settings?.addressEnglish || '123 Business Street, Dhaka, Bangladesh').split(',').map((part, i) => <span key={i}>{i > 0 && <br />}{part.trim()}</span>)}</p>
                   <p className="text-sm text-gray-600">Phone: {settings?.phoneEnglish || '+880 1234-567890'}</p>
                   <p className="text-sm text-gray-600">{settings?.email || 'support@elitestore.com'}</p>
@@ -364,7 +364,7 @@ function OrderSuccess() {
                 </div>
                 <div className="flex justify-between py-3 border-t-2 border-gray-300 mt-2">
                   <span className="text-xl font-bold text-gray-900">মোট:</span>
-                  <span className="text-xl font-bold text-blue-600">
+                  <span className="text-xl font-bold text-orange-600">
                     ৳{(Number(orderData.totalAmount) || 0).toFixed(2)}
                   </span>
                 </div>
@@ -389,7 +389,7 @@ export default function Page() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 to-blue-50">
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-50 to-orange-50">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600"></div>
         </div>
       }

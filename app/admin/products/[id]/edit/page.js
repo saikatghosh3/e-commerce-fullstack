@@ -145,7 +145,7 @@ export default function EditProductPage() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
                 required
               />
             </div>
@@ -158,7 +158,7 @@ export default function EditProductPage() {
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
                 required
               />
             </div>
@@ -171,7 +171,7 @@ export default function EditProductPage() {
                 name="stock"
                 value={formData.stock}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
                 required
               />
             </div>
@@ -183,7 +183,7 @@ export default function EditProductPage() {
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
                 required
               >
                 <option value="">ক্যাটাগরি নির্বাচন করুন</option>
@@ -203,18 +203,18 @@ export default function EditProductPage() {
                 name="discount"
                 value={formData.discount}
                 onChange={handleChange}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
               />
             </div>
 
             <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <label className="flex items-center gap-3 p-4 rounded-xl border border-indigo-100 bg-indigo-50/60">
+              <label className="flex items-center gap-3 p-4 rounded-xl border border-orange-100 bg-orange-50/60">
                 <input
                   type="checkbox"
                   name="featured"
                   checked={Boolean(formData.featured)}
                   onChange={handleChange}
-                  className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
                 />
                 <span className="text-sm font-semibold text-gray-700">Featured product</span>
               </label>
@@ -241,7 +241,7 @@ export default function EditProductPage() {
               <button
                 type="button"
                 onClick={handleAddReview}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition"
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition"
               >
                 + নতুন রিভিউ
               </button>
@@ -263,7 +263,7 @@ export default function EditProductPage() {
                           value={review.user || ''}
                           onChange={(e) => handleReviewChange(index, 'user', e.target.value)}
                           placeholder="নাম লিখুন"
-                          className="w-full md:w-80 px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full md:w-80 px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         />
                       </div>
                       <div>
@@ -271,7 +271,7 @@ export default function EditProductPage() {
                         <select
                           value={review.rating || 5}
                           onChange={(e) => handleReviewChange(index, 'rating', Number(e.target.value))}
-                          className="w-full md:w-32 px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                          className="w-full md:w-32 px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500"
                         >
                           {[5, 4, 3, 2, 1].map((value) => (
                             <option key={value} value={value}>{value} স্টার</option>
@@ -294,7 +294,7 @@ export default function EditProductPage() {
                         onChange={(e) => handleReviewChange(index, 'comment', e.target.value)}
                         rows={3}
                         placeholder="রিভিউয়ের মন্তব্য লিখুন..."
-                        className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                        className="w-full px-3 py-2 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
                       />
                     </div>
                   </div>
@@ -314,7 +314,7 @@ export default function EditProductPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="flex-1 px-6 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50"
+              className="flex-1 px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition disabled:opacity-50"
             >
               {submitting ? 'আপডেট হচ্ছে...' : 'আপডেট সেভ করুন'}
             </button>

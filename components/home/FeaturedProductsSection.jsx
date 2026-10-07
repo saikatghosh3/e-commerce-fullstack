@@ -7,8 +7,8 @@
 // //     <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
 // //       {/* প্রফেশনাল ডেকোরেটিভ এলিমেন্ট - কার্টুনিশ না */}
 // //       <div className="absolute inset-0 opacity-30">
-// //         <div className="absolute top-20 right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl"></div>
-// //         <div className="absolute bottom-10 left-10 w-80 h-80 bg-purple-100 rounded-full blur-3xl"></div>
+// //         <div className="absolute top-20 right-10 w-72 h-72 bg-orange-100 rounded-full blur-3xl"></div>
+// //         <div className="absolute bottom-10 left-10 w-80 h-80 bg-amber-100 rounded-full blur-3xl"></div>
 // //       </div>
 
 // //       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -20,12 +20,12 @@
 // //             আমাদের সবচেয়ে বেশি বিক্রি ও জনপ্রিয় আইটেমগুলো আবিষ্কার করুন
 // //           </p>
 // //           {/* আন্ডারলাইন ডেকোরেশন */}
-// //           <div className="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+// //           <div className="w-24 h-1 bg-orange-600 mx-auto mt-4 rounded-full"></div>
 // //         </div>
 
 // //         {loading ? (
 // //           <div className="flex justify-center items-center h-96">
-// //             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+// //             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
 // //           </div>
 // //         ) : (
 // //           <>
@@ -46,7 +46,7 @@
 // //         <div className="text-center mt-12">
 // //           <Link
 // //             href="/products"
-// //             className="inline-flex items-center bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all duration-300 hover:shadow-lg group"
+// //             className="inline-flex items-center bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-all duration-300 hover:shadow-lg group"
 // //           >
 // //             সব পণ্য দেখুন
 // //             <ArrowRight className="ml-2 group-hover:translate-x-1 transition" size={20} />
@@ -78,8 +78,8 @@
 //     <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
 //       {/* প্রফেশনাল ডেকোরেটিভ এলিমেন্ট */}
 //       <div className="absolute inset-0 opacity-30 pointer-events-none">
-//         <div className="absolute top-20 right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl"></div>
-//         <div className="absolute bottom-10 left-10 w-80 h-80 bg-purple-100 rounded-full blur-3xl"></div>
+//         <div className="absolute top-20 right-10 w-72 h-72 bg-orange-100 rounded-full blur-3xl"></div>
+//         <div className="absolute bottom-10 left-10 w-80 h-80 bg-amber-100 rounded-full blur-3xl"></div>
 //       </div>
 
 //       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -90,12 +90,12 @@
 //           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
 //             আপনার পছন্দের ক্যাটাগরি থেকে সেরা পণ্যগুলো বেছে নিন
 //           </p>
-//           <div className="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+//           <div className="w-24 h-1 bg-orange-600 mx-auto mt-4 rounded-full"></div>
 //         </div>
 
 //         {loading ? (
 //           <div className="flex justify-center items-center h-96">
-//             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+//             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
 //           </div>
 //         ) : (
 //           <>
@@ -113,11 +113,11 @@
 //                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
 //                       <div>
 //                         <h3 className="text-xl sm:text-2xl font-bold text-gray-900 capitalize tracking-tight">{category}</h3>
-//                         <div className="w-12 h-1 bg-indigo-500 mt-2 rounded-full"></div>
+//                         <div className="w-12 h-1 bg-orange-500 mt-2 rounded-full"></div>
 //                       </div>
 //                       <Link
 //                         href={`/products?category=${encodeURIComponent(category)}`}
-//                         className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition group"
+//                         className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-800 transition group"
 //                       >
 //                         সব দেখুন
 //                         <ArrowRight className="ml-1.5 group-hover:translate-x-1 transition" size={16} />
@@ -170,8 +170,8 @@ export default function FeaturedProductsSection({ featuredProducts, loading }) {
   return (
     <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-purple-100 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 right-10 w-72 h-72 bg-orange-100 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-amber-100 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -182,18 +182,18 @@ export default function FeaturedProductsSection({ featuredProducts, loading }) {
           {/* <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             আপনার পছন্দের ক্যাটাগরি থেকে সেরা পণ্যগুলো বেছে নিন
           </p>
-          <div className="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div> */}
+          <div className="w-24 h-1 bg-orange-600 mx-auto mt-4 rounded-full"></div> */}
              <div className="w-full text-center overflow-hidden">
   <p className="text-gray-600 text-lg md:text-xl whitespace-nowrap min-w-full">
     আপনার পছন্দের ক্যাটাগরি থেকে সেরা পণ্যগুলো বেছে নিন
   </p>
-  <div className="w-24 h-1 bg-indigo-600 mx-auto mt-4 rounded-full"></div>
+  <div className="w-24 h-1 bg-orange-600 mx-auto mt-4 rounded-full"></div>
 </div>
         </div>
 
         {loading ? (
           <div className="flex justify-center items-center h-96">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
           </div>
         ) : (
           <>
@@ -202,25 +202,25 @@ export default function FeaturedProductsSection({ featuredProducts, loading }) {
                 <p className="text-gray-500 text-lg">কোন পণ্য পাওয়া যায়নি</p>
               </div>
             ) : (
-              <div className="space-y-20">
+              <div className="space-y-10 sm:space-y-14 lg:space-y-20">
                 {Object.entries(groupedProducts).map(([category, group]) => (
-                  <div key={category} className="bg-white/50 rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100">
+                  <div key={category} className="bg-white/50 rounded-2xl p-3 sm:p-5 lg:p-8 shadow-sm border border-gray-100">
                     
-                    <div className="flex items-center justify-between gap-4 mb-8 border-b border-gray-100 pb-4">
+                    <div className="flex items-center justify-between gap-4 mb-5 border-b border-gray-100 pb-4 sm:mb-8">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900">{category}</h3>
-                        <div className="w-12 h-1 bg-indigo-500 mt-2 rounded-full"></div>
+                        <div className="w-12 h-1 bg-orange-500 mt-2 rounded-full"></div>
                       </div>
                       <Link
                         href={`/products?category=${encodeURIComponent(group.category)}`}
-                        className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition group"
+                        className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-800 transition group"
                       >
                         সব দেখুন
                         <ArrowRight className="ml-1.5 group-hover:translate-x-1 transition" size={16} />
                       </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4 lg:gap-6">
                       {group.products.slice(0, 4).map((product) => (
                         <ProductCard key={product._id} product={product} />
                       ))}

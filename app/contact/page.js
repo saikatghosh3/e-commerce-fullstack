@@ -9,19 +9,19 @@ export default async function ContactPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 px-4 py-12 md:py-20">
+    <main className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50 px-4 py-12 md:py-20">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
         
         {/* হেডার সেকশন */}
-        <div className="bg-gradient-to-r from-blue-100 to-cyan-100 px-6 py-8 md:px-10 border-b border-blue-200">
+        <div className="bg-gradient-to-r from-orange-100 to-amber-100 px-6 py-8 md:px-10 border-b border-orange-200">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="bg-blue-200 rounded-full w-14 h-14 flex items-center justify-center">
-                <i className="fas fa-phone-alt text-blue-700 text-2xl"></i>
+              <div className="bg-orange-200 rounded-full w-14 h-14 flex items-center justify-center">
+                <i className="fas fa-phone-alt text-orange-700 text-2xl"></i>
               </div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-slate-800">যোগাযোগ করুন</h1>
-                <p className="text-blue-700 mt-1">আমরা ২৪/৭ আপনার জন্য উন্মুক্ত</p>
+                <p className="text-orange-700 mt-1">আমরা ২৪/৭ আপনার জন্য উন্মুক্ত</p>
               </div>
             </div>
           </div>
@@ -34,8 +34,8 @@ export default async function ContactPage() {
           <div className="grid md:grid-cols-2 gap-6">
             
             {/* ফোন নম্বর কার্ড */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-              <div className="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+              <div className="bg-orange-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                 <i className="fas fa-phone-alt text-white text-2xl"></i>
               </div>
               <h2 className="text-xl font-bold text-slate-800 mb-2">ফোন করুন</h2>
@@ -43,13 +43,13 @@ export default async function ContactPage() {
               <div className="space-y-2">
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">হটলাইন নম্বর</p>
-                  <a href={`tel:${s.phoneEnglish || '+8809612345678'}`} className="text-blue-600 font-bold text-xl hover:text-blue-700 transition">
+                  <a href={`tel:${s.phoneEnglish || '+8809612345678'}`} className="text-orange-600 font-bold text-xl hover:text-orange-700 transition">
                     {s.phone || '০৯৬১২-৩৪৫৬৭৮'}
                   </a>
                 </div>
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">মোবাইল (হোয়াটসঅ্যাপ)</p>
-                  <a href={`tel:${s.phoneEnglish || '+8801712345678'}`} className="text-blue-600 font-bold text-lg hover:text-blue-700 transition">
+                  <a href={`tel:${s.phoneEnglish || '+8801712345678'}`} className="text-orange-600 font-bold text-lg hover:text-orange-700 transition">
                     {s.phone || '০১৭১২-৩৪৫৬৭৮'}
                   </a>
                 </div>
@@ -57,8 +57,8 @@ export default async function ContactPage() {
             </div>
 
             {/* ইমেইল কার্ড */}
-            <div className="bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
-              <div className="bg-cyan-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 text-center">
+              <div className="bg-amber-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
                 <i className="fas fa-envelope text-white text-2xl"></i>
               </div>
               <h2 className="text-xl font-bold text-slate-800 mb-2">ইমেইল করুন</h2>
@@ -66,13 +66,13 @@ export default async function ContactPage() {
               <div className="space-y-2">
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">সাপোর্ট ইমেইল</p>
-                  <a href={`mailto:${s.email || 'support@yourstore.com'}`} className="text-cyan-600 font-semibold text-sm md:text-base break-all hover:text-cyan-700 transition">
+                  <a href={`mailto:${s.email || 'support@yourstore.com'}`} className="text-amber-600 font-semibold text-sm md:text-base break-all hover:text-amber-700 transition">
                     {s.email || 'support@yourstore.com'}
                   </a>
                 </div>
                 <div className="bg-white rounded-xl p-3">
                   <p className="text-xs text-slate-400">অভিযোগ ও আইনি বিষয়</p>
-                  <a href={`mailto:${s.email || 'legal@yourstore.com'}`} className="text-cyan-600 font-semibold text-sm md:text-base break-all hover:text-cyan-700 transition">
+                  <a href={`mailto:${s.email || 'legal@yourstore.com'}`} className="text-amber-600 font-semibold text-sm md:text-base break-all hover:text-amber-700 transition">
                     {s.email || 'legal@yourstore.com'}
                   </a>
                 </div>
@@ -83,15 +83,15 @@ export default async function ContactPage() {
           {/* অন্যান্য যোগাযোগ মাধ্যম */}
           <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
             <h3 className="font-bold text-lg text-slate-800 mb-4 text-center flex items-center justify-center gap-2">
-              <i className="fab fa-rocketchat text-blue-500"></i>
+              <i className="fab fa-rocketchat text-orange-500"></i>
               সামাজিক মাধ্যমে সংযুক্ত থাকুন
             </h3>
             <div className="flex flex-wrap justify-center gap-4">
               {[
-                { key: 'facebook', label: 'Facebook', color: 'hover:bg-blue-50 border-blue-200', textColor: 'text-blue-600' },
+                { key: 'facebook', label: 'Facebook', color: 'hover:bg-orange-50 border-orange-200', textColor: 'text-orange-600' },
                 { key: 'instagram', label: 'Instagram', color: 'hover:bg-pink-50 border-pink-200', textColor: 'text-pink-600' },
                 { key: 'whatsapp', label: 'WhatsApp', color: 'hover:bg-green-50 border-green-200', textColor: 'text-green-500' },
-                { key: 'facebook', label: 'Messenger', color: 'hover:bg-sky-50 border-sky-200', textColor: 'text-sky-500' },
+                { key: 'facebook', label: 'Messenger', color: 'hover:bg-orange-50 border-orange-200', textColor: 'text-orange-500' },
               ].map(({ key, label, color, textColor }) => {
                 const url = s[key];
                 if (!url) return null;
@@ -108,10 +108,10 @@ export default async function ContactPage() {
           </div>
 
           {/* দোকানের ঠিকানা */}
-          <div className="bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl p-6">
+          <div className="bg-gradient-to-r from-orange-100 to-amber-100 rounded-2xl p-6">
             <div className="flex items-start gap-3">
               <div className="bg-white rounded-full p-2">
-                <i className="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                <i className="fas fa-map-marker-alt text-orange-600 text-xl"></i>
               </div>
               <div>
                 <h4 className="font-bold text-slate-800">আমাদের ঠিকানা</h4>
@@ -125,7 +125,7 @@ export default async function ContactPage() {
                     href="https://maps.google.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-blue-600 text-sm flex items-center gap-1 hover:underline"
+                    className="text-orange-600 text-sm flex items-center gap-1 hover:underline"
                   >
                     <i className="fas fa-external-link-alt text-xs"></i>
                     গুগল ম্যাপে দেখুন
@@ -138,7 +138,7 @@ export default async function ContactPage() {
           {/* ব্যবসায়িক সময় */}
           <div className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
             <div className="flex items-center gap-3 mb-3">
-              <i className="fas fa-clock text-blue-600 text-xl"></i>
+              <i className="fas fa-clock text-orange-600 text-xl"></i>
               <h4 className="font-bold text-slate-800">কল সেন্টার খোলার সময়</h4>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">

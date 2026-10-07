@@ -187,7 +187,7 @@ export default function AdminReviewsPage() {
           </div>
           <button
             onClick={() => setShowAddModal(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition text-sm font-medium"
           >
             <Plus size={18} />
             Add Review
@@ -204,13 +204,13 @@ export default function AdminReviewsPage() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search by user or comment..."
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
               />
             </div>
             <select
               value={filterApproved}
               onChange={(e) => { setFilterApproved(e.target.value); setPage(1); }}
-              className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+              className="px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
             >
               <option value="all">All Reviews</option>
               <option value="true">Approved</option>
@@ -311,7 +311,7 @@ export default function AdminReviewsPage() {
                           </button>
                           <button
                             onClick={() => openEditModal(review)}
-                            className="p-2 rounded-lg text-blue-600 hover:bg-blue-50 transition"
+                            className="p-2 rounded-lg text-orange-600 hover:bg-orange-50 transition"
                             title="Edit"
                           >
                             <Edit2 size={16} />
@@ -375,7 +375,7 @@ export default function AdminReviewsPage() {
                 <select
                   value={addForm.productId}
                   onChange={(e) => setAddForm((p) => ({ ...p, productId: e.target.value }))}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                   required
                 >
                   <option value="">Select a product</option>
@@ -390,7 +390,7 @@ export default function AdminReviewsPage() {
                   type="text"
                   value={addForm.user}
                   onChange={(e) => setAddForm((p) => ({ ...p, user: e.target.value }))}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                   required
                 />
               </div>
@@ -399,7 +399,7 @@ export default function AdminReviewsPage() {
                 <select
                   value={addForm.rating}
                   onChange={(e) => setAddForm((p) => ({ ...p, rating: Number(e.target.value) }))}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                 >
                   {[5, 4, 3, 2, 1].map((v) => (
                     <option key={v} value={v}>{v} Star{v > 1 ? 's' : ''}</option>
@@ -412,7 +412,7 @@ export default function AdminReviewsPage() {
                   value={addForm.comment}
                   onChange={(e) => setAddForm((p) => ({ ...p, comment: e.target.value }))}
                   rows={3}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm resize-none"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm resize-none"
                   required
                 />
               </div>
@@ -426,7 +426,7 @@ export default function AdminReviewsPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium"
+                  className="flex-1 px-4 py-2.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition text-sm font-medium"
                 >
                   Add Review
                 </button>
@@ -456,7 +456,7 @@ export default function AdminReviewsPage() {
                   type="text"
                   value={editForm.user}
                   onChange={(e) => setEditForm((p) => ({ ...p, user: e.target.value }))}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                   required
                 />
               </div>
@@ -465,7 +465,7 @@ export default function AdminReviewsPage() {
                 <select
                   value={editForm.rating}
                   onChange={(e) => setEditForm((p) => ({ ...p, rating: Number(e.target.value) }))}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                 >
                   {[5, 4, 3, 2, 1].map((v) => (
                     <option key={v} value={v}>{v} Star{v > 1 ? 's' : ''}</option>
@@ -478,7 +478,7 @@ export default function AdminReviewsPage() {
                   value={editForm.comment}
                   onChange={(e) => setEditForm((p) => ({ ...p, comment: e.target.value }))}
                   rows={3}
-                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm resize-none"
+                  className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none text-sm resize-none"
                   required
                 />
               </div>
@@ -488,7 +488,7 @@ export default function AdminReviewsPage() {
                   id="edit-approved"
                   checked={editForm.approved}
                   onChange={(e) => setEditForm((p) => ({ ...p, approved: e.target.checked }))}
-                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="w-4 h-4 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
                 />
                 <label htmlFor="edit-approved" className="text-sm font-medium text-gray-700">Approved</label>
               </div>
@@ -502,7 +502,7 @@ export default function AdminReviewsPage() {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-sm font-medium"
+                  className="flex-1 px-4 py-2.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition text-sm font-medium"
                 >
                   Update Review
                 </button>

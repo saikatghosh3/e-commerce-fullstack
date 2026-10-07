@@ -36,6 +36,13 @@ export async function POST(request) {
       );
     }
 
+    if (user.role === 'admin') {
+      return Response.json(
+        { success: false, message: 'অ্যাডমিন অ্যাকাউন্ট দিয়ে অর্ডার করা যাবে না। সাধারণ ইউজার অ্যাকাউন্ট দিয়ে লগইন করুন।' },
+        { status: 403 }
+      );
+    }
+
     const {
       orderNumber,
       items,

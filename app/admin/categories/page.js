@@ -107,7 +107,7 @@ export default function AdminCategoriesPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
           <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-100 p-5 h-fit space-y-4">
             <div className="flex items-center gap-2 pb-3 border-b border-gray-100">
-              <Tag size={18} className="text-indigo-600" />
+              <Tag size={18} className="text-orange-600" />
               <h2 className="font-semibold text-gray-900">{editingId ? 'Edit Category' : 'New Category'}</h2>
             </div>
 
@@ -117,7 +117,7 @@ export default function AdminCategoriesPage() {
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Example: Electronics"
                 required
               />
@@ -128,7 +128,7 @@ export default function AdminCategoriesPage() {
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
-                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 outline-none resize-none"
                 rows={3}
                 placeholder="Optional"
               />
@@ -148,7 +148,7 @@ export default function AdminCategoriesPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="flex-1 px-4 py-2.5 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50 inline-flex items-center justify-center gap-2"
+                className="flex-1 px-4 py-2.5 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition disabled:opacity-50 inline-flex items-center justify-center gap-2"
               >
                 {submitting ? <Loader2 size={16} className="animate-spin" /> : editingId ? <Save size={16} /> : <Plus size={16} />}
                 {editingId ? 'Save Changes' : 'Create Category'}
@@ -159,7 +159,7 @@ export default function AdminCategoriesPage() {
           <div className="bg-white rounded-lg border border-gray-100 overflow-hidden">
             {loading ? (
               <div className="h-64 flex items-center justify-center">
-                <Loader2 size={28} className="animate-spin text-indigo-600" />
+                <Loader2 size={28} className="animate-spin text-orange-600" />
               </div>
             ) : categories.length > 0 ? (
               <div className="overflow-x-auto">
@@ -181,7 +181,7 @@ export default function AdminCategoriesPage() {
                             <button
                               type="button"
                               onClick={() => startEdit(category)}
-                              className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded transition"
+                              className="p-1.5 text-orange-600 hover:bg-orange-50 rounded transition"
                               title="Edit"
                             >
                               <Edit2 size={15} />

@@ -53,6 +53,24 @@ export default function Header() {
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (contextSettings) setSettings(contextSettings);
+  }, [contextSettings]);
+
+  useEffect(() => {
+    if (contextCategories?.length) {
+      setCategories([
+        defaultCategories[0],
+        ...contextCategories.map((cat) => ({ id: cat.name, name: cat.name })),
+      ]);
+    }
+  }, [contextCategories]);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setShowUserMenu(false);
+  }, [pathname]);
+
   const isLoggedIn = isAuthenticated || hasToken;
   const activeUser = authUser || storedUser;
 
@@ -132,9 +150,9 @@ export default function Header() {
                 placeholder="পণ্য খুঁজুন..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200"
+                className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-200"
               />
-              <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-indigo-600 transition-colors">
+              <button type="submit" className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-orange-600 transition-colors">
                 <Search size={20} />
               </button>
             </div>
@@ -142,10 +160,10 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/products" className="text-gray-700 hover:text-indigo-600 font-medium transition-colors">কেনাকাটা</Link>
+            <Link href="/products" className="text-gray-700 hover:text-orange-600 font-medium transition-colors">কেনাকাটা</Link>
 
             <div className="relative group">
-              <button className="flex items-center gap-1 text-gray-700 hover:text-indigo-600 font-medium transition-colors">
+              <button className="flex items-center gap-1 text-gray-700 hover:text-orange-600 font-medium transition-colors">
                 ক্যাটাগরি
                 <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-200" />
               </button>
@@ -155,7 +173,7 @@ export default function Header() {
                     <Link
                       key={`${cat.id}-${index}`}
                       href={`/products?category=${encodeURIComponent(cat.id)}`}
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-colors"
                     >
                       {cat.name}
                     </Link>
@@ -164,7 +182,7 @@ export default function Header() {
               </div>
             </div>
 
-            <Link href="/wishlist" className="relative text-gray-700 hover:text-indigo-600 transition-colors">
+            <Link href="/wishlist" className="relative text-gray-700 hover:text-orange-600 transition-colors">
               <Heart size={22} />
               {wishlistCount > 0 && (
                 <span className="absolute -right-2 -top-2 min-w-5 h-5 px-1.5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center">
@@ -173,7 +191,7 @@ export default function Header() {
               )}
             </Link>
 
-            <Link href="/cart" className="relative flex items-center space-x-2 bg-indigo-600 text-white px-5 py-2.5 rounded-full hover:bg-indigo-700 transition-all shadow-md">
+            <Link href="/cart" className="relative flex items-center space-x-2 bg-orange-600 text-white px-5 py-2.5 rounded-full hover:bg-orange-700 transition-all shadow-md">
               <ShoppingCart size={20} />
               <span className="font-medium">কার্ট</span>
               {cartCount > 0 && (
@@ -187,7 +205,7 @@ export default function Header() {
               <div className="relative">
                 <button
                   onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="p-2 text-gray-700 hover:text-indigo-600 transition-colors rounded-full hover:bg-gray-100"
+                  className="p-2 text-gray-700 hover:text-orange-600 transition-colors rounded-full hover:bg-gray-100"
                 >
                   <User size={22} />
                 </button>
@@ -197,7 +215,7 @@ export default function Header() {
                       <Link
                         href="/profile"
                         onClick={() => setShowUserMenu(false)}
-                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-colors"
                       >
                         <User size={16} />
                         My Profile
@@ -205,7 +223,7 @@ export default function Header() {
                       <Link
                         href="/profile"
                         onClick={() => setShowUserMenu(false)}
-                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors"
+                        className="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-orange-50 hover:text-orange-600 rounded-lg transition-colors"
                       >
                         <ShoppingCart size={16} />
                         My Orders
@@ -233,7 +251,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/auth/login"
-                className="text-sm font-medium text-gray-700 hover:text-indigo-600 transition-colors"
+                className="text-sm font-medium text-gray-700 hover:text-orange-600 transition-colors"
               >
                 Sign In
               </Link>
@@ -241,39 +259,46 @@ export default function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden p-2 hover:bg-gray-100 rounded-full">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="মেনু"
+            aria-expanded={isOpen}
+            className={`md:hidden p-2 rounded-full transition-colors ${
+              isOpen ? 'bg-orange-50 text-orange-600' : 'text-gray-700 hover:bg-gray-100 hover:text-orange-600'
+            }`}
+          >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden pb-6 space-y-4">
+          <div className="md:hidden pb-6 space-y-4 animate-slide-down">
             <form onSubmit={handleSearch} className="flex gap-2 px-1">
               <input
                 type="text"
                 placeholder="পণ্য খুঁজুন..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm outline-none"
+                className="flex-1 px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
               />
-              <button type="submit" className="p-2 bg-indigo-600 text-white rounded-full">
+              <button type="submit" aria-label="খুঁজুন" className="p-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition-colors">
                 <Search size={18} />
               </button>
             </form>
 
             <nav className="flex flex-col space-y-1">
-              <Link href="/products" onClick={() => setIsOpen(false)} className="px-4 py-3 text-gray-700 hover:bg-indigo-50 rounded-xl font-medium">কেনাকাটা</Link>
+              <Link href="/products" onClick={() => setIsOpen(false)} className="px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-xl font-medium">কেনাকাটা</Link>
 
               <div className="bg-gray-50 rounded-xl p-4 space-y-3">
                 <p className="text-[10px] font-bold uppercase text-gray-400 tracking-widest">ক্যাটাগরি সমূহ</p>
                 <div className="grid grid-cols-2 gap-2">
-                  {categories.map((cat) => (
+                  {categories.map((cat, index) => (
                     <Link
-                      key={cat.id}
+                      key={`${cat.id}-${index}`}
                       href={`/products?category=${encodeURIComponent(cat.id)}`}
                       onClick={() => setIsOpen(false)}
-                      className="px-3 py-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-white rounded-lg transition-all"
+                      className="px-3 py-2 text-sm text-gray-600 hover:text-orange-600 hover:bg-white rounded-lg transition-all"
                     >
                       {cat.name}
                     </Link>
@@ -281,10 +306,54 @@ export default function Header() {
                 </div>
               </div>
 
-              <Link href="/wishlist" onClick={() => setIsOpen(false)} className="px-4 py-3 text-gray-700 hover:bg-indigo-50 rounded-xl font-medium flex justify-between items-center">
-                উইশলিস্ট <span>{wishlistCount > 0 ? `(${wishlistCount})` : ''}</span>
+              <Link href="/wishlist" onClick={() => setIsOpen(false)} className="px-4 py-3 text-gray-700 hover:bg-orange-50 rounded-xl font-medium flex justify-between items-center">
+                উইশলিস্ট <span className="text-orange-600 font-bold">{wishlistCount > 0 ? `(${wishlistCount})` : ''}</span>
               </Link>
-              <Link href="/cart" onClick={() => setIsOpen(false)} className="mx-4 mt-2 py-3 bg-indigo-600 text-white rounded-xl font-bold text-center">
+
+              {isLoggedIn ? (
+                <div className="bg-gray-50 rounded-xl p-4 space-y-1">
+                  <div className="flex items-center gap-3 pb-2 mb-1 border-b border-gray-200">
+                    <div className="w-9 h-9 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                      {(activeUser?.name || 'U').charAt(0).toUpperCase()}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-gray-900 truncate">{activeUser?.name || 'ব্যবহারকারী'}</p>
+                      {activeUser?.email && <p className="text-xs text-gray-500 truncate">{activeUser.email}</p>}
+                    </div>
+                  </div>
+                  <Link href="/profile" onClick={() => setIsOpen(false)} className="flex items-center gap-2 px-2 py-2.5 text-sm text-gray-700 hover:text-orange-600 rounded-lg transition-colors">
+                    <User size={16} /> আমার প্রোফাইল
+                  </Link>
+                  <Link href="/profile" onClick={() => setIsOpen(false)} className="flex items-center gap-2 px-2 py-2.5 text-sm text-gray-700 hover:text-orange-600 rounded-lg transition-colors">
+                    <ShoppingCart size={16} /> আমার অর্ডার
+                  </Link>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('token');
+                      localStorage.removeItem('user');
+                      localStorage.removeItem('adminToken');
+                      localStorage.removeItem('adminUser');
+                      dispatch(logout());
+                      setIsOpen(false);
+                      router.push('/');
+                    }}
+                    className="w-full flex items-center gap-2 px-2 py-2.5 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  >
+                    <LogOut size={16} /> সাইন আউট
+                  </button>
+                </div>
+              ) : (
+                <div className="px-1 pt-1 space-y-2">
+                  <Link href="/auth/login" onClick={() => setIsOpen(false)} className="block py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold text-center transition-colors">
+                    সাইন ইন
+                  </Link>
+                  <Link href="/auth/register" onClick={() => setIsOpen(false)} className="block py-3 border border-orange-200 text-orange-700 hover:bg-orange-50 rounded-xl font-medium text-center transition-colors">
+                    নতুন অ্যাকাউন্ট খুলুন
+                  </Link>
+                </div>
+              )}
+
+              <Link href="/cart" onClick={() => setIsOpen(false)} className="mx-4 mt-2 py-3 bg-orange-600 text-white rounded-xl font-bold text-center hover:bg-orange-700 transition-colors">
                 কার্ট {cartCount > 0 ? `(${cartCount})` : ''}
               </Link>
             </nav>

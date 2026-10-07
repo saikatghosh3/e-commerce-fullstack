@@ -9,32 +9,31 @@ export default function NewsletterSection() {
       duration: 4000,
       position: 'top-center',
       style: {
-        background: '#4F46E5',
+        background: '#C2410C',
         color: '#fff',
-        fontFamily: 'Hind Siliguri, sans-serif',
       },
       icon: '📧',
     });
   };
 
   return (
-    <section className="relative text-white py-14 lg:py-16 overflow-hidden bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950">
+    <section className="relative text-white py-14 lg:py-16 overflow-hidden bg-gradient-to-br from-slate-950 via-orange-950 to-slate-950">
       <div className="absolute inset-0">
-        <div className="absolute top-0 -right-40 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-purple-500/20 blur-3xl" />
+        <div className="absolute top-0 -right-40 h-80 w-80 rounded-full bg-orange-500/20 blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-amber-500/20 blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_70%)]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_10px_60px_-20px_rgba(99,102,241,0.45)] backdrop-blur-xl">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 shadow-[0_10px_60px_-20px_rgba(249,115,22,0.45)] backdrop-blur-xl">
           <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-indigo-400/90 to-purple-400/90 shadow-lg shadow-indigo-500/20">
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-orange-400/90 to-amber-400/90 shadow-lg shadow-orange-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-7 w-7 text-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
             </div>
 
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold tracking-tight mb-2">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2">
               {`আমাদের নিউজলেটারে যুক্ত হন`}
             </h2>
             <p className="text-sm sm:text-base text-white/80 leading-relaxed mb-6">

@@ -5,7 +5,7 @@ export default function TrustSection() {
     <section className="relative bg-white py-10 overflow-hidden">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       <div className="absolute inset-0 -z-10 opacity-40" style={{
-        backgroundImage: 'radial-gradient(circle at 20% 0%, rgba(99,102,241,0.05), transparent 60%), radial-gradient(circle at 80% 0%, rgba(168,85,247,0.05), transparent 60%)'
+        backgroundImage: 'radial-gradient(circle at 20% 0%, rgba(249,115,22,0.05), transparent 60%), radial-gradient(circle at 80% 0%, rgba(245,158,11,0.05), transparent 60%)'
       }} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -14,9 +14,9 @@ export default function TrustSection() {
               icon: Truck,
               title: 'ফ্রি ডেলিভারি',
               desc: '৫০ টাকার বেশি অর্ডারে ফ্রি শিপিং',
-              grad: 'from-indigo-500/10 to-indigo-500/5',
-              iconBg: 'bg-indigo-50',
-              iconColor: 'text-indigo-600',
+              grad: 'from-orange-500/10 to-orange-500/5',
+              iconBg: 'bg-orange-50',
+              iconColor: 'text-orange-600',
             },
             {
               icon: Shield,
@@ -38,9 +38,9 @@ export default function TrustSection() {
               icon: Star,
               title: 'প্রিমিয়াম মান',
               desc: 'যাচাইকৃত আসল ও মানসম্মত পণ্য',
-              grad: 'from-purple-500/10 to-purple-500/5',
-              iconBg: 'bg-purple-50',
-              iconColor: 'text-purple-600',
+              grad: 'from-rose-500/10 to-rose-500/5',
+              iconBg: 'bg-rose-50',
+              iconColor: 'text-rose-600',
             },
           ].map((item, i) => (
             <div

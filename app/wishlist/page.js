@@ -71,39 +71,39 @@ export default function WishlistPage() {
         <div className="mb-10">
           <div className="flex items-center gap-3">
             <Heart className="text-red-500" size={32} />
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">Wishlist</h1>
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">উইশলিস্ট</h1>
           </div>
-          <p className="text-gray-600 mt-2">Products you saved for later</p>
+          <p className="text-gray-600 mt-2">পরে কেনার জন্য আপনি যে পণ্যগুলো সংরক্ষণ করেছেন</p>
         </div>
 
         {loading ? (
           <div className="flex justify-center items-center h-96">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
           </div>
         ) : wishlistIds.length === 0 || products.length === 0 ? (
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-red-50 mb-5">
               <Heart className="text-red-400" size={36} />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Your wishlist is empty</h2>
-            <p className="text-gray-600 mb-8">Save products you like and find them here later.</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">আপনার উইশলিস্ট খালি</h2>
+            <p className="text-gray-600 mb-8">পছন্দের পণ্যগুলো সেভ করুন, পরে এখানে খুঁজে পাবেন।</p>
             <Link
               href="/products"
-              className="inline-flex items-center justify-center bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition"
+              className="inline-flex items-center justify-center bg-orange-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-orange-700 transition"
             >
-              Browse Products
+              পণ্যগুলো দেখুন
             </Link>
           </div>
         ) : (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
               {products.map((product) => (
                 <div key={product._id} className="relative">
                   <ProductCard product={product} />
                   <button
                     onClick={() => handleRemove(product._id)}
                     className="absolute left-3 top-3 bg-white/90 backdrop-blur-sm text-red-600 rounded-full p-2 shadow-md hover:bg-red-50 transition"
-                    aria-label="Remove from wishlist"
+                    aria-label="উইশলিস্ট থেকে সরান"
                   >
                     <Trash2 size={18} />
                   </button>

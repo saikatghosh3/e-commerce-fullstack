@@ -2,26 +2,26 @@
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 px-4 py-12 md:py-20">
+    <main className="min-h-screen bg-gradient-to-br from-amber-50 to-pink-50 px-4 py-12 md:py-20">
       <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
         
         {/* হেডার সেকশন */}
-        <div className="bg-gradient-to-r from-purple-100 to-pink-100 px-6 py-8 md:px-10 border-b border-purple-200">
+        <div className="bg-gradient-to-r from-amber-100 to-pink-100 px-6 py-8 md:px-10 border-b border-amber-200">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="bg-purple-200 rounded-full w-14 h-14 flex items-center justify-center">
-                <i className="fas fa-shield-alt text-purple-700 text-2xl"></i>
+              <div className="bg-amber-200 rounded-full w-14 h-14 flex items-center justify-center">
+                <i className="fas fa-shield-alt text-amber-700 text-2xl"></i>
               </div>
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-slate-800">গোপনীয়তা নীতি</h1>
-                <p className="text-purple-700 mt-1">আপনার তথ্য সুরক্ষা আমাদের অগ্রাধিকার</p>
+                <p className="text-amber-700 mt-1">আপনার তথ্য সুরক্ষা আমাদের অগ্রাধিকার</p>
               </div>
             </div>
             
             {/* হোমপেজে রিডাইরেক্ট বাটন */}
             <a 
               href="/" 
-              className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2.5 px-6 rounded-xl transition flex items-center gap-2 w-fit shadow-md hover:shadow-lg"
+              className="bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 px-6 rounded-xl transition flex items-center gap-2 w-fit shadow-md hover:shadow-lg"
             >
               <i className="fas fa-home"></i>
               হোমপেজে যান
@@ -33,9 +33,9 @@ export default function PrivacyPolicyPage() {
         <div className="p-6 md:p-10 space-y-8">
           
           {/* ভূমিকা কার্ড */}
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-5 rounded-xl border-l-8 border-purple-500">
+          <div className="bg-gradient-to-r from-amber-50 to-pink-50 p-5 rounded-xl border-l-8 border-amber-500">
             <div className="flex items-start gap-3">
-              <i className="fas fa-lock text-purple-600 text-2xl mt-1"></i>
+              <i className="fas fa-lock text-amber-600 text-2xl mt-1"></i>
               <div>
                 <h2 className="font-bold text-xl text-slate-800">আমাদের প্রতিশ্রুতি</h2>
                 <p className="text-slate-600 mt-2 leading-relaxed">
@@ -52,8 +52,8 @@ export default function PrivacyPolicyPage() {
             {/* সেকশন ১ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-purple-100 rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0">
-                  <i className="fas fa-database text-purple-600"></i>
+                <div className="bg-amber-100 rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-database text-amber-600"></i>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">আমরা কী তথ্য সংগ্রহ করি?</h3>
@@ -71,8 +71,8 @@ export default function PrivacyPolicyPage() {
             {/* সেকশন ২ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-blue-100 rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0">
-                  <i className="fas fa-chart-line text-blue-600"></i>
+                <div className="bg-orange-100 rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-chart-line text-orange-600"></i>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">কীভাবে তথ্য ব্যবহার করি?</h3>
@@ -141,8 +141,8 @@ export default function PrivacyPolicyPage() {
             {/* সেকশন ৬ */}
             <div className="border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
               <div className="flex items-start gap-3">
-                <div className="bg-indigo-100 rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0">
-                  <i className="fas fa-child text-indigo-600"></i>
+                <div className="bg-orange-100 rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0">
+                  <i className="fas fa-child text-orange-600"></i>
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-slate-800">শিশুদের গোপনীয়তা</h3>
@@ -174,10 +174,10 @@ export default function PrivacyPolicyPage() {
           </div>
 
           {/* যোগাযোগ সেকশন */}
-          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-5">
+          <div className="bg-gradient-to-r from-amber-50 to-pink-50 rounded-xl p-5">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <i className="fas fa-headset text-purple-600 text-2xl"></i>
+                <i className="fas fa-headset text-amber-600 text-2xl"></i>
                 <div>
                   <p className="text-sm text-slate-500">গোপনীয়তা সংক্রান্ত যেকোনো প্রশ্নে</p>
                   <p className="font-semibold text-slate-700">privacy@yourstore.com</p>
@@ -186,7 +186,7 @@ export default function PrivacyPolicyPage() {
               </div>
               <a 
                 href="/contact" 
-                className="text-purple-600 hover:text-purple-700 font-medium text-sm flex items-center gap-1 border border-purple-300 px-4 py-2 rounded-lg bg-white"
+                className="text-amber-600 hover:text-amber-700 font-medium text-sm flex items-center gap-1 border border-amber-300 px-4 py-2 rounded-lg bg-white"
               >
                 <i className="fas fa-envelope"></i>
                 যোগাযোগ করুন

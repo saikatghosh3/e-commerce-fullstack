@@ -3,12 +3,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Mail, Lock, Loader2 } from 'lucide-react';
-import { useDispatch } from 'react-redux';
-import { loginSuccess } from '@/lib/redux/slices/authSlice';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -31,9 +28,6 @@ export default function AdminLoginPage() {
       if (data.success) {
         localStorage.setItem('adminToken', data.token);
         localStorage.setItem('adminUser', JSON.stringify(data.user));
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-        dispatch(loginSuccess({ user: data.user, token: data.token }));
         router.push('/admin/dashboard');
       } else {
         setError(data.message || 'Invalid credentials');
@@ -47,10 +41,11 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center px-4">
-      <div className="w-full max-w-sm bg-white rounded-xl shadow-2xl p-8">
+    <div className="min-h-screen bg-gray-950 relative overflow-hidden flex items-center justify-center px-4">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[560px] h-[560px] bg-orange-600/25 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="w-full max-w-sm bg-white rounded-xl shadow-2xl p-8 relative z-10">
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-blue-600 rounded-xl mb-3">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-600 rounded-xl mb-3">
             <span className="text-white font-bold text-xl">A</span>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Admin Login</h1>
@@ -67,7 +62,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => { setEmail(e.target.value); setError(''); }}
                 placeholder="admin@gmail.com"
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 required
               />
             </div>
@@ -82,7 +77,7 @@ export default function AdminLoginPage() {
                 value={password}
                 onChange={(e) => { setPassword(e.target.value); setError(''); }}
                 placeholder="••••••••"
-                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
                 required
               />
             </div>
@@ -95,7 +90,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full bg-orange-600 text-white py-2.5 rounded-lg font-semibold hover:bg-orange-700 transition disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading && <Loader2 size={18} className="animate-spin" />}
             {loading ? 'Signing in...' : 'Sign in'}

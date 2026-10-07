@@ -33,6 +33,13 @@ export async function POST(request) {
       );
     }
 
+    if (user.role === 'admin') {
+      return Response.json(
+        { success: false, message: 'এই অ্যাকাউন্ট অ্যাডমিন অ্যাকাউন্ট। অ্যাডমিন প্যানেলে লগইন করুন।' },
+        { status: 403 }
+      );
+    }
+
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role },
       process.env.JWT_SECRET,
